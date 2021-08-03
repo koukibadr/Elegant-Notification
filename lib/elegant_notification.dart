@@ -47,7 +47,7 @@ class _ElegantNotificationState extends State<ElegantNotification> {
                     BoxShadow(
                       color: this.widget.shadowColor.withOpacity(0.2),
                       spreadRadius: 1,
-                      blurRadius: 3,
+                      blurRadius: 1,
                       offset: Offset(0, 1), // changes position of shadow
                     ),
                   ]
