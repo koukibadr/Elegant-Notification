@@ -1,7 +1,17 @@
-library elegant_notification;
+import 'package:flutter/material.dart';
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+class ElegantNotification extends StatefulWidget {
+  const ElegantNotification({ Key? key }) : super(key: key);
+
+  @override
+  _ElegantNotificationState createState() => _ElegantNotificationState();
+}
+
+class _ElegantNotificationState extends State<ElegantNotification> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
+  }
 }
