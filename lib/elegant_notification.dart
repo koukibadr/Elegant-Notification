@@ -1,3 +1,4 @@
+import 'package:elegant_notification/resources/toast_content.dart';
 import 'package:flutter/material.dart';
 
 class ElegantNotification extends StatefulWidget {
@@ -37,8 +38,8 @@ class _ElegantNotificationState extends State<ElegantNotification> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          width: 300,
-          height: 70,
+          width: 400,
+          height: 120,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(this.widget.radius),
             color: this.widget.background,
@@ -52,6 +53,14 @@ class _ElegantNotificationState extends State<ElegantNotification> {
                     ),
                   ]
                 : null,
+          ),
+          child: Column(
+            children: [
+              Expanded(child: ToastContent()),
+              LinearProgressIndicator(
+                value: 40
+              )
+            ],
           ),
         ),
       ],
