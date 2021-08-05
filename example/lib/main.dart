@@ -29,7 +29,8 @@ class ExampleApp extends StatelessWidget {
         child: ElevatedButton(
           child: Text("Open notification"),
           onPressed: () {
-            ElegantNotification().show(context);
+            ElegantNotification.success(title: "", description: "")
+                .show(context);
           },
         ),
       ),

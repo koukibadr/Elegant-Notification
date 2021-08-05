@@ -29,24 +29,38 @@ class ToastContent extends StatelessWidget {
           SizedBox(
             width: 15,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Check Your input",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Container(
-                  width: 170,
-                  child: Text(
-                    "Please keep in mind to check your information before sending your request",
-                    style: TextStyle(fontSize: 12),
-                  )),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Check Your input",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                    width: 170,
+                    child: Text(
+                      "Please keep in mind to check your information before sending your request",
+                      style: TextStyle(fontSize: 12),
+                    )),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+              right: 10
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(Icons.close, color: Colors.grey, size: 15),
+              ],
+            ),
           )
         ],
       ),
