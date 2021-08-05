@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:elegant_notification/resources/colors.dart';
 import 'package:elegant_notification/resources/toast_content.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +35,18 @@ class ElegantNotification extends StatefulWidget {
 }
 
 class _ElegantNotificationState extends State<ElegantNotification> {
+  double progressValue = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(milliseconds: 150), (Timer timer) {
+      setState(() {
+        this.progressValue = this.progressValue - 0.1;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -58,10 +73,9 @@ class _ElegantNotificationState extends State<ElegantNotification> {
             children: [
               Expanded(child: ToastContent()),
               LinearProgressIndicator(
-                value: 0.3,
-                backgroundColor: Colors.white,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.green)
-              )
+                  value: progressValue,
+                  backgroundColor: GREY_COLOR,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.green))
             ],
           ),
         ),

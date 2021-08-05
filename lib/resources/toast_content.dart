@@ -1,6 +1,8 @@
 import 'package:elegant_notification/resources/icons.dart';
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
 class ToastContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,9 +10,7 @@ class ToastContent extends StatelessWidget {
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-              left: 10
-            ),
+            padding: const EdgeInsets.only(left: 10),
             child: Image(
               image: AssetImage(SUCCESS_ICON, package: PACKAGE_NAME),
               width: 20,
@@ -20,13 +20,10 @@ class ToastContent extends StatelessWidget {
             width: 15,
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-              bottom: 20
-            ),
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
             child: Container(
               width: 1,
-              color: Color(0xffF3F3F3),
+              color: GREY_COLOR,
             ),
           ),
           SizedBox(
