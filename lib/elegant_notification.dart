@@ -1,22 +1,85 @@
 import 'dart:async';
 
+import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
 import 'package:elegant_notification/resources/toast_content.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ElegantNotification extends StatefulWidget {
-  final Color shadowColor;
-  final Color background;
-  final double radius;
-  final bool enableShadow;
-  final bool showProgressIndicator;
+  late Color shadowColor;
+  late Color background;
+  late Color progressIndicatorColor;
+  late double radius;
+  late bool enableShadow;
+  late bool showProgressIndicator;
+  final bool displayCloseButton;
+
+  final String title;
+  final String description;
+
+  late NOTIFICATION_TYPE notificationType;
+
+  late Widget icon;
+
+  late Duration toastDuration;
 
   ElegantNotification(
-      {this.shadowColor = Colors.grey,
+      {required this.title,
+      required this.description,
+      required this.icon,
+      this.shadowColor = Colors.grey,
       this.background = Colors.white,
       this.radius = 5,
       this.enableShadow = true,
-      this.showProgressIndicator = true});
+      this.showProgressIndicator = true,
+      this.displayCloseButton = true,
+      this.progressIndicatorColor = Colors.blue,
+      this.toastDuration = const Duration(milliseconds: 2500)}) {
+    this.notificationType = NOTIFICATION_TYPE.CUSTOM;
+  }
+
+  ElegantNotification.success(
+      {required this.title,
+      required this.description,
+      this.displayCloseButton = true,
+      this.toastDuration = const Duration(milliseconds: 2500)}) {
+    this.shadowColor = Colors.grey;
+    this.background = Colors.white;
+    this.radius = 5;
+    this.enableShadow = true;
+    this.showProgressIndicator = true;
+    this.notificationType = NOTIFICATION_TYPE.SUCCESS;
+    this.progressIndicatorColor = SUCCESS_COLOR;
+  }
+
+  ElegantNotification.error(
+      {required this.title,
+      required this.description,
+      this.displayCloseButton = true,
+      this.toastDuration = const Duration(milliseconds: 2500)}) {
+    this.shadowColor = Colors.grey;
+    this.background = Colors.white;
+    this.radius = 5;
+    this.enableShadow = true;
+    this.showProgressIndicator = true;
+    this.notificationType = NOTIFICATION_TYPE.ERROR;
+    this.progressIndicatorColor = ERROR_COLOR;
+  }
+
+  ElegantNotification.info(
+      {required this.title,
+      required this.description,
+      this.displayCloseButton = true,
+      this.toastDuration = const Duration(milliseconds: 2500)}) {
+    this.shadowColor = Colors.grey;
+    this.background = Colors.white;
+    this.radius = 5;
+    this.enableShadow = true;
+    this.showProgressIndicator = true;
+    this.notificationType = NOTIFICATION_TYPE.INFO;
+    this.progressIndicatorColor = INFO_COLOR;
+  }
 
   show(BuildContext context) {
     Navigator.of(context).push(
@@ -79,7 +142,8 @@ class _ElegantNotificationState extends State<ElegantNotification> {
                 child: LinearProgressIndicator(
                     value: progressValue,
                     backgroundColor: GREY_COLOR,
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green)),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        this.widget.progressIndicatorColor)),
               )
             ],
           ),
