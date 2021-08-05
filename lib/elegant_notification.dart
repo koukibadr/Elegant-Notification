@@ -9,12 +9,14 @@ class ElegantNotification extends StatefulWidget {
   final Color background;
   final double radius;
   final bool enableShadow;
+  final bool showProgressIndicator;
 
   ElegantNotification(
       {this.shadowColor = Colors.grey,
       this.background = Colors.white,
       this.radius = 5,
-      this.enableShadow = true});
+      this.enableShadow = true,
+      this.showProgressIndicator = true});
 
   show(BuildContext context) {
     Navigator.of(context).push(
@@ -72,10 +74,13 @@ class _ElegantNotificationState extends State<ElegantNotification> {
           child: Column(
             children: [
               Expanded(child: ToastContent()),
-              LinearProgressIndicator(
-                  value: progressValue,
-                  backgroundColor: GREY_COLOR,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.green))
+              Visibility(
+                visible: this.widget.showProgressIndicator,
+                child: LinearProgressIndicator(
+                    value: progressValue,
+                    backgroundColor: GREY_COLOR,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green)),
+              )
             ],
           ),
         ),
