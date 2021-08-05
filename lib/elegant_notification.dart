@@ -57,7 +57,11 @@ class _ElegantNotificationState extends State<ElegantNotification> {
           child: Column(
             children: [
               Expanded(child: ToastContent()),
-              LinearProgressIndicator(value: 40)
+              LinearProgressIndicator(
+                value: 0.3,
+                backgroundColor: Colors.white,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.green)
+              )
             ],
           ),
         ),
