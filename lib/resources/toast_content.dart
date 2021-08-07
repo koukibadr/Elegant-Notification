@@ -1,9 +1,23 @@
+import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/icons.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
 class ToastContent extends StatelessWidget {
+  final String title;
+  final String description;
+  final NOTIFICATION_TYPE notificationType;
+  final Widget? icon;
+  final bool displayCloseButton;
+
+  ToastContent(
+      {required this.title,
+      required this.description,
+      required this.notificationType,
+      required this.displayCloseButton,
+      this.icon});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +49,7 @@ class ToastContent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Check Your input",
+                  this.title,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 ),
                 SizedBox(
@@ -44,19 +58,22 @@ class ToastContent extends StatelessWidget {
                 Container(
                     width: 170,
                     child: Text(
-                      "Please keep in mind to check your information before sending your request",
+                      this.description,
                       style: TextStyle(fontSize: 12),
                     )),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, right: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(Icons.close, color: Colors.grey, size: 15),
-              ],
+          Visibility(
+            visible: this.displayCloseButton,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20, right: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(Icons.close, color: Colors.grey, size: 15),
+                ],
+              ),
             ),
           )
         ],
