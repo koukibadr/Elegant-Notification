@@ -20,7 +20,7 @@ class ElegantNotification extends StatefulWidget {
 
   late NOTIFICATION_TYPE notificationType;
 
-  late Widget icon;
+  late Widget? icon;
 
   late Duration toastDuration;
 
@@ -58,6 +58,7 @@ class ElegantNotification extends StatefulWidget {
     this.showProgressIndicator = true;
     this.notificationType = NOTIFICATION_TYPE.SUCCESS;
     this.progressIndicatorColor = SUCCESS_COLOR;
+    this.icon = null;
   }
 
   ElegantNotification.error(
@@ -74,6 +75,7 @@ class ElegantNotification extends StatefulWidget {
     this.showProgressIndicator = true;
     this.notificationType = NOTIFICATION_TYPE.ERROR;
     this.progressIndicatorColor = ERROR_COLOR;
+    this.icon = null;
   }
 
   ElegantNotification.info(
@@ -90,6 +92,7 @@ class ElegantNotification extends StatefulWidget {
     this.showProgressIndicator = true;
     this.notificationType = NOTIFICATION_TYPE.INFO;
     this.progressIndicatorColor = INFO_COLOR;
+    this.icon = null;
   }
 
   show(BuildContext context) {
@@ -113,14 +116,27 @@ class ElegantNotification extends StatefulWidget {
 class _ElegantNotificationState extends State<ElegantNotification> {
   double progressValue = 1;
 
+  late Timer notificationTimer;
+
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(milliseconds: 150), (Timer timer) {
+    notificationTimer =
+        Timer.periodic(Duration(milliseconds: 150), (Timer timer) {
       setState(() {
         this.progressValue = this.progressValue - 0.1;
+        if (this.progressValue == 0) {
+          Navigator.pop(context);
+          this.widget.onNotificationClosed?.call();
+        }
       });
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    notificationTimer.cancel();
   }
 
   @override
@@ -154,6 +170,7 @@ class _ElegantNotificationState extends State<ElegantNotification> {
                 displayCloseButton: this.widget.displayCloseButton,
                 notificationType: this.widget.notificationType,
                 icon: this.widget.icon,
+                onCloseButtonPressed: this.widget.onCloseButtonPressed,
               )),
               Visibility(
                 visible: this.widget.showProgressIndicator,

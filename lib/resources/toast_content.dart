@@ -10,13 +10,15 @@ class ToastContent extends StatelessWidget {
   final NOTIFICATION_TYPE notificationType;
   final Widget? icon;
   final bool displayCloseButton;
+  final Function? onCloseButtonPressed;
 
   ToastContent(
       {required this.title,
       required this.description,
       required this.notificationType,
       required this.displayCloseButton,
-      this.icon});
+      this.icon,
+      this.onCloseButtonPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -66,13 +68,19 @@ class ToastContent extends StatelessWidget {
           ),
           Visibility(
             visible: this.displayCloseButton,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20, right: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(Icons.close, color: Colors.grey, size: 15),
-                ],
+            child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+                this.onCloseButtonPressed?.call();
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, right: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(Icons.close, color: Colors.grey, size: 15),
+                  ],
+                ),
               ),
             ),
           )
