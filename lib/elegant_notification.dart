@@ -24,6 +24,9 @@ class ElegantNotification extends StatefulWidget {
 
   late Duration toastDuration;
 
+  final Function? onCloseButtonPressed;
+  final Function? onNotificationClosed;
+
   ElegantNotification(
       {required this.title,
       required this.description,
@@ -35,7 +38,9 @@ class ElegantNotification extends StatefulWidget {
       this.showProgressIndicator = true,
       this.displayCloseButton = true,
       this.progressIndicatorColor = Colors.blue,
-      this.toastDuration = const Duration(milliseconds: 2500)}) {
+      this.toastDuration = const Duration(milliseconds: 2500),
+      this.onCloseButtonPressed,
+      this.onNotificationClosed}) {
     this.notificationType = NOTIFICATION_TYPE.CUSTOM;
   }
 
@@ -43,7 +48,9 @@ class ElegantNotification extends StatefulWidget {
       {required this.title,
       required this.description,
       this.displayCloseButton = true,
-      this.toastDuration = const Duration(milliseconds: 2500)}) {
+      this.toastDuration = const Duration(milliseconds: 2500),
+      this.onCloseButtonPressed,
+      this.onNotificationClosed}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -57,7 +64,9 @@ class ElegantNotification extends StatefulWidget {
       {required this.title,
       required this.description,
       this.displayCloseButton = true,
-      this.toastDuration = const Duration(milliseconds: 2500)}) {
+      this.toastDuration = const Duration(milliseconds: 2500),
+      this.onCloseButtonPressed,
+      this.onNotificationClosed}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -71,7 +80,9 @@ class ElegantNotification extends StatefulWidget {
       {required this.title,
       required this.description,
       this.displayCloseButton = true,
-      this.toastDuration = const Duration(milliseconds: 2500)}) {
+      this.toastDuration = const Duration(milliseconds: 2500),
+      this.onCloseButtonPressed,
+      this.onNotificationClosed}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -136,7 +147,14 @@ class _ElegantNotificationState extends State<ElegantNotification> {
           ),
           child: Column(
             children: [
-              Expanded(child: ToastContent()),
+              Expanded(
+                  child: ToastContent(
+                title: this.widget.title,
+                description: this.widget.description,
+                displayCloseButton: this.widget.displayCloseButton,
+                notificationType: this.widget.notificationType,
+                icon: this.widget.icon,
+              )),
               Visibility(
                 visible: this.widget.showProgressIndicator,
                 child: LinearProgressIndicator(
