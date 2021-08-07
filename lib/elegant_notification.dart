@@ -154,7 +154,7 @@ class _ElegantNotificationState extends State<ElegantNotification> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          width: 400,
+          width: TOAST_WIDTH,
           height: 120,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(this.widget.radius),
