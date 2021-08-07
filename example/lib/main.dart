@@ -29,7 +29,9 @@ class ExampleApp extends StatelessWidget {
         child: ElevatedButton(
           child: Text("Open notification"),
           onPressed: () {
-            ElegantNotification.error(title: "Great success!", description: "Your settings have been updated")
+            ElegantNotification.error(
+                    title: "Great success!",
+                    description: "Your settings have been updated and nbow you can check them")
                 .show(context);
           },
         ),

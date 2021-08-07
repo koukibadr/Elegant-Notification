@@ -1,10 +1,12 @@
 import 'package:elegant_notification/resources/arrays.dart';
+import 'package:elegant_notification/resources/dimens.dart';
 import 'package:elegant_notification/resources/icons.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
 class ToastContent extends StatelessWidget {
+
   final String title;
   final String description;
   final NOTIFICATION_TYPE notificationType;
@@ -20,7 +22,7 @@ class ToastContent extends StatelessWidget {
       required this.displayCloseButton,
       this.icon,
       this.onCloseButtonPressed,
-      this.iconSize = 20});
+      this.iconSize = DEFAULT_ICON_SIZE});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,6 @@ class ToastContent extends StatelessWidget {
                   height: 5,
                 ),
                 Container(
-                    width: 170,
                     child: Text(
                       this.description,
                       style: TextStyle(fontSize: 12),
