@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
+import 'package:elegant_notification/resources/dimens.dart';
 import 'package:elegant_notification/resources/toast_content.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,8 @@ class ElegantNotification extends StatefulWidget {
   final Function? onCloseButtonPressed;
   final Function? onProgressFinished;
 
+  late double iconSize;
+
   ElegantNotification(
       {required this.title,
       required this.description,
@@ -42,6 +45,7 @@ class ElegantNotification extends StatefulWidget {
       this.onCloseButtonPressed,
       this.onProgressFinished}) {
     this.notificationType = NOTIFICATION_TYPE.CUSTOM;
+    this.iconSize = DEFAULT_ICON_SIZE;
   }
 
   ElegantNotification.success(
@@ -50,7 +54,8 @@ class ElegantNotification extends StatefulWidget {
       this.displayCloseButton = true,
       this.toastDuration = 2500,
       this.onCloseButtonPressed,
-      this.onProgressFinished}) {
+      this.onProgressFinished,
+      this.iconSize = DEFAULT_ICON_SIZE}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -67,7 +72,8 @@ class ElegantNotification extends StatefulWidget {
       this.displayCloseButton = true,
       this.toastDuration = 2500,
       this.onCloseButtonPressed,
-      this.onProgressFinished}) {
+      this.onProgressFinished,
+      this.iconSize = DEFAULT_ICON_SIZE}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -84,7 +90,8 @@ class ElegantNotification extends StatefulWidget {
       this.displayCloseButton = true,
       this.toastDuration = 2500,
       this.onCloseButtonPressed,
-      this.onProgressFinished}) {
+      this.onProgressFinished,
+      this.iconSize = DEFAULT_ICON_SIZE}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -167,13 +174,13 @@ class _ElegantNotificationState extends State<ElegantNotification> {
             children: [
               Expanded(
                   child: ToastContent(
-                title: this.widget.title,
-                description: this.widget.description,
-                displayCloseButton: this.widget.displayCloseButton,
-                notificationType: this.widget.notificationType,
-                icon: this.widget.icon,
-                onCloseButtonPressed: this.widget.onCloseButtonPressed,
-              )),
+                      title: this.widget.title,
+                      description: this.widget.description,
+                      displayCloseButton: this.widget.displayCloseButton,
+                      notificationType: this.widget.notificationType,
+                      icon: this.widget.icon,
+                      onCloseButtonPressed: this.widget.onCloseButtonPressed,
+                      iconSize: this.widget.iconSize)),
               Visibility(
                 visible: this.widget.showProgressIndicator,
                 child: LinearProgressIndicator(
