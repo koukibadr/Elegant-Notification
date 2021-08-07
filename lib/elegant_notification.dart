@@ -22,10 +22,10 @@ class ElegantNotification extends StatefulWidget {
 
   late Widget? icon;
 
-  late Duration toastDuration;
+  late int toastDuration;
 
   final Function? onCloseButtonPressed;
-  final Function? onNotificationClosed;
+  final Function? onProgressFinished;
 
   ElegantNotification(
       {required this.title,
@@ -38,9 +38,9 @@ class ElegantNotification extends StatefulWidget {
       this.showProgressIndicator = true,
       this.displayCloseButton = true,
       this.progressIndicatorColor = Colors.blue,
-      this.toastDuration = const Duration(milliseconds: 2500),
+      this.toastDuration = 2500,
       this.onCloseButtonPressed,
-      this.onNotificationClosed}) {
+      this.onProgressFinished}) {
     this.notificationType = NOTIFICATION_TYPE.CUSTOM;
   }
 
@@ -48,9 +48,9 @@ class ElegantNotification extends StatefulWidget {
       {required this.title,
       required this.description,
       this.displayCloseButton = true,
-      this.toastDuration = const Duration(milliseconds: 2500),
+      this.toastDuration = 2500,
       this.onCloseButtonPressed,
-      this.onNotificationClosed}) {
+      this.onProgressFinished}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -65,9 +65,9 @@ class ElegantNotification extends StatefulWidget {
       {required this.title,
       required this.description,
       this.displayCloseButton = true,
-      this.toastDuration = const Duration(milliseconds: 2500),
+      this.toastDuration = 2500,
       this.onCloseButtonPressed,
-      this.onNotificationClosed}) {
+      this.onProgressFinished}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -82,9 +82,9 @@ class ElegantNotification extends StatefulWidget {
       {required this.title,
       required this.description,
       this.displayCloseButton = true,
-      this.toastDuration = const Duration(milliseconds: 2500),
+      this.toastDuration = 2500,
       this.onCloseButtonPressed,
-      this.onNotificationClosed}) {
+      this.onProgressFinished}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -117,19 +117,20 @@ class _ElegantNotificationState extends State<ElegantNotification> {
   double progressValue = 1;
 
   late Timer notificationTimer;
+  late Timer closeTimer;
 
   @override
   void initState() {
     super.initState();
-    notificationTimer =
-        Timer.periodic(Duration(milliseconds: 150), (Timer timer) {
+    notificationTimer = Timer.periodic(
+        Duration(milliseconds: this.widget.toastDuration ~/ 10), (Timer timer) {
       setState(() {
         this.progressValue = this.progressValue - 0.1;
-        if (this.progressValue == 0) {
-          Navigator.pop(context);
-          this.widget.onNotificationClosed?.call();
-        }
       });
+    });
+    closeTimer = Timer(Duration(milliseconds: this.widget.toastDuration), () {
+      Navigator.pop(context);
+      this.widget.onProgressFinished?.call();
     });
   }
 
@@ -137,6 +138,7 @@ class _ElegantNotificationState extends State<ElegantNotification> {
   void dispose() {
     super.dispose();
     notificationTimer.cancel();
+    closeTimer.cancel();
   }
 
   @override
