@@ -11,6 +11,7 @@ class ToastContent extends StatelessWidget {
   final Widget? icon;
   final bool displayCloseButton;
   final Function? onCloseButtonPressed;
+  final double iconSize;
 
   ToastContent(
       {required this.title,
@@ -18,7 +19,8 @@ class ToastContent extends StatelessWidget {
       required this.notificationType,
       required this.displayCloseButton,
       this.icon,
-      this.onCloseButtonPressed});
+      this.onCloseButtonPressed,
+      this.iconSize = 20});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +29,7 @@ class ToastContent extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: Image(
-              image: AssetImage(SUCCESS_ICON, package: PACKAGE_NAME),
-              width: 20,
-            ),
+            child: _getNotificationIcon(),
           ),
           SizedBox(
             width: 15,
@@ -86,6 +85,26 @@ class ToastContent extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  Widget _getNotificationIcon() {
+    switch (this.notificationType) {
+      case NOTIFICATION_TYPE.SUCCESS:
+        return _renderImage(SUCCESS_ICON);
+      case NOTIFICATION_TYPE.ERROR:
+        return _renderImage(ERROR_ICON);
+      case NOTIFICATION_TYPE.INFO:
+        return _renderImage(INFO_ICON);
+      default:
+        return this.icon!;
+    }
+  }
+
+  Image _renderImage(String imageAsset) {
+    return Image(
+      image: AssetImage(imageAsset, package: PACKAGE_NAME),
+      width: this.iconSize,
     );
   }
 }
