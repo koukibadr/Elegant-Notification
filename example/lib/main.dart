@@ -29,7 +29,7 @@ class ExampleApp extends StatelessWidget {
         child: ElevatedButton(
           child: Text("Open notification"),
           onPressed: () {
-            ElegantNotification.success(title: "", description: "")
+            ElegantNotification.success(title: "Great success!", description: "Your settings have been updated")
                 .show(context);
           },
         ),
