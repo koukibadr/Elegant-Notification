@@ -5,6 +5,7 @@ import 'package:elegant_notification/resources/colors.dart';
 import 'package:elegant_notification/resources/dimens.dart';
 import 'package:elegant_notification/resources/toast_content.dart';
 import 'package:flutter/material.dart';
+import 'package:elegant_notification/resources/constants.dart';
 
 // ignore: must_be_immutable
 class ElegantNotification extends StatefulWidget {
@@ -31,6 +32,7 @@ class ElegantNotification extends StatefulWidget {
   late double iconSize;
 
   final ANIMATION animation;
+  final Duration animationDuration;
 
   ElegantNotification(
       {required this.title,
@@ -46,7 +48,8 @@ class ElegantNotification extends StatefulWidget {
       this.toastDuration = 2500,
       this.onCloseButtonPressed,
       this.onProgressFinished,
-      this.animation = ANIMATION.FROM_LEFT}) {
+      this.animation = ANIMATION.FROM_LEFT,
+      this.animationDuration = DEFAULT_ANIMATION_DURATION}) {
     this.notificationType = NOTIFICATION_TYPE.CUSTOM;
     this.iconSize = DEFAULT_ICON_SIZE;
   }
@@ -59,7 +62,8 @@ class ElegantNotification extends StatefulWidget {
       this.onCloseButtonPressed,
       this.onProgressFinished,
       this.iconSize = DEFAULT_ICON_SIZE,
-      this.animation = ANIMATION.FROM_LEFT}) {
+      this.animation = ANIMATION.FROM_LEFT,
+      this.animationDuration = DEFAULT_ANIMATION_DURATION}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -78,7 +82,8 @@ class ElegantNotification extends StatefulWidget {
       this.onCloseButtonPressed,
       this.onProgressFinished,
       this.iconSize = DEFAULT_ICON_SIZE,
-      this.animation = ANIMATION.FROM_LEFT}) {
+      this.animation = ANIMATION.FROM_LEFT,
+      this.animationDuration = DEFAULT_ANIMATION_DURATION}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -97,7 +102,8 @@ class ElegantNotification extends StatefulWidget {
       this.onCloseButtonPressed,
       this.onProgressFinished,
       this.iconSize = DEFAULT_ICON_SIZE,
-      this.animation = ANIMATION.FROM_LEFT}) {
+      this.animation = ANIMATION.FROM_LEFT,
+      this.animationDuration = DEFAULT_ANIMATION_DURATION}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -126,11 +132,15 @@ class ElegantNotification extends StatefulWidget {
   _ElegantNotificationState createState() => _ElegantNotificationState();
 }
 
-class _ElegantNotificationState extends State<ElegantNotification> with SingleTickerProviderStateMixin {
+class _ElegantNotificationState extends State<ElegantNotification>
+    with SingleTickerProviderStateMixin {
   double progressValue = 1;
 
   late Timer notificationTimer;
   late Timer closeTimer;
+
+  late Animation<Offset> offsetAnimation;
+  late AnimationController slideController;
 
   @override
   void initState() {
@@ -142,8 +152,29 @@ class _ElegantNotificationState extends State<ElegantNotification> with SingleTi
       });
     });
     closeTimer = Timer(Duration(milliseconds: this.widget.toastDuration), () {
-      Navigator.pop(context);
-      this.widget.onProgressFinished?.call();
+      slideController.reverse();
+      slideController.addListener(() {
+        if (slideController.isDismissed) {
+          Navigator.pop(context);
+          this.widget.onProgressFinished?.call();
+        }
+      });
+    });
+    _initializeAnimation();
+  }
+
+  _initializeAnimation() {
+    slideController = AnimationController(
+      duration: Duration(milliseconds: 500),
+      vsync: this,
+    );
+
+    offsetAnimation = Tween<Offset>(
+      begin: const Offset(-2, 0),
+      end: const Offset(0, 0),
+    ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      slideController.forward();
     });
   }
 
@@ -159,43 +190,49 @@ class _ElegantNotificationState extends State<ElegantNotification> with SingleTi
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Container(
-          width: TOAST_WIDTH,
-          height: 120,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(this.widget.radius),
-            color: this.widget.background,
-            boxShadow: this.widget.enableShadow
-                ? [
-                    BoxShadow(
-                      color: this.widget.shadowColor.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: Offset(0, 1), // changes position of shadow
-                    ),
-                  ]
-                : null,
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                  child: ToastContent(
-                      title: this.widget.title,
-                      description: this.widget.description,
-                      displayCloseButton: this.widget.displayCloseButton,
-                      notificationType: this.widget.notificationType,
-                      icon: this.widget.icon,
-                      onCloseButtonPressed: this.widget.onCloseButtonPressed,
-                      iconSize: this.widget.iconSize)),
-              Visibility(
-                visible: this.widget.showProgressIndicator,
-                child: LinearProgressIndicator(
-                    value: progressValue,
-                    backgroundColor: GREY_COLOR,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                        this.widget.progressIndicatorColor)),
-              )
-            ],
+        SlideTransition(
+          position: this.offsetAnimation,
+          child: Container(
+            width: TOAST_WIDTH,
+            height: 120,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(this.widget.radius),
+              color: this.widget.background,
+              boxShadow: this.widget.enableShadow
+                  ? [
+                      BoxShadow(
+                        color: this.widget.shadowColor.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: Offset(0, 1), // changes position of shadow
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                    child: ToastContent(
+                        title: this.widget.title,
+                        description: this.widget.description,
+                        displayCloseButton: this.widget.displayCloseButton,
+                        notificationType: this.widget.notificationType,
+                        icon: this.widget.icon,
+                        onCloseButtonPressed: () {
+                          slideController.reverse();
+                          this.widget.onCloseButtonPressed?.call();
+                        },
+                        iconSize: this.widget.iconSize)),
+                Visibility(
+                  visible: this.widget.showProgressIndicator,
+                  child: LinearProgressIndicator(
+                      value: progressValue,
+                      backgroundColor: GREY_COLOR,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          this.widget.progressIndicatorColor)),
+                )
+              ],
+            ),
           ),
         ),
       ],
