@@ -31,7 +31,8 @@ class ExampleApp extends StatelessWidget {
           onPressed: () {
             ElegantNotification.error(
                     title: "Great success!",
-                    description: "Your settings have been updated and nbow you can check them")
+                    description:
+                        "Your settings have been updated and nbow you can check them")
                 .show(context);
           },
         ),
