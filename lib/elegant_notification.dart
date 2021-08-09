@@ -30,6 +30,8 @@ class ElegantNotification extends StatefulWidget {
 
   late double iconSize;
 
+  final ANIMATION animation;
+
   ElegantNotification(
       {required this.title,
       required this.description,
@@ -43,7 +45,8 @@ class ElegantNotification extends StatefulWidget {
       this.progressIndicatorColor = Colors.blue,
       this.toastDuration = 2500,
       this.onCloseButtonPressed,
-      this.onProgressFinished}) {
+      this.onProgressFinished,
+      this.animation = ANIMATION.FROM_LEFT}) {
     this.notificationType = NOTIFICATION_TYPE.CUSTOM;
     this.iconSize = DEFAULT_ICON_SIZE;
   }
@@ -55,7 +58,8 @@ class ElegantNotification extends StatefulWidget {
       this.toastDuration = 2500,
       this.onCloseButtonPressed,
       this.onProgressFinished,
-      this.iconSize = DEFAULT_ICON_SIZE}) {
+      this.iconSize = DEFAULT_ICON_SIZE,
+      this.animation = ANIMATION.FROM_LEFT}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -73,7 +77,8 @@ class ElegantNotification extends StatefulWidget {
       this.toastDuration = 2500,
       this.onCloseButtonPressed,
       this.onProgressFinished,
-      this.iconSize = DEFAULT_ICON_SIZE}) {
+      this.iconSize = DEFAULT_ICON_SIZE,
+      this.animation = ANIMATION.FROM_LEFT}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -91,7 +96,8 @@ class ElegantNotification extends StatefulWidget {
       this.toastDuration = 2500,
       this.onCloseButtonPressed,
       this.onProgressFinished,
-      this.iconSize = DEFAULT_ICON_SIZE}) {
+      this.iconSize = DEFAULT_ICON_SIZE,
+      this.animation = ANIMATION.FROM_LEFT}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -120,7 +126,7 @@ class ElegantNotification extends StatefulWidget {
   _ElegantNotificationState createState() => _ElegantNotificationState();
 }
 
-class _ElegantNotificationState extends State<ElegantNotification> {
+class _ElegantNotificationState extends State<ElegantNotification> with SingleTickerProviderStateMixin {
   double progressValue = 1;
 
   late Timer notificationTimer;
