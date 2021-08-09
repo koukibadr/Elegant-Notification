@@ -1,0 +1,1 @@
+const Duration DEFAULT_ANIMATION_DURATION = const Duration(milliseconds: 100);
