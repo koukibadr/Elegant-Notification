@@ -169,10 +169,28 @@ class _ElegantNotificationState extends State<ElegantNotification>
       vsync: this,
     );
 
-    offsetAnimation = Tween<Offset>(
-      begin: const Offset(-2, 0),
-      end: const Offset(0, 0),
-    ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
+    switch (this.widget.animation) {
+      case ANIMATION.FROM_LEFT:
+        offsetAnimation = Tween<Offset>(
+          begin: const Offset(-2, 0),
+          end: const Offset(0, 0),
+        ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
+        break;
+      case ANIMATION.FROM_RIGHT:
+        offsetAnimation = Tween<Offset>(
+          begin: const Offset(2, 0),
+          end: const Offset(0, 0),
+        ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
+        break;
+      case ANIMATION.FROM_TOP:
+        offsetAnimation = Tween<Offset>(
+          begin: const Offset(0, -7),
+          end: const Offset(0, 0),
+        ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
+        break;
+      default:
+    }
+
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       slideController.forward();
     });
