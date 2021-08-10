@@ -34,6 +34,9 @@ class ElegantNotification extends StatefulWidget {
   final ANIMATION animation;
   final Duration animationDuration;
 
+  final TextStyle titleStyle;
+  final TextStyle descriptionStyle;
+
   ElegantNotification(
       {required this.title,
       required this.description,
@@ -49,7 +52,9 @@ class ElegantNotification extends StatefulWidget {
       this.onCloseButtonPressed,
       this.onProgressFinished,
       this.animation = ANIMATION.FROM_LEFT,
-      this.animationDuration = DEFAULT_ANIMATION_DURATION}) {
+      this.animationDuration = DEFAULT_ANIMATION_DURATION,
+      this.titleStyle = DEFAULT_TITLE_STYLE,
+      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE}) {
     this.notificationType = NOTIFICATION_TYPE.CUSTOM;
     this.iconSize = DEFAULT_ICON_SIZE;
   }
@@ -63,7 +68,9 @@ class ElegantNotification extends StatefulWidget {
       this.onProgressFinished,
       this.iconSize = DEFAULT_ICON_SIZE,
       this.animation = ANIMATION.FROM_LEFT,
-      this.animationDuration = DEFAULT_ANIMATION_DURATION}) {
+      this.animationDuration = DEFAULT_ANIMATION_DURATION,
+      this.titleStyle = DEFAULT_TITLE_STYLE,
+      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -83,7 +90,9 @@ class ElegantNotification extends StatefulWidget {
       this.onProgressFinished,
       this.iconSize = DEFAULT_ICON_SIZE,
       this.animation = ANIMATION.FROM_LEFT,
-      this.animationDuration = DEFAULT_ANIMATION_DURATION}) {
+      this.animationDuration = DEFAULT_ANIMATION_DURATION,
+      this.titleStyle = DEFAULT_TITLE_STYLE,
+      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -103,7 +112,9 @@ class ElegantNotification extends StatefulWidget {
       this.onProgressFinished,
       this.iconSize = DEFAULT_ICON_SIZE,
       this.animation = ANIMATION.FROM_LEFT,
-      this.animationDuration = DEFAULT_ANIMATION_DURATION}) {
+      this.animationDuration = DEFAULT_ANIMATION_DURATION,
+      this.titleStyle = DEFAULT_TITLE_STYLE,
+      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE}) {
     this.shadowColor = Colors.grey;
     this.background = Colors.white;
     this.radius = 5;
@@ -211,8 +222,8 @@ class _ElegantNotificationState extends State<ElegantNotification>
         SlideTransition(
           position: this.offsetAnimation,
           child: Container(
-            width: TOAST_WIDTH,
-            height: 120,
+            width: MediaQuery.of(context).size.width * 0.7,
+            height: MediaQuery.of(context).size.height * 0.12,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(this.widget.radius),
               color: this.widget.background,
@@ -240,7 +251,9 @@ class _ElegantNotificationState extends State<ElegantNotification>
                           slideController.reverse();
                           this.widget.onCloseButtonPressed?.call();
                         },
-                        iconSize: this.widget.iconSize)),
+                        iconSize: this.widget.iconSize,
+                        titleStyle: this.widget.titleStyle,
+                        descriptionStyle: this.widget.descriptionStyle)),
                 Visibility(
                   visible: this.widget.showProgressIndicator,
                   child: LinearProgressIndicator(
