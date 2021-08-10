@@ -1,4 +1,5 @@
 import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,6 +32,7 @@ class ExampleApp extends StatelessWidget {
           onPressed: () {
             ElegantNotification.error(
                     title: "Great success!",
+                    animation: ANIMATION.FROM_RIGHT,
                     description:
                         "Your settings have been updated and nbow you can check them")
                 .show(context);
