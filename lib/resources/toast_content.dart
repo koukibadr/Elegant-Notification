@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class ToastContent extends StatelessWidget {
-
   final String title;
   final String description;
   final NOTIFICATION_TYPE notificationType;
@@ -14,12 +13,16 @@ class ToastContent extends StatelessWidget {
   final bool displayCloseButton;
   final Function? onCloseButtonPressed;
   final double iconSize;
+  final TextStyle titleStyle;
+  final TextStyle descriptionStyle;
 
   ToastContent(
       {required this.title,
       required this.description,
       required this.notificationType,
       required this.displayCloseButton,
+      required this.titleStyle,
+      required this.descriptionStyle,
       this.icon,
       this.onCloseButtonPressed,
       this.iconSize = DEFAULT_ICON_SIZE});
@@ -53,16 +56,14 @@ class ToastContent extends StatelessWidget {
               children: [
                 Text(
                   this.title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  style: this.titleStyle,
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 Container(
-                    child: Text(
-                      this.description,
-                      style: TextStyle(fontSize: 12),
-                    )),
+                    child:
+                        Text(this.description, style: this.descriptionStyle)),
               ],
             ),
           ),
