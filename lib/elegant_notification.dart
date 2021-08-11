@@ -9,34 +9,6 @@ import 'package:elegant_notification/resources/constants.dart';
 
 // ignore: must_be_immutable
 class ElegantNotification extends StatefulWidget {
-  late Color shadowColor;
-  late Color background;
-  late Color progressIndicatorColor;
-  late double radius;
-  late bool enableShadow;
-  late bool showProgressIndicator;
-  final bool displayCloseButton;
-
-  final String title;
-  final String description;
-
-  late NOTIFICATION_TYPE notificationType;
-
-  late Widget? icon;
-
-  late int toastDuration;
-
-  final Function? onCloseButtonPressed;
-  final Function? onProgressFinished;
-
-  late double iconSize;
-
-  final ANIMATION animation;
-  final Duration animationDuration;
-
-  final TextStyle titleStyle;
-  final TextStyle descriptionStyle;
-
   ElegantNotification(
       {required this.title,
       required this.description,
@@ -124,6 +96,34 @@ class ElegantNotification extends StatefulWidget {
     this.progressIndicatorColor = INFO_COLOR;
     this.icon = null;
   }
+
+  final String title;
+  final TextStyle titleStyle;
+
+  final String description;
+  final TextStyle descriptionStyle;
+
+  late Widget? icon;
+  late double iconSize;
+
+  late NOTIFICATION_TYPE notificationType;
+
+  final ANIMATION animation;
+  final Duration animationDuration;
+
+  late Color shadowColor;
+  late Color background;
+  late Color progressIndicatorColor;
+
+  late double radius;
+  late int toastDuration;
+
+  late bool enableShadow;
+  late bool showProgressIndicator;
+  final bool displayCloseButton;
+
+  final Function? onCloseButtonPressed;
+  final Function? onProgressFinished;
 
   show(BuildContext context) {
     Navigator.of(context).push(

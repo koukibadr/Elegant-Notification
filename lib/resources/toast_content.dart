@@ -6,16 +6,6 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class ToastContent extends StatelessWidget {
-  final String title;
-  final String description;
-  final NOTIFICATION_TYPE notificationType;
-  final Widget? icon;
-  final bool displayCloseButton;
-  final Function? onCloseButtonPressed;
-  final double iconSize;
-  final TextStyle titleStyle;
-  final TextStyle descriptionStyle;
-
   ToastContent(
       {required this.title,
       required this.description,
@@ -26,6 +16,20 @@ class ToastContent extends StatelessWidget {
       this.icon,
       this.onCloseButtonPressed,
       this.iconSize = DEFAULT_ICON_SIZE});
+
+  final String title;
+  final TextStyle titleStyle;
+
+  final String description;
+  final TextStyle descriptionStyle;
+
+  final Widget? icon;
+  final double iconSize;
+
+  final NOTIFICATION_TYPE notificationType;
+
+  final bool displayCloseButton;
+  final Function? onCloseButtonPressed;
 
   @override
   Widget build(BuildContext context) {
