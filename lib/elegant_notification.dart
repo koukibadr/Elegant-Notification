@@ -248,7 +248,10 @@ class _ElegantNotificationState extends State<ElegantNotification>
                         notificationType: this.widget.notificationType,
                         icon: this.widget.icon,
                         onCloseButtonPressed: () {
+                          notificationTimer.cancel();
+                          closeTimer.cancel();
                           slideController.reverse();
+                          slideController.dispose();
                           this.widget.onCloseButtonPressed?.call();
                         },
                         iconSize: this.widget.iconSize,
