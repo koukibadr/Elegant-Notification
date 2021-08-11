@@ -17,18 +17,48 @@ class ToastContent extends StatelessWidget {
       this.onCloseButtonPressed,
       this.iconSize = DEFAULT_ICON_SIZE});
 
+
+  ///The title of the notification
+  ///
   final String title;
+  
+  ///The title text style
+  ///
   final TextStyle titleStyle;
 
+  ///The description of the notification text string
+  ///
   final String description;
+
+  /// The description text style
+  /// 
   final TextStyle descriptionStyle;
 
+  ///The notification icon
   final Widget? icon;
+
+  ///The icon size on pixels
+  ///
   final double iconSize;
 
+  ///The type of the notification, will be set automatically on every constructor
+  ///possible values
+  ///```dart
+  ///{ 
+  ///SUCCESS,
+  ///ERROR,
+  ///INFO,
+  ///CUSTOM 
+  ///}
+  ///```
   final NOTIFICATION_TYPE notificationType;
 
+  ///Display or hide the close button widget
+  ///
   final bool displayCloseButton;
+  
+  ///The function invoked when pressing the close button
+  ///
   final Function? onCloseButtonPressed;
 
   @override

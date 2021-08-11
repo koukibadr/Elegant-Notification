@@ -197,9 +197,20 @@ class ElegantNotification extends StatefulWidget {
   final Function? onProgressFinished;
 
   ///The type of the notification, will be set automatically on every constructor
-  ///
+  ///possible values
+  ///```dart
+  ///{ 
+  ///SUCCESS,
+  ///ERROR,
+  ///INFO,
+  ///CUSTOM 
+  ///}
+  ///```
   late NOTIFICATION_TYPE notificationType;
 
+
+  ///display the notification on the screen
+  ///[context] the context of the application
   show(BuildContext context) {
     Navigator.of(context).push(
       PageRouteBuilder(
