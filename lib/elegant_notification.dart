@@ -20,22 +20,22 @@ class ElegantNotification extends StatefulWidget {
       this.showProgressIndicator = true,
       this.displayCloseButton = true,
       this.progressIndicatorColor = Colors.blue,
-      this.toastDuration = 2500,
+      this.toastDuration = NOTIFICATION_TOAST_DURATION,
       this.onCloseButtonPressed,
       this.onProgressFinished,
       this.animation = ANIMATION.FROM_LEFT,
       this.animationDuration = DEFAULT_ANIMATION_DURATION,
       this.titleStyle = DEFAULT_TITLE_STYLE,
-      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE}) {
+      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE,
+      this.iconSize = DEFAULT_ICON_SIZE}) {
     this.notificationType = NOTIFICATION_TYPE.CUSTOM;
-    this.iconSize = DEFAULT_ICON_SIZE;
   }
 
   ElegantNotification.success(
       {required this.title,
       required this.description,
       this.displayCloseButton = true,
-      this.toastDuration = 2500,
+      this.toastDuration = NOTIFICATION_TOAST_DURATION,
       this.onCloseButtonPressed,
       this.onProgressFinished,
       this.iconSize = DEFAULT_ICON_SIZE,
@@ -57,7 +57,7 @@ class ElegantNotification extends StatefulWidget {
       {required this.title,
       required this.description,
       this.displayCloseButton = true,
-      this.toastDuration = 2500,
+      this.toastDuration = NOTIFICATION_TOAST_DURATION,
       this.onCloseButtonPressed,
       this.onProgressFinished,
       this.iconSize = DEFAULT_ICON_SIZE,
@@ -79,7 +79,7 @@ class ElegantNotification extends StatefulWidget {
       {required this.title,
       required this.description,
       this.displayCloseButton = true,
-      this.toastDuration = 2500,
+      this.toastDuration = NOTIFICATION_TOAST_DURATION,
       this.onCloseButtonPressed,
       this.onProgressFinished,
       this.iconSize = DEFAULT_ICON_SIZE,
@@ -97,33 +97,108 @@ class ElegantNotification extends StatefulWidget {
     this.icon = null;
   }
 
+
+  ///The toast title String (required)
+  ///
   final String title;
+  
+  ///The title text style 
+  ///by default it's `TextStyle(fontWeight: FontWeight.bold, fontSize: 14)`
+  ///
   final TextStyle titleStyle;
 
+  ///The toast description text (required)
+  ///
   final String description;
+
+  ///The description text style 
+  ///by default it's `TextStyle(fontSize: 12)`
+  ///
   final TextStyle descriptionStyle;
 
+
+  ///The toast icon, required only if using the default constructor
+  ///for other toast types (Success, Info, error) the icon is not changeable
+  ///
   late Widget? icon;
+
+  ///The size of the icon, by default it's 40px
+  ///
   late double iconSize;
 
-  late NOTIFICATION_TYPE notificationType;
-
+  ///The type of the animation set on the notification
+  ///possible values
+  ///```dart
+  ///{
+  ///FROM_LEFT,
+  ///FROM_RIGHT,
+  ///FROM_TOP
+  ///}
+  ///```
+  ///default value `FROM_LEFT`
+  ///
   final ANIMATION animation;
+  
+  ///The duration of the animation
+  ///Default value `Duration(milliseconds: 100)`
+  ///
   final Duration animationDuration;
 
+  ///The shadow color applied on the notification widget
+  /// by defualt it's `Colors.grey`
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color shadowColor;
+  
+  /// the background color of the notification 
+  /// by default it's set to white
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color background;
+
+  ///The color of the progress 
+  ///by default it's blue
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color progressIndicatorColor;
 
+  ///the border radius of the notification widget
+  ///this parameter it's only set if you are using the default constructor
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  /// 
   late double radius;
-  late int toastDuration;
 
+  ///The duration how much the notification will take time, duration in milliseconds
+  ///by default the duration is `2500 milliseconds`
+  ///
+  final int toastDuration;
+
+  ///enable or disable the shadow rendering 
+  ///by default it's true
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  /// 
   late bool enableShadow;
+  
+  ///enable or disable the progress indicator rendering
+  ///by default the indicator is displayed 
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  /// 
   late bool showProgressIndicator;
+  
+  ///Display or hide the close button
+  ///by default the close button is displayed
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  /// 
   final bool displayCloseButton;
 
+
+  ///Function invoked when user press on the close button
   final Function? onCloseButtonPressed;
+
+  ///Function invoked when the notification is closed after the finish of the progress indicator 
+  ///
   final Function? onProgressFinished;
+
+  ///The type of the notification, will be set automatically on every constructor
+  ///
+  late NOTIFICATION_TYPE notificationType;
 
   show(BuildContext context) {
     Navigator.of(context).push(
