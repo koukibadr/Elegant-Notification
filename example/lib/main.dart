@@ -1,5 +1,4 @@
 import 'package:elegant_notification/elegant_notification.dart';
-import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -33,8 +32,11 @@ class ExampleApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: (){
-                  ElegantNotification.success(title: "Update", description: "Your data has been updated").show(context);
+                onTap: () {
+                  ElegantNotification.success(
+                          title: "Update",
+                          description: "Your data has been updated")
+                      .show(context);
                 },
                 child: Container(
                   width: 150,
@@ -56,8 +58,11 @@ class ExampleApp extends StatelessWidget {
                 width: 20,
               ),
               InkWell(
-                onTap: (){
-                  ElegantNotification.success(title: "Update", description: "Your data has been updated").show(context);
+                onTap: () {
+                  ElegantNotification.error(
+                          title: "Update",
+                          description: "Your data has been updated")
+                      .show(context);
                 },
                 child: Container(
                   width: 150,
@@ -84,8 +89,11 @@ class ExampleApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: (){
-                  ElegantNotification.success(title: "Update", description: "Your data has been updated").show(context);
+                onTap: () {
+                  ElegantNotification.info(
+                          title: "Update",
+                          description: "Your data has been updated")
+                      .show(context);
                 },
                 child: Container(
                   width: 150,
@@ -107,8 +115,12 @@ class ExampleApp extends StatelessWidget {
                 width: 20,
               ),
               InkWell(
-                onTap: (){
-                  ElegantNotification.success(title: "Update", description: "Your data has been updated").show(context);
+                onTap: () {
+                  ElegantNotification(
+                          title: "Update",
+                          description: "Your data has been updated",
+                          icon: Icon(Icons.access_alarm,color: Colors.blue,))
+                      .show(context);
                 },
                 child: Container(
                   width: 150,
