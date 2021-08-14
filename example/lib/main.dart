@@ -60,8 +60,8 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.error(
-                          title: "Update",
-                          description: "Your data has been updated")
+                          title: "Error",
+                          description: "Please verifiy your data")
                       .show(context);
                 },
                 child: Container(
@@ -91,8 +91,8 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.info(
-                          title: "Update",
-                          description: "Your data has been updated")
+                          title: "Info",
+                          description: "This account will be updated once you exit")
                       .show(context);
                 },
                 child: Container(
@@ -117,8 +117,8 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
-                          title: "Update",
-                          description: "Your data has been updated",
+                          title: "New version",
+                          description: "A new version is available to you please update.",
                           icon: Icon(Icons.access_alarm,color: Colors.orange,),
                           progressIndicatorColor: Colors.orange,)
                       .show(context);
