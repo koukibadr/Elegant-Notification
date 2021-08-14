@@ -119,7 +119,8 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification(
                           title: "Update",
                           description: "Your data has been updated",
-                          icon: Icon(Icons.access_alarm,color: Colors.blue,))
+                          icon: Icon(Icons.access_alarm,color: Colors.orange,),
+                          progressIndicatorColor: Colors.orange,)
                       .show(context);
                 },
                 child: Container(
