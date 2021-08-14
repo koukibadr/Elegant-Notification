@@ -17,11 +17,10 @@ class ToastContent extends StatelessWidget {
       this.onCloseButtonPressed,
       this.iconSize = DEFAULT_ICON_SIZE});
 
-
   ///The title of the notification
   ///
   final String title;
-  
+
   ///The title text style
   ///
   final TextStyle titleStyle;
@@ -31,7 +30,7 @@ class ToastContent extends StatelessWidget {
   final String description;
 
   /// The description text style
-  /// 
+  ///
   final TextStyle descriptionStyle;
 
   ///The notification icon
@@ -44,11 +43,11 @@ class ToastContent extends StatelessWidget {
   ///The type of the notification, will be set automatically on every constructor
   ///possible values
   ///```dart
-  ///{ 
+  ///{
   ///SUCCESS,
   ///ERROR,
   ///INFO,
-  ///CUSTOM 
+  ///CUSTOM
   ///}
   ///```
   final NOTIFICATION_TYPE notificationType;
@@ -56,7 +55,7 @@ class ToastContent extends StatelessWidget {
   ///Display or hide the close button widget
   ///
   final bool displayCloseButton;
-  
+
   ///The function invoked when pressing the close button
   ///
   final Function? onCloseButtonPressed;

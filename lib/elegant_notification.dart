@@ -97,12 +97,11 @@ class ElegantNotification extends StatefulWidget {
     this.icon = null;
   }
 
-
   ///The toast title String (required)
   ///
   final String title;
-  
-  ///The title text style 
+
+  ///The title text style
   ///by default it's `TextStyle(fontWeight: FontWeight.bold, fontSize: 14)`
   ///
   final TextStyle titleStyle;
@@ -111,11 +110,10 @@ class ElegantNotification extends StatefulWidget {
   ///
   final String description;
 
-  ///The description text style 
+  ///The description text style
   ///by default it's `TextStyle(fontSize: 12)`
   ///
   final TextStyle descriptionStyle;
-
 
   ///The toast icon, required only if using the default constructor
   ///for other toast types (Success, Info, error) the icon is not changeable
@@ -138,7 +136,7 @@ class ElegantNotification extends StatefulWidget {
   ///default value `FROM_LEFT`
   ///
   final ANIMATION animation;
-  
+
   ///The duration of the animation
   ///Default value `Duration(milliseconds: 100)`
   ///
@@ -148,13 +146,13 @@ class ElegantNotification extends StatefulWidget {
   /// by defualt it's `Colors.grey`
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color shadowColor;
-  
-  /// the background color of the notification 
+
+  /// the background color of the notification
   /// by default it's set to white
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color background;
 
-  ///The color of the progress 
+  ///The color of the progress
   ///by default it's blue
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color progressIndicatorColor;
@@ -162,7 +160,7 @@ class ElegantNotification extends StatefulWidget {
   ///the border radius of the notification widget
   ///this parameter it's only set if you are using the default constructor
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  /// 
+  ///
   late double radius;
 
   ///The duration how much the notification will take time, duration in milliseconds
@@ -170,44 +168,42 @@ class ElegantNotification extends StatefulWidget {
   ///
   final int toastDuration;
 
-  ///enable or disable the shadow rendering 
+  ///enable or disable the shadow rendering
   ///by default it's true
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  /// 
+  ///
   late bool enableShadow;
-  
+
   ///enable or disable the progress indicator rendering
-  ///by default the indicator is displayed 
+  ///by default the indicator is displayed
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  /// 
+  ///
   late bool showProgressIndicator;
-  
+
   ///Display or hide the close button
   ///by default the close button is displayed
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  /// 
+  ///
   final bool displayCloseButton;
-
 
   ///Function invoked when user press on the close button
   final Function? onCloseButtonPressed;
 
-  ///Function invoked when the notification is closed after the finish of the progress indicator 
+  ///Function invoked when the notification is closed after the finish of the progress indicator
   ///
   final Function? onProgressFinished;
 
   ///The type of the notification, will be set automatically on every constructor
   ///possible values
   ///```dart
-  ///{ 
+  ///{
   ///SUCCESS,
   ///ERROR,
   ///INFO,
-  ///CUSTOM 
+  ///CUSTOM
   ///}
   ///```
   late NOTIFICATION_TYPE notificationType;
-
 
   ///display the notification on the screen
   ///[context] the context of the application
