@@ -10,16 +10,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^0.23.0+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.4
+  build_runner:
+  flutter_gen_runner:
+
+
+flutter_gen:
+  output: lib/gen/ 
+  line_length: 80 
+
+  # Optional
+  integrations:
+    flutter_svg: true
+    flare_flutter: true
+    rive: true
 
 # The following section is specific to Flutter.
 flutter:
-
+  generate: true
   assets:
-    - assets/icons/error.png
-    - assets/icons/info.png
-    - assets/icons/success.png
+    - assets/icons/

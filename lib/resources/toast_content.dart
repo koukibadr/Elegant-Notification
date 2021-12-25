@@ -1,8 +1,8 @@
+import 'package:elegant_notification/gen/assets.gen.dart';
 import 'package:elegant_notification/resources/arrays.dart';
+import 'package:elegant_notification/resources/constants.dart';
 import 'package:elegant_notification/resources/dimens.dart';
-import 'package:elegant_notification/resources/icons.dart';
 import 'package:flutter/material.dart';
-
 import 'colors.dart';
 
 class ToastContent extends StatelessWidget {
@@ -126,11 +126,11 @@ class ToastContent extends StatelessWidget {
   Widget _getNotificationIcon() {
     switch (this.notificationType) {
       case NOTIFICATION_TYPE.SUCCESS:
-        return _renderImage(SUCCESS_ICON);
+        return _renderImage(Assets.icons.success.assetName);
       case NOTIFICATION_TYPE.ERROR:
-        return _renderImage(ERROR_ICON);
+        return _renderImage(Assets.icons.error.assetName);
       case NOTIFICATION_TYPE.INFO:
-        return _renderImage(INFO_ICON);
+        return _renderImage(Assets.icons.info.assetName);
       default:
         return this.icon!;
     }
@@ -138,7 +138,10 @@ class ToastContent extends StatelessWidget {
 
   Image _renderImage(String imageAsset) {
     return Image(
-      image: AssetImage(imageAsset, package: PACKAGE_NAME),
+      image: AssetImage(
+        imageAsset,
+        package: PACKAGE_NAME,
+      ),
       width: this.iconSize,
     );
   }
