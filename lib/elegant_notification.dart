@@ -323,29 +323,32 @@ class _ElegantNotificationState extends State<ElegantNotification>
             child: Column(
               children: [
                 Expanded(
-                    child: ToastContent(
-                        title: this.widget.title,
-                        description: this.widget.description,
-                        displayCloseButton: this.widget.displayCloseButton,
-                        notificationType: this.widget.notificationType,
-                        icon: this.widget.icon,
-                        onCloseButtonPressed: () {
-                          notificationTimer.cancel();
-                          closeTimer.cancel();
-                          slideController.reverse();
-                          slideController.dispose();
-                          this.widget.onCloseButtonPressed?.call();
-                        },
-                        iconSize: this.widget.iconSize,
-                        titleStyle: this.widget.titleStyle,
-                        descriptionStyle: this.widget.descriptionStyle)),
+                  child: ToastContent(
+                    title: this.widget.title,
+                    description: this.widget.description,
+                    displayCloseButton: this.widget.displayCloseButton,
+                    notificationType: this.widget.notificationType,
+                    icon: this.widget.icon,
+                    onCloseButtonPressed: () {
+                      notificationTimer.cancel();
+                      closeTimer.cancel();
+                      slideController.reverse();
+                      slideController.dispose();
+                      this.widget.onCloseButtonPressed?.call();
+                    },
+                    iconSize: this.widget.iconSize,
+                    titleStyle: this.widget.titleStyle,
+                    descriptionStyle: this.widget.descriptionStyle,
+                  ),
+                ),
                 Visibility(
                   visible: this.widget.showProgressIndicator,
                   child: LinearProgressIndicator(
-                      value: progressValue,
-                      backgroundColor: GREY_COLOR,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          this.widget.progressIndicatorColor)),
+                    value: progressValue,
+                    backgroundColor: GREY_COLOR,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        this.widget.progressIndicatorColor),
+                  ),
                 )
               ],
             ),

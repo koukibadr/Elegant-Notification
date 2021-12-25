@@ -92,7 +92,8 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.info(
                           title: "Info",
-                          description: "This account will be updated once you exit")
+                          description:
+                              "This account will be updated once you exit")
                       .show(context);
                 },
                 child: Container(
@@ -117,11 +118,15 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
-                          title: "New version",
-                          description: "A new version is available to you please update.",
-                          icon: Icon(Icons.access_alarm,color: Colors.orange,),
-                          progressIndicatorColor: Colors.orange,)
-                      .show(context);
+                    title: "New version",
+                    description:
+                        "A new version is available to you please update.",
+                    icon: Icon(
+                      Icons.access_alarm,
+                      color: Colors.orange,
+                    ),
+                    progressIndicatorColor: Colors.orange,
+                  ).show(context);
                 },
                 child: Container(
                   width: 150,
