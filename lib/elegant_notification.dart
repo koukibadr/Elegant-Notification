@@ -228,23 +228,14 @@ class ElegantNotification extends StatefulWidget {
 
 class _ElegantNotificationState extends State<ElegantNotification>
     with SingleTickerProviderStateMixin {
-  double progressValue = 1;
-
-  late Timer notificationTimer;
+  
   late Timer closeTimer;
-
   late Animation<Offset> offsetAnimation;
   late AnimationController slideController;
 
   @override
   void initState() {
     super.initState();
-    notificationTimer = Timer.periodic(
-        Duration(milliseconds: this.widget.toastDuration ~/ 10), (Timer timer) {
-      setState(() {
-        this.progressValue = this.progressValue - 0.1;
-      });
-    });
     closeTimer = Timer(Duration(milliseconds: this.widget.toastDuration), () {
       slideController.reverse();
       slideController.addListener(() {
@@ -293,7 +284,6 @@ class _ElegantNotificationState extends State<ElegantNotification>
   @override
   void dispose() {
     super.dispose();
-    notificationTimer.cancel();
     closeTimer.cancel();
   }
 
@@ -331,7 +321,6 @@ class _ElegantNotificationState extends State<ElegantNotification>
                     notificationType: this.widget.notificationType,
                     icon: this.widget.icon,
                     onCloseButtonPressed: () {
-                      notificationTimer.cancel();
                       closeTimer.cancel();
                       slideController.reverse();
                       slideController.dispose();

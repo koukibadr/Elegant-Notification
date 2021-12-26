@@ -20,32 +20,29 @@ class AnimatedProgressBar extends StatefulWidget {
 
 class _AnimatedProgressBarState extends State<AnimatedProgressBar>
     with SingleTickerProviderStateMixin {
+  
   late AnimationController _controller;
   late Animation<double> curve;
   late Tween<double> valueTween;
 
-  late double value = widget.value;
 
   @override
   void initState() {
     super.initState();
 
-    this._controller = AnimationController(
+    _controller = AnimationController(
       duration: Duration(milliseconds: widget.duration),
       vsync: this,
     );
-
-    this.curve = CurvedAnimation(
+    curve = CurvedAnimation(
       parent: this._controller,
       curve: Curves.easeInOut,
     );
-
-    this.valueTween = Tween<double>(
+    valueTween = Tween<double>(
       begin: 1,
       end: 0,
     );
-
-    this._controller.forward();
+    _controller.forward();
   }
 
   @override
