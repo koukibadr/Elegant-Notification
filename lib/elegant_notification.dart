@@ -137,12 +137,12 @@ class ElegantNotification extends StatefulWidget {
   ///possible values
   ///```dart
   ///{
-  ///FROM_LEFT,
-  ///FROM_RIGHT,
-  ///FROM_TOP
+  ///fromLeft,
+  ///fromRight,
+  ///fromTop
   ///}
   ///```
-  ///default value `FROM_LEFT`
+  ///default value `fromLeft`
   ///
   final ANIMATION animation;
 
@@ -206,10 +206,10 @@ class ElegantNotification extends StatefulWidget {
   ///possible values
   ///```dart
   ///{
-  ///SUCCESS,
-  ///ERROR,
-  ///INFO,
-  ///CUSTOM
+  ///success,
+  ///error,
+  ///info,
+  ///custom
   ///}
   ///```
   late NOTIFICATION_TYPE notificationType;
