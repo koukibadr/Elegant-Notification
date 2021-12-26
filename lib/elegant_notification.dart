@@ -10,92 +10,100 @@ import 'package:elegant_notification/resources/constants.dart';
 
 // ignore: must_be_immutable
 class ElegantNotification extends StatefulWidget {
-  ElegantNotification(
-      {required this.title,
-      required this.description,
-      required this.icon,
-      this.shadowColor = Colors.grey,
-      this.background = Colors.white,
-      this.radius = 5,
-      this.enableShadow = true,
-      this.showProgressIndicator = true,
-      this.displayCloseButton = true,
-      this.progressIndicatorColor = Colors.blue,
-      this.toastDuration = NOTIFICATION_TOAST_DURATION,
-      this.onCloseButtonPressed,
-      this.onProgressFinished,
-      this.animation = ANIMATION.FROM_LEFT,
-      this.animationDuration = DEFAULT_ANIMATION_DURATION,
-      this.titleStyle = DEFAULT_TITLE_STYLE,
-      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE,
-      this.iconSize = DEFAULT_ICON_SIZE}) {
-    this.notificationType = NOTIFICATION_TYPE.CUSTOM;
+  ElegantNotification({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.icon,
+    this.shadowColor = Colors.grey,
+    this.background = Colors.white,
+    this.radius = 5,
+    this.enableShadow = true,
+    this.showProgressIndicator = true,
+    this.displayCloseButton = true,
+    this.progressIndicatorColor = Colors.blue,
+    this.toastDuration = notificationToastDuration,
+    this.onCloseButtonPressed,
+    this.onProgressFinished,
+    this.animation = ANIMATION.fromLeft,
+    this.animationDuration = defaultAnimationDuration,
+    this.titleStyle = defaultTitleStyle,
+    this.descriptionStyle = defaultDescriptionStyle,
+    this.iconSize = defaultIconSize,
+  }) : super(key: key) {
+    notificationType = NOTIFICATION_TYPE.custom;
   }
 
-  ElegantNotification.success(
-      {required this.title,
-      required this.description,
-      this.displayCloseButton = true,
-      this.toastDuration = NOTIFICATION_TOAST_DURATION,
-      this.onCloseButtonPressed,
-      this.onProgressFinished,
-      this.iconSize = DEFAULT_ICON_SIZE,
-      this.animation = ANIMATION.FROM_LEFT,
-      this.animationDuration = DEFAULT_ANIMATION_DURATION,
-      this.titleStyle = DEFAULT_TITLE_STYLE,
-      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE}) {
-    this.shadowColor = Colors.grey;
-    this.background = Colors.white;
-    this.radius = 5;
-    this.enableShadow = true;
-    this.showProgressIndicator = true;
-    this.notificationType = NOTIFICATION_TYPE.SUCCESS;
-    this.progressIndicatorColor = SUCCESS_COLOR;
-    this.icon = null;
+  ElegantNotification.success({
+    Key? key,
+    required this.title,
+    required this.description,
+    this.displayCloseButton = true,
+    this.toastDuration = notificationToastDuration,
+    this.onCloseButtonPressed,
+    this.onProgressFinished,
+    this.iconSize = defaultIconSize,
+    this.animation = ANIMATION.fromLeft,
+    this.animationDuration = defaultAnimationDuration,
+    this.titleStyle = defaultTitleStyle,
+    this.descriptionStyle = defaultDescriptionStyle,
+  }) : super(key: key) {
+    shadowColor = Colors.grey;
+    background = Colors.white;
+    radius = 5;
+    enableShadow = true;
+    showProgressIndicator = true;
+    notificationType = NOTIFICATION_TYPE.success;
+    progressIndicatorColor = successColor;
+    icon = null;
   }
 
-  ElegantNotification.error(
-      {required this.title,
-      required this.description,
-      this.displayCloseButton = true,
-      this.toastDuration = NOTIFICATION_TOAST_DURATION,
-      this.onCloseButtonPressed,
-      this.onProgressFinished,
-      this.iconSize = DEFAULT_ICON_SIZE,
-      this.animation = ANIMATION.FROM_LEFT,
-      this.animationDuration = DEFAULT_ANIMATION_DURATION,
-      this.titleStyle = DEFAULT_TITLE_STYLE,
-      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE}) {
-    this.shadowColor = Colors.grey;
-    this.background = Colors.white;
-    this.radius = 5;
-    this.enableShadow = true;
-    this.showProgressIndicator = true;
-    this.notificationType = NOTIFICATION_TYPE.ERROR;
-    this.progressIndicatorColor = ERROR_COLOR;
-    this.icon = null;
+  ElegantNotification.error({
+    Key? key,
+    required this.title,
+    required this.description,
+    this.displayCloseButton = true,
+    this.toastDuration = notificationToastDuration,
+    this.onCloseButtonPressed,
+    this.onProgressFinished,
+    this.iconSize = defaultIconSize,
+    this.animation = ANIMATION.fromLeft,
+    this.animationDuration = defaultAnimationDuration,
+    this.titleStyle = defaultTitleStyle,
+    this.descriptionStyle = defaultDescriptionStyle,
+  }) : super(key: key) {
+    shadowColor = Colors.grey;
+    background = Colors.white;
+    radius = 5;
+    enableShadow = true;
+    showProgressIndicator = true;
+    notificationType = NOTIFICATION_TYPE.error;
+    progressIndicatorColor = errorColor;
+    icon = null;
   }
 
-  ElegantNotification.info(
-      {required this.title,
-      required this.description,
-      this.displayCloseButton = true,
-      this.toastDuration = NOTIFICATION_TOAST_DURATION,
-      this.onCloseButtonPressed,
-      this.onProgressFinished,
-      this.iconSize = DEFAULT_ICON_SIZE,
-      this.animation = ANIMATION.FROM_LEFT,
-      this.animationDuration = DEFAULT_ANIMATION_DURATION,
-      this.titleStyle = DEFAULT_TITLE_STYLE,
-      this.descriptionStyle = DEFAULT_DESCRIPTION_STYLE}) {
-    this.shadowColor = Colors.grey;
-    this.background = Colors.white;
-    this.radius = 5;
-    this.enableShadow = true;
-    this.showProgressIndicator = true;
-    this.notificationType = NOTIFICATION_TYPE.INFO;
-    this.progressIndicatorColor = INFO_COLOR;
-    this.icon = null;
+  ElegantNotification.info({
+    Key? key,
+    required this.title,
+    required this.description,
+    this.displayCloseButton = true,
+    this.toastDuration = notificationToastDuration,
+    this.onCloseButtonPressed,
+    this.onProgressFinished,
+    this.iconSize = defaultIconSize,
+    this.animation = ANIMATION.fromLeft,
+    this.animationDuration = defaultAnimationDuration,
+    this.titleStyle = defaultTitleStyle,
+    this.descriptionStyle = defaultDescriptionStyle,
+  }) : super(key: key) {
+    shadowColor = Colors.grey;
+    background = Colors.white;
+    radius = 5;
+    enableShadow = true;
+    showProgressIndicator = true;
+    notificationType = NOTIFICATION_TYPE.info;
+    progressIndicatorColor = inforColor;
+    icon = null;
   }
 
   ///The toast title String (required)
@@ -208,17 +216,18 @@ class ElegantNotification extends StatefulWidget {
 
   ///display the notification on the screen
   ///[context] the context of the application
-  show(BuildContext context) {
+  void show(BuildContext context) {
     Navigator.of(context).push(
       PageRouteBuilder(
-          pageBuilder: (context, _, __) => AlertDialog(
-                backgroundColor: Colors.transparent,
-                contentPadding: EdgeInsets.all(0),
-                insetPadding: EdgeInsets.all(70),
-                elevation: 0,
-                content: this,
-              ),
-          opaque: false),
+        pageBuilder: (context, _, __) => AlertDialog(
+          backgroundColor: Colors.transparent,
+          contentPadding: const EdgeInsets.all(0),
+          insetPadding: const EdgeInsets.all(70),
+          elevation: 0,
+          content: this,
+        ),
+        opaque: false,
+      ),
     );
   }
 
@@ -228,7 +237,6 @@ class ElegantNotification extends StatefulWidget {
 
 class _ElegantNotificationState extends State<ElegantNotification>
     with SingleTickerProviderStateMixin {
-  
   late Timer closeTimer;
   late Animation<Offset> offsetAnimation;
   late AnimationController slideController;
@@ -236,38 +244,38 @@ class _ElegantNotificationState extends State<ElegantNotification>
   @override
   void initState() {
     super.initState();
-    closeTimer = Timer(Duration(milliseconds: this.widget.toastDuration), () {
+    closeTimer = Timer(Duration(milliseconds: widget.toastDuration), () {
       slideController.reverse();
       slideController.addListener(() {
         if (slideController.isDismissed) {
           Navigator.pop(context);
-          this.widget.onProgressFinished?.call();
+          widget.onProgressFinished?.call();
         }
       });
     });
     _initializeAnimation();
   }
 
-  _initializeAnimation() {
+  void _initializeAnimation() {
     slideController = AnimationController(
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
 
-    switch (this.widget.animation) {
-      case ANIMATION.FROM_LEFT:
+    switch (widget.animation) {
+      case ANIMATION.fromLeft:
         offsetAnimation = Tween<Offset>(
           begin: const Offset(-2, 0),
           end: const Offset(0, 0),
         ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
         break;
-      case ANIMATION.FROM_RIGHT:
+      case ANIMATION.fromRight:
         offsetAnimation = Tween<Offset>(
           begin: const Offset(2, 0),
           end: const Offset(0, 0),
         ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
         break;
-      case ANIMATION.FROM_TOP:
+      case ANIMATION.fromTop:
         offsetAnimation = Tween<Offset>(
           begin: const Offset(0, -7),
           end: const Offset(0, 0),
@@ -293,20 +301,21 @@ class _ElegantNotificationState extends State<ElegantNotification>
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SlideTransition(
-          position: this.offsetAnimation,
+          position: offsetAnimation,
           child: Container(
             width: MediaQuery.of(context).size.width * 0.7,
             height: MediaQuery.of(context).size.height * 0.12,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(this.widget.radius),
-              color: this.widget.background,
-              boxShadow: this.widget.enableShadow
+              borderRadius: BorderRadius.circular(widget.radius),
+              color: widget.background,
+              boxShadow: widget.enableShadow
                   ? [
                       BoxShadow(
-                        color: this.widget.shadowColor.withOpacity(0.2),
+                        color: widget.shadowColor.withOpacity(0.2),
                         spreadRadius: 1,
                         blurRadius: 1,
-                        offset: Offset(0, 1), // changes position of shadow
+                        offset:
+                            const Offset(0, 1), // changes position of shadow
                       ),
                     ]
                   : null,
@@ -315,26 +324,26 @@ class _ElegantNotificationState extends State<ElegantNotification>
               children: [
                 Expanded(
                   child: ToastContent(
-                    title: this.widget.title,
-                    description: this.widget.description,
-                    displayCloseButton: this.widget.displayCloseButton,
-                    notificationType: this.widget.notificationType,
-                    icon: this.widget.icon,
+                    title: widget.title,
+                    description: widget.description,
+                    displayCloseButton: widget.displayCloseButton,
+                    notificationType: widget.notificationType,
+                    icon: widget.icon,
                     onCloseButtonPressed: () {
                       closeTimer.cancel();
                       slideController.reverse();
                       slideController.dispose();
-                      this.widget.onCloseButtonPressed?.call();
+                      widget.onCloseButtonPressed?.call();
                     },
-                    iconSize: this.widget.iconSize,
-                    titleStyle: this.widget.titleStyle,
-                    descriptionStyle: this.widget.descriptionStyle,
+                    iconSize: widget.iconSize,
+                    titleStyle: widget.titleStyle,
+                    descriptionStyle: widget.descriptionStyle,
                   ),
                 ),
-                if (this.widget.showProgressIndicator)
+                if (widget.showProgressIndicator)
                   AnimatedProgressBar(
-                    foregroundColor: this.widget.progressIndicatorColor,
-                    duration: this.widget.toastDuration,
+                    foregroundColor: widget.progressIndicatorColor,
+                    duration: widget.toastDuration,
                   ),
               ],
             ),

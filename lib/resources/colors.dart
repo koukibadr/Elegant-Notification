@@ -1,7 +1,6 @@
 import 'dart:ui';
 
-const Color INFO_COLOR = Color(0xff0066FF);
-const Color SUCCESS_COLOR = Color(0xff01CB67);
-const Color ERROR_COLOR = Color(0xffFE355C);
-
-const Color GREY_COLOR = Color(0xffF3F3F3);
+const Color inforColor = Color(0xff0066FF);
+const Color successColor = Color(0xff01CB67);
+const Color errorColor = Color(0xffFE355C);
+const Color greyColor = Color(0xffF3F3F3);

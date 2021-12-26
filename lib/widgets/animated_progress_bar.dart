@@ -1,6 +1,7 @@
 import 'package:elegant_notification/resources/colors.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AnimatedProgressBar extends StatefulWidget {
   final Color foregroundColor;
   final int duration;
@@ -8,7 +9,7 @@ class AnimatedProgressBar extends StatefulWidget {
 
   AnimatedProgressBar({
     Key? key,
-    required this.foregroundColor ,
+    required this.foregroundColor,
     required this.duration,
   }) : super(key: key);
 
@@ -20,11 +21,9 @@ class AnimatedProgressBar extends StatefulWidget {
 
 class _AnimatedProgressBarState extends State<AnimatedProgressBar>
     with SingleTickerProviderStateMixin {
-  
   late AnimationController _controller;
   late Animation<double> curve;
   late Tween<double> valueTween;
-
 
   @override
   void initState() {
@@ -35,7 +34,7 @@ class _AnimatedProgressBarState extends State<AnimatedProgressBar>
       vsync: this,
     );
     curve = CurvedAnimation(
-      parent: this._controller,
+      parent: _controller,
       curve: Curves.easeInOut,
     );
     valueTween = Tween<double>(
@@ -49,14 +48,14 @@ class _AnimatedProgressBarState extends State<AnimatedProgressBar>
   void didUpdateWidget(AnimatedProgressBar oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (this.widget.value != oldWidget.value) {
-      double beginValue = this.valueTween.evaluate(this.curve);
-      this.valueTween = Tween<double>(
+    if (widget.value != oldWidget.value) {
+      double beginValue = valueTween.evaluate(curve);
+      valueTween = Tween<double>(
         begin: beginValue,
-        end: this.widget.value,
+        end: widget.value,
       );
 
-      this._controller
+      _controller
         ..value = 0
         ..forward();
     }
@@ -64,19 +63,19 @@ class _AnimatedProgressBarState extends State<AnimatedProgressBar>
 
   @override
   void dispose() {
-    this._controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: this.curve,
+      animation: curve,
       builder: (context, child) {
         return LinearProgressIndicator(
-          backgroundColor: GREY_COLOR,
+          backgroundColor: greyColor,
           valueColor: AlwaysStoppedAnimation(widget.foregroundColor),
-          value: this.valueTween.evaluate(this.curve),
+          value: valueTween.evaluate(curve),
         );
       },
     );

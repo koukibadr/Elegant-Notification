@@ -1,2 +1,2 @@
-enum NOTIFICATION_TYPE { SUCCESS, ERROR, INFO, CUSTOM }
-enum ANIMATION { FROM_LEFT, FROM_RIGHT, FROM_TOP }
+enum NOTIFICATION_TYPE { success, error, info, custom }
+enum ANIMATION { fromLeft, fromRight, fromTop }
