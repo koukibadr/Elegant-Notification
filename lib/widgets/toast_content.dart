@@ -3,7 +3,7 @@ import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/constants.dart';
 import 'package:elegant_notification/resources/dimens.dart';
 import 'package:flutter/material.dart';
-import 'colors.dart';
+import '../resources/colors.dart';
 
 class ToastContent extends StatelessWidget {
   ToastContent(

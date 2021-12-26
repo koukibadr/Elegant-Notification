@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
 import 'package:elegant_notification/resources/dimens.dart';
-import 'package:elegant_notification/resources/toast_content.dart';
+import 'package:elegant_notification/widgets/animated_progress_bar.dart';
+import 'package:elegant_notification/widgets/toast_content.dart';
 import 'package:flutter/material.dart';
 import 'package:elegant_notification/resources/constants.dart';
 
@@ -341,15 +342,11 @@ class _ElegantNotificationState extends State<ElegantNotification>
                     descriptionStyle: this.widget.descriptionStyle,
                   ),
                 ),
-                Visibility(
-                  visible: this.widget.showProgressIndicator,
-                  child: LinearProgressIndicator(
-                    value: progressValue,
-                    backgroundColor: GREY_COLOR,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                        this.widget.progressIndicatorColor),
+                if (this.widget.showProgressIndicator)
+                  AnimatedProgressBar(
+                    foregroundColor: this.widget.progressIndicatorColor,
+                    duration: this.widget.toastDuration,
                   ),
-                )
               ],
             ),
           ),
