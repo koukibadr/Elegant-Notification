@@ -12,7 +12,7 @@ import 'package:elegant_notification/resources/constants.dart';
 class ElegantNotification extends StatefulWidget {
   ElegantNotification({
     Key? key,
-    required this.title,
+    this.title,
     required this.description,
     required this.icon,
     this.shadowColor = Colors.grey,
@@ -36,7 +36,7 @@ class ElegantNotification extends StatefulWidget {
 
   ElegantNotification.success({
     Key? key,
-    required this.title,
+    this.title,
     required this.description,
     this.displayCloseButton = true,
     this.toastDuration = notificationToastDuration,
@@ -60,7 +60,7 @@ class ElegantNotification extends StatefulWidget {
 
   ElegantNotification.error({
     Key? key,
-    required this.title,
+    this.title,
     required this.description,
     this.displayCloseButton = true,
     this.toastDuration = notificationToastDuration,
@@ -84,7 +84,7 @@ class ElegantNotification extends StatefulWidget {
 
   ElegantNotification.info({
     Key? key,
-    required this.title,
+    this.title,
     required this.description,
     this.displayCloseButton = true,
     this.toastDuration = notificationToastDuration,
@@ -106,9 +106,9 @@ class ElegantNotification extends StatefulWidget {
     icon = null;
   }
 
-  ///The toast title String (required)
+  ///The toast title String if any
   ///
-  final String title;
+  final String? title;
 
   ///The title text style
   ///by default it's `TextStyle(fontWeight: FontWeight.bold, fontSize: 14)`
