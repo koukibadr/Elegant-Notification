@@ -8,7 +8,7 @@ import '../resources/colors.dart';
 class ToastContent extends StatelessWidget {
   const ToastContent({
     Key? key,
-    required this.title,
+    this.title,
     required this.description,
     required this.notificationType,
     required this.displayCloseButton,
@@ -19,9 +19,9 @@ class ToastContent extends StatelessWidget {
     this.iconSize = defaultIconSize,
   }) : super(key: key);
 
-  ///The title of the notification
+  ///The title of the notification if any
   ///
-  final String title;
+  final String? title;
 
   ///The title text style
   ///
@@ -88,13 +88,15 @@ class ToastContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                title,
-                style: titleStyle,
-              ),
-              const SizedBox(
-                height: 5,
-              ),
+              if (title != null) ...[
+                Text(
+                  title!,
+                  style: titleStyle,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+              ],
               Text(
                 description,
                 style: descriptionStyle,
