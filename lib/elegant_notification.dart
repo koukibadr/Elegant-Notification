@@ -47,6 +47,9 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
+    this.height = MediaQuery.of(context).size.width * 0.7,
+    this.width =  MediaQuery.of(context).size.height * 0.12
+    this.width = 
   }) : super(key: key) {
     shadowColor = Colors.grey;
     background = Colors.white;
@@ -71,6 +74,8 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
+       this.height = MediaQuery.of(context).size.width * 0.7,
+    this.width =  MediaQuery.of(context).size.height * 0.12
   }) : super(key: key) {
     shadowColor = Colors.grey;
     background = Colors.white;
@@ -95,6 +100,8 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
+       this.height = MediaQuery.of(context).size.width * 0.7,
+    this.width =  MediaQuery.of(context).size.height * 0.12
   }) : super(key: key) {
     shadowColor = Colors.grey;
     background = Colors.white;
@@ -202,8 +209,8 @@ class ElegantNotification extends StatefulWidget {
   ///
   final Function? onProgressFinished;
 
-  final double? width;
-  final double? height;
+  final double width;
+  final double height;
 
   ///The type of the notification, will be set automatically on every constructor
   ///possible values
@@ -306,8 +313,8 @@ class _ElegantNotificationState extends State<ElegantNotification>
         SlideTransition(
           position: offsetAnimation,
           child: Container(
-            width: width ?? MediaQuery.of(context).size.width * 0.7,
-            height: height ?? MediaQuery.of(context).size.height * 0.12,
+            width: width ,
+            height: height,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(widget.radius),
               color: widget.background,
