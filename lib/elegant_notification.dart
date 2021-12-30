@@ -202,6 +202,9 @@ class ElegantNotification extends StatefulWidget {
   ///
   final Function? onProgressFinished;
 
+  final double? width;
+  final double? height;
+
   ///The type of the notification, will be set automatically on every constructor
   ///possible values
   ///```dart
@@ -303,8 +306,8 @@ class _ElegantNotificationState extends State<ElegantNotification>
         SlideTransition(
           position: offsetAnimation,
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.7,
-            height: MediaQuery.of(context).size.height * 0.12,
+            width: width ?? MediaQuery.of(context).size.width * 0.7,
+            height: height ?? MediaQuery.of(context).size.height * 0.12,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(widget.radius),
               color: widget.background,
