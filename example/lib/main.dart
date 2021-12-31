@@ -94,6 +94,7 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification.info(
                     title: 'Info',
                     description: 'This account will be updated once you exit',
+                    showProgressIndicator: false,
                   ).show(context);
                 },
                 child: Container(

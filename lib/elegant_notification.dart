@@ -47,12 +47,12 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
+    this.showProgressIndicator = true,
   }) : super(key: key) {
     shadowColor = Colors.grey;
     background = Colors.white;
     radius = 5;
     enableShadow = true;
-    showProgressIndicator = true;
     notificationType = NOTIFICATION_TYPE.success;
     progressIndicatorColor = successColor;
     icon = null;
@@ -71,12 +71,12 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
+    this.showProgressIndicator = true,
   }) : super(key: key) {
     shadowColor = Colors.grey;
     background = Colors.white;
     radius = 5;
     enableShadow = true;
-    showProgressIndicator = true;
     notificationType = NOTIFICATION_TYPE.error;
     progressIndicatorColor = errorColor;
     icon = null;
@@ -95,12 +95,12 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
+    this.showProgressIndicator = true,
   }) : super(key: key) {
     shadowColor = Colors.grey;
     background = Colors.white;
     radius = 5;
     enableShadow = true;
-    showProgressIndicator = true;
     notificationType = NOTIFICATION_TYPE.info;
     progressIndicatorColor = inforColor;
     icon = null;
