@@ -2,7 +2,7 @@ import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/cupertino.dart';
 
 const Duration defaultAnimationDuration = Duration(
-  milliseconds: 100,
+  milliseconds: 200,
 );
 const TextStyle defaultTitleStyle = TextStyle(
   fontWeight: FontWeight.bold,

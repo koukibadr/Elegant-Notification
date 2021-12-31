@@ -252,9 +252,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
 
   void _initializeAnimation() {
     slideController = AnimationController(
-      duration: const Duration(
-        milliseconds: 500,
-      ),
+      duration: widget.animationDuration,
       vsync: this,
     );
 
@@ -298,13 +296,6 @@ class _ElegantNotificationState extends State<ElegantNotification>
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       slideController.forward();
     });
-  }
-
-  @override
-  void dispose() {
-    slideController.dispose();
-    closeTimer.cancel();
-    super.dispose();
   }
 
   @override
@@ -363,5 +354,12 @@ class _ElegantNotificationState extends State<ElegantNotification>
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    slideController.dispose();
+    closeTimer.cancel();
+    super.dispose();
   }
 }
