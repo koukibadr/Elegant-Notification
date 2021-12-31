@@ -235,7 +235,10 @@ class _ElegantNotificationState extends State<ElegantNotification>
   @override
   void initState() {
     super.initState();
-    closeTimer = Timer(Duration(milliseconds: widget.toastDuration), () {
+    closeTimer = Timer(
+        Duration(
+          milliseconds: widget.toastDuration,
+        ), () {
       slideController.reverse();
       slideController.addListener(() {
         if (slideController.isDismissed) {
@@ -249,7 +252,9 @@ class _ElegantNotificationState extends State<ElegantNotification>
 
   void _initializeAnimation() {
     slideController = AnimationController(
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(
+        milliseconds: 500,
+      ),
       vsync: this,
     );
 
@@ -258,19 +263,34 @@ class _ElegantNotificationState extends State<ElegantNotification>
         offsetAnimation = Tween<Offset>(
           begin: const Offset(-2, 0),
           end: const Offset(0, 0),
-        ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
+        ).animate(
+          CurvedAnimation(
+            parent: slideController,
+            curve: Curves.ease,
+          ),
+        );
         break;
       case ANIMATION.fromRight:
         offsetAnimation = Tween<Offset>(
           begin: const Offset(2, 0),
           end: const Offset(0, 0),
-        ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
+        ).animate(
+          CurvedAnimation(
+            parent: slideController,
+            curve: Curves.ease,
+          ),
+        );
         break;
       case ANIMATION.fromTop:
         offsetAnimation = Tween<Offset>(
           begin: const Offset(0, -7),
           end: const Offset(0, 0),
-        ).animate(CurvedAnimation(parent: slideController, curve: Curves.ease));
+        ).animate(
+          CurvedAnimation(
+            parent: slideController,
+            curve: Curves.ease,
+          ),
+        );
         break;
       default:
     }
