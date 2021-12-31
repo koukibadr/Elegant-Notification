@@ -1,11 +1,13 @@
+
   
 
 #  Elegant Notification
 
   
 
-<p  align="center">
+  
 
+<p  align="center">
 <img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/elegant_notification_logo.gif?raw=true"/>
 <br>
 <b>An elegant notification to display important messages to users</b>
@@ -13,9 +15,13 @@
 
   
 
+  
+
 | ![success_notification.gif](https://github.com/koukibadr/Elegant-Notification/blob/main/example/success_elegant_notification.gif?raw=true) | ![info_notification.gif](https://github.com/koukibadr/Elegant-Notification/blob/main/example/info_elegant_notification.gif?raw=true) |
 |--|--|
 | ![error_notification.gif](https://github.com/koukibadr/Elegant-Notification/blob/main/example/error_elegant_notification.gif?raw=true) | ![custom_notification.gif](https://github.com/koukibadr/Elegant-Notification/blob/main/example/custom_elegant_notification.gif?raw=true) |
+
+  
 
   
 
@@ -27,146 +33,152 @@
 -  Support custom theme implementation
 -  onClose and onProgressFinished callback handlers
 -  animated progress bar indicator
+-  background costumization
+- Animation duration customization
+
   
 
 ##  Getting Started
+
+  
 
 To use this elegant notification package you need to add the dependency in `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.1.0
+	elegant_notification: ^1.2.0
 ```
+
+  
 
   
 
 ##  Parameters
 
 ```dart
-///The toast title String (required)
-final String title;
-
+///The toast title String if any
+final  String?  title;
 
 ///The title text style
 ///by default it's `TextStyle(fontWeight: FontWeight.bold, fontSize: 14)`
-final TextStyle titleStyle;
-
+final  TextStyle  titleStyle;
 
 ///The toast description text (required)
-final String description;
-
+final  String  description;
 
 ///The description text style
 ///by default it's `TextStyle(fontSize: 12)`
-final TextStyle descriptionStyle;
-
+final  TextStyle  descriptionStyle;
 
 ///The toast icon, required only if using the default constructor
 ///for other toast types (Success, Info, error) the icon is not changeable
-late Widget? icon;
-
+late  Widget?  icon;
 
 ///The size of the icon, by default it's 40px
-late double iconSize;
-
+late  double  iconSize;
 
 ///The type of the animation set on the notification
 ///possible values
+///```dart
 ///{
 ///fromLeft,
 ///fromRight,
 ///fromTop
 ///}
-///default value `fromLeft
-final ANIMATION animation;
-
+///```
+///default value `fromLeft`
+///
+final  ANIMATION  animation;
 
 ///The duration of the animation
 ///Default value `Duration(milliseconds: 100)`
-final Duration animationDuration;
+final  Duration  animationDuration;
 
+  
 
 ///The shadow color applied on the notification widget
 /// by defualt it's `Colors.grey`
 /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late Color shadowColor;
-
+late  Color  shadowColor  =  Colors.grey;
 
 /// the background color of the notification
 /// by default it's set to white
 /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late Color background;
-
+late  Color  background;
 
 ///The color of the progress
 ///by default it's blue
 /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late Color progressIndicatorColor;
-
+late  Color  progressIndicatorColor;
 
 ///the border radius of the notification widget
 ///this parameter it's only set if you are using the default constructor
 /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late double radius;
-
+late  double  radius;
 
 ///The duration how much the notification will take time, duration in milliseconds
 ///by default the duration is `2500 milliseconds`
-final int toastDuration;
-
+final  int  toastDuration;
 
 ///enable or disable the shadow rendering
 ///by default it's true
 /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late bool enableShadow;
-
+late  bool  enableShadow  =  true;
 
 ///enable or disable the progress indicator rendering
 ///by default the indicator is displayed
 /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late bool showProgressIndicator;
-
+late  bool  showProgressIndicator;
 
 ///Display or hide the close button
 ///by default the close button is displayed
 /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-final bool displayCloseButton;
-
+final  bool  displayCloseButton;
 
 ///Function invoked when user press on the close button
-final Function? onCloseButtonPressed;
-
+final  Function?  onCloseButtonPressed;
 
 ///Function invoked when the notification is closed after the finish of the progress indicator
-final Function? onProgressFinished;
-
+final  Function?  onProgressFinished;
 ```
+
+  
 
 ##  Migration to 1.1.0
 
-If you are using 1.0.0 you need to update `animation` attribute values following the camelCase conventions 
+  
+
+If you are using 1.0.0 you need to update `animation` attribute values following the camelCase conventions
+
 (eg: FROM_TOP -> fromTop)
 
+  
+  
 
 ##  Examples
 
   
 
+  
+
 -  Success theme animation example
+
+  
 
 ```dart
 ElegantNotification.success(
 	title:  "Update",
 	description:  "Your data has been updated"
 ).show(context);
+
 ```
 
 <p  align="center">
 <img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/success_elegant_notification.gif?raw=true"/>
 </p>
 
+<br>
   
-
 -  Info theme animation example
 
 ```dart
@@ -174,30 +186,39 @@ ElegantNotification.info(
 	title:  "Info",
 	description:  "This account will be updated once you exit"
 ).show(context);
+
 ```
+
+  
 
 <p  align="center">
 <img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/info_elegant_notification.gif?raw=true"/>
 </p>
-
   
 
 -  Error theme animation example
+
+  
 
 ```dart
 ElegantNotification.error(
 	title:  "Error",
 	description:  "Please verifiy your data"
 ).show(context);
+
 ```
 
 <p  align="center">
 <img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/error_elegant_notification.gif?raw=true"/>
 </p>
 
+  
+  
 
 -  Custom theme animation example
+
 ```dart
+
 ElegantNotification(
 	title:  "New version",
 	description:  "A new version is available to you please update.",
@@ -213,14 +234,29 @@ ElegantNotification(
 <img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/custom_elegant_notification.gif?raw=true"/>
 </p>
 
+
+-  Without title
+
+```dart
+ElegantNotification.error(
+	description:  "Please verifiy your data"
+).show(context);
+
+```
   
-  
+
   
 
 ##  Contribution
 
+  
+
 Of course the project is open source, and you can contribute to it [repository link](https://github.com/koukibadr/Elegant-Notification)
 
+  
+
 -  If you **found a bug**, open an issue.
+
 -  If you **have a feature request**, open an issue.
+
 -  If you **want to contribute**, submit a pull request.
