@@ -291,8 +291,9 @@ class _ElegantNotificationState extends State<ElegantNotification>
 
   @override
   void dispose() {
-    super.dispose();
+    slideController.dispose();
     closeTimer.cancel();
+    super.dispose();
   }
 
   @override
