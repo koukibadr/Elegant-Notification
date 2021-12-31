@@ -15,17 +15,17 @@ class ElegantNotification extends StatefulWidget {
     this.title,
     required this.description,
     required this.icon,
-    this.shadowColor = Colors.grey,
-    this.background = Colors.white,
-    this.radius = 5,
-    this.enableShadow = true,
-    this.showProgressIndicator = true,
-    this.displayCloseButton = true,
-    this.progressIndicatorColor = Colors.blue,
+    this.shadowColor = defaultShadowColor,
+    this.background = defaultBackgroundColor,
+    this.radius = defaultRadiusValue,
+    this.enableShadow = defaultEnableShadowValue,
+    this.showProgressIndicator = defaultShowProgressIndicatorValue,
+    this.displayCloseButton = defaultCloseButtonDisplay,
+    this.progressIndicatorColor = defaultProgressColor,
     this.toastDuration = notificationToastDuration,
     this.onCloseButtonPressed,
     this.onProgressFinished,
-    this.animation = ANIMATION.fromLeft,
+    this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
@@ -38,21 +38,18 @@ class ElegantNotification extends StatefulWidget {
     Key? key,
     this.title,
     required this.description,
-    this.displayCloseButton = true,
+    this.background = defaultBackgroundColor,
+    this.displayCloseButton = defaultCloseButtonDisplay,
     this.toastDuration = notificationToastDuration,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = defaultIconSize,
-    this.animation = ANIMATION.fromLeft,
+    this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
-    this.showProgressIndicator = true,
+    this.showProgressIndicator = defaultShowProgressIndicatorValue,
   }) : super(key: key) {
-    shadowColor = Colors.grey;
-    background = Colors.white;
-    radius = 5;
-    enableShadow = true;
     notificationType = NOTIFICATION_TYPE.success;
     progressIndicatorColor = successColor;
     icon = null;
@@ -62,21 +59,18 @@ class ElegantNotification extends StatefulWidget {
     Key? key,
     this.title,
     required this.description,
-    this.displayCloseButton = true,
+    this.background = defaultBackgroundColor,
+    this.displayCloseButton = defaultCloseButtonDisplay,
     this.toastDuration = notificationToastDuration,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = defaultIconSize,
-    this.animation = ANIMATION.fromLeft,
+    this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
-    this.showProgressIndicator = true,
+    this.showProgressIndicator = defaultShowProgressIndicatorValue,
   }) : super(key: key) {
-    shadowColor = Colors.grey;
-    background = Colors.white;
-    radius = 5;
-    enableShadow = true;
     notificationType = NOTIFICATION_TYPE.error;
     progressIndicatorColor = errorColor;
     icon = null;
@@ -86,21 +80,18 @@ class ElegantNotification extends StatefulWidget {
     Key? key,
     this.title,
     required this.description,
-    this.displayCloseButton = true,
+    this.background = defaultBackgroundColor,
+    this.displayCloseButton = defaultCloseButtonDisplay,
     this.toastDuration = notificationToastDuration,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = defaultIconSize,
-    this.animation = ANIMATION.fromLeft,
+    this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
-    this.showProgressIndicator = true,
+    this.showProgressIndicator = defaultShowProgressIndicatorValue,
   }) : super(key: key) {
-    shadowColor = Colors.grey;
-    background = Colors.white;
-    radius = 5;
-    enableShadow = true;
     notificationType = NOTIFICATION_TYPE.info;
     progressIndicatorColor = inforColor;
     icon = null;
@@ -154,7 +145,7 @@ class ElegantNotification extends StatefulWidget {
   ///The shadow color applied on the notification widget
   /// by defualt it's `Colors.grey`
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  late Color shadowColor;
+  late Color shadowColor = Colors.grey;
 
   /// the background color of the notification
   /// by default it's set to white
@@ -170,7 +161,7 @@ class ElegantNotification extends StatefulWidget {
   ///this parameter it's only set if you are using the default constructor
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   ///
-  late double radius;
+  late double radius = defaultRadiusValue;
 
   ///The duration how much the notification will take time, duration in milliseconds
   ///by default the duration is `2500 milliseconds`
@@ -181,7 +172,7 @@ class ElegantNotification extends StatefulWidget {
   ///by default it's true
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   ///
-  late bool enableShadow;
+  late bool enableShadow = true;
 
   ///enable or disable the progress indicator rendering
   ///by default the indicator is displayed
