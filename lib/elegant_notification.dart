@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
+import 'package:elegant_notification/resources/constants.dart';
 import 'package:elegant_notification/resources/dimens.dart';
 import 'package:elegant_notification/widgets/animated_progress_bar.dart';
 import 'package:elegant_notification/widgets/toast_content.dart';
 import 'package:flutter/material.dart';
-import 'package:elegant_notification/resources/constants.dart';
 
 // ignore: must_be_immutable
 class ElegantNotification extends StatefulWidget {
@@ -30,6 +30,7 @@ class ElegantNotification extends StatefulWidget {
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.iconSize = defaultIconSize,
+    this.notificationAlign = defaultNotificationAlignValue,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.custom;
   }
@@ -49,6 +50,7 @@ class ElegantNotification extends StatefulWidget {
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
+    this.notificationAlign = defaultNotificationAlignValue,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.success;
     progressIndicatorColor = successColor;
@@ -70,6 +72,7 @@ class ElegantNotification extends StatefulWidget {
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
+    this.notificationAlign = defaultNotificationAlignValue,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.error;
     progressIndicatorColor = errorColor;
@@ -91,6 +94,7 @@ class ElegantNotification extends StatefulWidget {
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
+    this.notificationAlign = defaultNotificationAlignValue,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.info;
     progressIndicatorColor = inforColor;
@@ -205,6 +209,19 @@ class ElegantNotification extends StatefulWidget {
   ///```
   late NOTIFICATION_TYPE notificationType;
 
+  ///The type of the align set on the notification
+  ///possible values
+  ///```dart
+  ///{
+  ///top,
+  ///center,
+  ///bottom
+  ///}
+  ///```
+  ///default value `top`
+  ///
+  final NOTIFICATION_ALIGN notificationAlign;
+
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
@@ -300,60 +317,70 @@ class _ElegantNotificationState extends State<ElegantNotification>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        SlideTransition(
-          position: offsetAnimation,
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.7,
-            height: MediaQuery.of(context).size.height * 0.12,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(widget.radius),
-              color: widget.background,
-              boxShadow: widget.enableShadow
-                  ? [
-                      BoxShadow(
-                        color: widget.shadowColor.withOpacity(0.2),
-                        spreadRadius: 1,
-                        blurRadius: 1,
-                        offset:
-                            const Offset(0, 1), // changes position of shadow
-                      ),
-                    ]
-                  : null,
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ToastContent(
-                    title: widget.title,
-                    description: widget.description,
-                    displayCloseButton: widget.displayCloseButton,
-                    notificationType: widget.notificationType,
-                    icon: widget.icon,
-                    onCloseButtonPressed: () {
-                      closeTimer.cancel();
-                      slideController.reverse();
-                      slideController.dispose();
-                      widget.onCloseButtonPressed?.call();
-                    },
-                    iconSize: widget.iconSize,
-                    titleStyle: widget.titleStyle,
-                    descriptionStyle: widget.descriptionStyle,
-                  ),
+    return Align(
+      alignment: _getNotificationAlign(),
+      child: SlideTransition(
+        position: offsetAnimation,
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.7,
+          height: MediaQuery.of(context).size.height * 0.12,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(widget.radius),
+            color: widget.background,
+            boxShadow: widget.enableShadow
+                ? [
+                    BoxShadow(
+                      color: widget.shadowColor.withOpacity(0.2),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 1), // changes position of shadow
+                    ),
+                  ]
+                : null,
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                child: ToastContent(
+                  title: widget.title,
+                  description: widget.description,
+                  displayCloseButton: widget.displayCloseButton,
+                  notificationType: widget.notificationType,
+                  icon: widget.icon,
+                  onCloseButtonPressed: () {
+                    closeTimer.cancel();
+                    slideController.reverse();
+                    slideController.dispose();
+                    widget.onCloseButtonPressed?.call();
+                  },
+                  iconSize: widget.iconSize,
+                  titleStyle: widget.titleStyle,
+                  descriptionStyle: widget.descriptionStyle,
                 ),
-                if (widget.showProgressIndicator)
-                  AnimatedProgressBar(
-                    foregroundColor: widget.progressIndicatorColor,
-                    duration: widget.toastDuration,
-                  ),
-              ],
-            ),
+              ),
+              if (widget.showProgressIndicator)
+                AnimatedProgressBar(
+                  foregroundColor: widget.progressIndicatorColor,
+                  duration: widget.toastDuration,
+                ),
+            ],
           ),
         ),
-      ],
+      ),
     );
+  }
+
+  Alignment _getNotificationAlign() {
+    switch (widget.notificationAlign) {
+      case NOTIFICATION_ALIGN.top:
+        return Alignment.topCenter;
+      case NOTIFICATION_ALIGN.center:
+        return Alignment.center;
+      case NOTIFICATION_ALIGN.bottom:
+        return Alignment.bottomCenter;
+      default:
+        return Alignment.topCenter;
+    }
   }
 
   @override
