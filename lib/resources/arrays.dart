@@ -9,7 +9,7 @@ enum ANIMATION {
   fromRight,
   fromTop,
 }
-enum NOTIFICATION_ALIGN {
+enum NOTIFICATION_POSITION {
   top,
   center,
   bottom,

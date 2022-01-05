@@ -18,6 +18,6 @@ const bool defaultEnableShadowValue = true;
 const bool defaultShowProgressIndicatorValue = true;
 const bool defaultCloseButtonDisplay = true;
 const ANIMATION defaultAnimationValue = ANIMATION.fromLeft;
-const NOTIFICATION_ALIGN defaultNotificationAlignValue = NOTIFICATION_ALIGN.top;
+const NOTIFICATION_POSITION defaultNotificationAlignValue = NOTIFICATION_POSITION.top;
 
 const double defaultRadiusValue = 5.0;

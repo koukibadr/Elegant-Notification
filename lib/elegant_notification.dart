@@ -30,7 +30,7 @@ class ElegantNotification extends StatefulWidget {
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.iconSize = defaultIconSize,
-    this.notificationAlign = defaultNotificationAlignValue,
+    this.notificationPosition = defaultNotificationAlignValue,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.custom;
   }
@@ -50,7 +50,7 @@ class ElegantNotification extends StatefulWidget {
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
-    this.notificationAlign = defaultNotificationAlignValue,
+    this.notificationPosition = defaultNotificationAlignValue,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.success;
     progressIndicatorColor = successColor;
@@ -72,7 +72,7 @@ class ElegantNotification extends StatefulWidget {
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
-    this.notificationAlign = defaultNotificationAlignValue,
+    this.notificationPosition = defaultNotificationAlignValue,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.error;
     progressIndicatorColor = errorColor;
@@ -94,7 +94,7 @@ class ElegantNotification extends StatefulWidget {
     this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
-    this.notificationAlign = defaultNotificationAlignValue,
+    this.notificationPosition = defaultNotificationAlignValue,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.info;
     progressIndicatorColor = inforColor;
@@ -220,7 +220,7 @@ class ElegantNotification extends StatefulWidget {
   ///```
   ///default value `top`
   ///
-  final NOTIFICATION_ALIGN notificationAlign;
+  final NOTIFICATION_POSITION notificationPosition;
 
   ///display the notification on the screen
   ///[context] the context of the application
@@ -371,12 +371,12 @@ class _ElegantNotificationState extends State<ElegantNotification>
   }
 
   Alignment _getNotificationAlign() {
-    switch (widget.notificationAlign) {
-      case NOTIFICATION_ALIGN.top:
+    switch (widget.notificationPosition) {
+      case NOTIFICATION_POSITION.top:
         return Alignment.topCenter;
-      case NOTIFICATION_ALIGN.center:
+      case NOTIFICATION_POSITION.center:
         return Alignment.center;
-      case NOTIFICATION_ALIGN.bottom:
+      case NOTIFICATION_POSITION.bottom:
         return Alignment.bottomCenter;
       default:
         return Alignment.topCenter;
