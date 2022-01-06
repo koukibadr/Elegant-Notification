@@ -13,7 +13,6 @@ class ToastContent extends StatelessWidget {
     required this.description,
     required this.notificationType,
     required this.displayCloseButton,
-    required this.descriptionStyle,
     this.icon,
     this.onCloseButtonPressed,
     this.iconSize = defaultIconSize,
@@ -25,11 +24,7 @@ class ToastContent extends StatelessWidget {
 
   ///The description of the notification text string
   ///
-  final String description;
-
-  /// The description text style
-  ///
-  final TextStyle descriptionStyle;
+  final Text description;
 
   ///The notification icon
   final Widget? icon;
@@ -90,10 +85,7 @@ class ToastContent extends StatelessWidget {
                   height: 5,
                 ),
               ],
-              Text(
-                description,
-                style: descriptionStyle,
-              ),
+              description,
             ],
           ),
         ),

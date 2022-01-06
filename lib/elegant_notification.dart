@@ -27,7 +27,6 @@ class ElegantNotification extends StatefulWidget {
     this.onProgressFinished,
     this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
-    this.descriptionStyle = defaultDescriptionStyle,
     this.iconSize = defaultIconSize,
     this.notificationPosition = defaultNotificationAlignValue,
   }) : super(key: key) {
@@ -46,7 +45,6 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
-    this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
   }) : super(key: key) {
@@ -67,7 +65,6 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
-    this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
   }) : super(key: key) {
@@ -88,7 +85,6 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
-    this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
   }) : super(key: key) {
@@ -103,12 +99,7 @@ class ElegantNotification extends StatefulWidget {
 
   ///The toast description text (required)
   ///
-  final String description;
-
-  ///The description text style
-  ///by default it's `TextStyle(fontSize: 12)`
-  ///
-  final TextStyle descriptionStyle;
+  final Text description;
 
   ///The toast icon, required only if using the default constructor
   ///for other toast types (Success, Info, error) the icon is not changeable
@@ -345,7 +336,6 @@ class _ElegantNotificationState extends State<ElegantNotification>
                     widget.onCloseButtonPressed?.call();
                   },
                   iconSize: widget.iconSize,
-                  descriptionStyle: widget.descriptionStyle,
                 ),
               ),
               if (widget.showProgressIndicator)
