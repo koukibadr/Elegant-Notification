@@ -93,7 +93,7 @@ class ElegantNotification extends StatefulWidget {
     icon = null;
   }
 
-  ///The toast title String if any
+  ///The toast title if any
   ///
   final Text? title;
 
