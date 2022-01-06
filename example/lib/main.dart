@@ -35,7 +35,7 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.success(
-                    title: 'Update',
+                    title: Text('Update'),
                     description: 'Your data has been updated',
                   ).show(context);
                 },
@@ -61,7 +61,7 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.error(
-                    title: 'Error',
+                    title: Text('Error'),
                     description: 'Please verifiy your data',
                   ).show(context);
                 },
@@ -92,7 +92,7 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.info(
-                    title: 'Info',
+                    title: Text('Info'),
                     description: 'This account will be updated once you exit',
                     showProgressIndicator: false,
                   ).show(context);
@@ -119,7 +119,7 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
-                    title: 'New version',
+                    title: Text('New version'),
                     description:
                         'A new version is available to you please update.',
                     icon: Icon(

@@ -12,7 +12,6 @@ class ToastContent extends StatelessWidget {
     required this.description,
     required this.notificationType,
     required this.displayCloseButton,
-    required this.titleStyle,
     required this.descriptionStyle,
     this.icon,
     this.onCloseButtonPressed,
@@ -21,11 +20,7 @@ class ToastContent extends StatelessWidget {
 
   ///The title of the notification if any
   ///
-  final String? title;
-
-  ///The title text style
-  ///
-  final TextStyle titleStyle;
+  final Text? title;
 
   ///The description of the notification text string
   ///
@@ -89,10 +84,7 @@ class ToastContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (title != null) ...[
-                Text(
-                  title!,
-                  style: titleStyle,
-                ),
+                title!,
                 const SizedBox(
                   height: 5,
                 ),

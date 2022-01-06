@@ -27,7 +27,6 @@ class ElegantNotification extends StatefulWidget {
     this.onProgressFinished,
     this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
-    this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.iconSize = defaultIconSize,
     this.notificationPosition = defaultNotificationAlignValue,
@@ -47,7 +46,6 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
-    this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
@@ -69,7 +67,6 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
-    this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
@@ -91,7 +88,6 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.animation = defaultAnimationValue,
     this.animationDuration = defaultAnimationDuration,
-    this.titleStyle = defaultTitleStyle,
     this.descriptionStyle = defaultDescriptionStyle,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
@@ -103,12 +99,7 @@ class ElegantNotification extends StatefulWidget {
 
   ///The toast title String if any
   ///
-  final String? title;
-
-  ///The title text style
-  ///by default it's `TextStyle(fontWeight: FontWeight.bold, fontSize: 14)`
-  ///
-  final TextStyle titleStyle;
+  final Text? title;
 
   ///The toast description text (required)
   ///
@@ -354,7 +345,6 @@ class _ElegantNotificationState extends State<ElegantNotification>
                     widget.onCloseButtonPressed?.call();
                   },
                   iconSize: widget.iconSize,
-                  titleStyle: widget.titleStyle,
                   descriptionStyle: widget.descriptionStyle,
                 ),
               ),
