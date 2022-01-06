@@ -119,7 +119,12 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
-                    title: Text('New version'),
+                    title: Text(
+                      'New version',
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                    ),
                     description:
                         'A new version is available to you please update.',
                     icon: Icon(
