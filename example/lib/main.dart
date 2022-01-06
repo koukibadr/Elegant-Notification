@@ -36,7 +36,7 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.success(
                     title: Text('Update'),
-                    description: 'Your data has been updated',
+                    description: Text('Your data has been updated'),
                   ).show(context);
                 },
                 child: Container(
@@ -62,7 +62,7 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.error(
                     title: Text('Error'),
-                    description: 'Please verifiy your data',
+                    description: Text('Please verifiy your data'),
                   ).show(context);
                 },
                 child: Container(
@@ -93,7 +93,7 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.info(
                     title: Text('Info'),
-                    description: 'This account will be updated once you exit',
+                    description: Text('This account will be updated once you exit'),
                     showProgressIndicator: false,
                   ).show(context);
                 },
@@ -126,7 +126,7 @@ class ExampleApp extends StatelessWidget {
                       ),
                     ),
                     description:
-                        'A new version is available to you please update.',
+                        Text('A new version is available to you please update.'),
                     icon: Icon(
                       Icons.access_alarm,
                       color: Colors.orange,
