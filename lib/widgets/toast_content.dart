@@ -85,7 +85,7 @@ class ToastContent extends StatelessWidget {
                   height: 5,
                 ),
               ],
-              description,
+              description.cloneDescription(),
             ],
           ),
         ),
