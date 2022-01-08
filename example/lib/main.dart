@@ -171,6 +171,9 @@ class ExampleApp extends StatelessWidget {
                         color: Colors.blue,
                       ),
                     ),
+                    onActionPressed: (){
+                      print('Oh yeahh!');
+                    },
                     showProgressIndicator: false,
                   ).show(context);
                 },

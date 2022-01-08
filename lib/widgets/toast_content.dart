@@ -17,6 +17,7 @@ class ToastContent extends StatelessWidget {
     this.onCloseButtonPressed,
     this.iconSize = defaultIconSize,
     this.action,
+    this.onActionPressed,
   }) : super(key: key);
 
   ///The title of the notification if any
@@ -52,10 +53,12 @@ class ToastContent extends StatelessWidget {
 
   ///The function invoked when pressing the close button
   ///
-  final Function? onCloseButtonPressed;
+  final Function()? onCloseButtonPressed;
 
   ///TODO add code documentation
   final Widget? action;
+  final Function()? onActionPressed;
+
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +98,10 @@ class ToastContent extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  action!
+                  onActionPressed == null ? action! : InkWell(
+                    onTap: onActionPressed,
+                    child: action!,
+                  )
                 ]
             ],
           ),

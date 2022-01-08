@@ -30,6 +30,7 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.notificationPosition = defaultNotificationAlignValue,
     this.action,
+    this.onActionPressed,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.custom;
   }
@@ -49,6 +50,7 @@ class ElegantNotification extends StatefulWidget {
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
     this.action,
+    this.onActionPressed,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.success;
     progressIndicatorColor = successColor;
@@ -70,6 +72,7 @@ class ElegantNotification extends StatefulWidget {
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
     this.action,
+    this.onActionPressed,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.error;
     progressIndicatorColor = errorColor;
@@ -91,6 +94,7 @@ class ElegantNotification extends StatefulWidget {
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
     this.action,
+    this.onActionPressed,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.info;
     progressIndicatorColor = inforColor;
@@ -177,11 +181,11 @@ class ElegantNotification extends StatefulWidget {
   final bool displayCloseButton;
 
   ///Function invoked when user press on the close button
-  final Function? onCloseButtonPressed;
+  final Function()? onCloseButtonPressed;
 
   ///Function invoked when the notification is closed after the finish of the progress indicator
   ///
-  final Function? onProgressFinished;
+  final Function()? onProgressFinished;
 
   ///The type of the notification, will be set automatically on every constructor
   ///possible values
@@ -211,6 +215,7 @@ class ElegantNotification extends StatefulWidget {
 
   //TODO add missing code documentation
   final Widget? action;
+  final Function()? onActionPressed;
 
   ///display the notification on the screen
   ///[context] the context of the application
@@ -340,11 +345,11 @@ class _ElegantNotificationState extends State<ElegantNotification>
                   onCloseButtonPressed: () {
                     closeTimer.cancel();
                     slideController.reverse();
-                    slideController.dispose();
                     widget.onCloseButtonPressed?.call();
                   },
                   iconSize: widget.iconSize,
                   action: widget.action,
+                  onActionPressed: widget.onActionPressed,
                 ),
               ),
               if (widget.showProgressIndicator)
