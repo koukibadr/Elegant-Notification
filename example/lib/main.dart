@@ -37,13 +37,6 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification.success(
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
-                    action: Text(
-                      'Link',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue,
-                      ),
-                    ),
                   ).show(context);
                 },
                 child: Container(
@@ -152,6 +145,76 @@ class ExampleApp extends StatelessWidget {
                     child: Text(
                       'Custom notification',
                       style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  ElegantNotification.info(
+                    title: Text('Info'),
+                    description: Text(
+                      'This account will be updated once you exit',
+                    ),
+                    action: Text(
+                      'Link',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    showProgressIndicator: false,
+                  ).show(context);
+                },
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Notification with action',
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  ElegantNotification(
+                    description: Text(
+                      'A new version is available to you please update.',
+                    ),
+                    icon: Icon(
+                      Icons.access_alarm,
+                      color: Colors.orange,
+                    ),
+                    progressIndicatorColor: Colors.orange,
+                  ).show(context);
+                },
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text(
+                      'Elegant notification without title',
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
