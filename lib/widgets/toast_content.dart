@@ -16,6 +16,7 @@ class ToastContent extends StatelessWidget {
     this.icon,
     this.onCloseButtonPressed,
     this.iconSize = defaultIconSize,
+    this.action,
   }) : super(key: key);
 
   ///The title of the notification if any
@@ -53,6 +54,9 @@ class ToastContent extends StatelessWidget {
   ///
   final Function? onCloseButtonPressed;
 
+  ///TODO add code documentation
+  final Widget? action;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -86,6 +90,13 @@ class ToastContent extends StatelessWidget {
                 ),
               ],
               description.cloneDescription(),
+              if(action != null)
+                ...[
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  action!
+                ]
             ],
           ),
         ),

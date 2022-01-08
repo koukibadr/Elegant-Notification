@@ -37,6 +37,13 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification.success(
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
+                    action: Text(
+                      'Link',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue,
+                      ),
+                    ),
                   ).show(context);
                 },
                 child: Container(
@@ -93,7 +100,9 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.info(
                     title: Text('Info'),
-                    description: Text('This account will be updated once you exit'),
+                    description: Text(
+                      'This account will be updated once you exit',
+                    ),
                     showProgressIndicator: false,
                   ).show(context);
                 },
@@ -125,8 +134,9 @@ class ExampleApp extends StatelessWidget {
                         color: Colors.red,
                       ),
                     ),
-                    description:
-                        Text('A new version is available to you please update.'),
+                    description: Text(
+                      'A new version is available to you please update.',
+                    ),
                     icon: Icon(
                       Icons.access_alarm,
                       color: Colors.orange,

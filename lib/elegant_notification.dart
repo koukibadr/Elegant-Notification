@@ -29,6 +29,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.iconSize = defaultIconSize,
     this.notificationPosition = defaultNotificationAlignValue,
+    this.action,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.custom;
   }
@@ -47,6 +48,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
+    this.action,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.success;
     progressIndicatorColor = successColor;
@@ -67,6 +69,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
+    this.action,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.error;
     progressIndicatorColor = errorColor;
@@ -87,6 +90,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = defaultAnimationDuration,
     this.showProgressIndicator = defaultShowProgressIndicatorValue,
     this.notificationPosition = defaultNotificationAlignValue,
+    this.action,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.info;
     progressIndicatorColor = inforColor;
@@ -203,6 +207,10 @@ class ElegantNotification extends StatefulWidget {
   ///default value `top`
   ///
   final NOTIFICATION_POSITION notificationPosition;
+
+
+  //TODO add missing code documentation
+  final Widget? action;
 
   ///display the notification on the screen
   ///[context] the context of the application
@@ -336,6 +344,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
                     widget.onCloseButtonPressed?.call();
                   },
                   iconSize: widget.iconSize,
+                  action: widget.action,
                 ),
               ),
               if (widget.showProgressIndicator)
