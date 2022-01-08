@@ -233,10 +233,11 @@ class ElegantNotification extends StatefulWidget {
   final NOTIFICATION_POSITION notificationPosition;
 
   //TODO add missing code documentation
+  //!*********
   final Widget? action;
   final Function()? onActionPressed;
-
   final bool autoDismiss;
+  //!*********
 
   ///display the notification on the screen
   ///[context] the context of the application
