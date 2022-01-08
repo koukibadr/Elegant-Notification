@@ -207,6 +207,8 @@ class ExampleApp extends StatelessWidget {
                       color: Colors.orange,
                     ),
                     progressIndicatorColor: Colors.orange,
+                    showProgressIndicator: false,
+                    autoDismiss: false,
                   ).show(context);
                 },
                 child: Container(

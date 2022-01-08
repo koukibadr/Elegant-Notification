@@ -31,8 +31,13 @@ class ElegantNotification extends StatefulWidget {
     this.notificationPosition = defaultNotificationAlignValue,
     this.action,
     this.onActionPressed,
+    this.autoDismiss = defaultAutoDismiss,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.custom;
+
+    if (showProgressIndicator) {
+      assert(autoDismiss != false);
+    }
   }
 
   ElegantNotification.success({
@@ -51,10 +56,15 @@ class ElegantNotification extends StatefulWidget {
     this.notificationPosition = defaultNotificationAlignValue,
     this.action,
     this.onActionPressed,
+    this.autoDismiss = defaultAutoDismiss,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.success;
     progressIndicatorColor = successColor;
     icon = null;
+
+    if (showProgressIndicator) {
+      assert(autoDismiss != false);
+    }
   }
 
   ElegantNotification.error({
@@ -73,10 +83,15 @@ class ElegantNotification extends StatefulWidget {
     this.notificationPosition = defaultNotificationAlignValue,
     this.action,
     this.onActionPressed,
+    this.autoDismiss = defaultAutoDismiss,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.error;
     progressIndicatorColor = errorColor;
     icon = null;
+
+    if (showProgressIndicator) {
+      assert(autoDismiss != false);
+    }
   }
 
   ElegantNotification.info({
@@ -95,10 +110,15 @@ class ElegantNotification extends StatefulWidget {
     this.notificationPosition = defaultNotificationAlignValue,
     this.action,
     this.onActionPressed,
+    this.autoDismiss = defaultAutoDismiss,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.info;
     progressIndicatorColor = inforColor;
     icon = null;
+
+    if (showProgressIndicator) {
+      assert(autoDismiss != false);
+    }
   }
 
   ///The toast title if any
@@ -212,10 +232,11 @@ class ElegantNotification extends StatefulWidget {
   ///
   final NOTIFICATION_POSITION notificationPosition;
 
-
   //TODO add missing code documentation
   final Widget? action;
   final Function()? onActionPressed;
+
+  final bool autoDismiss;
 
   ///display the notification on the screen
   ///[context] the context of the application
@@ -247,6 +268,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
   @override
   void initState() {
     super.initState();
+
     closeTimer = Timer(
         Duration(
           milliseconds: widget.toastDuration,
@@ -259,6 +281,9 @@ class _ElegantNotificationState extends State<ElegantNotification>
         }
       });
     });
+    if (!widget.autoDismiss) {
+      closeTimer.cancel();
+    }
     _initializeAnimation();
   }
 

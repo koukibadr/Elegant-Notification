@@ -17,6 +17,7 @@ const String packageName = 'elegant_notification';
 const bool defaultEnableShadowValue = true;
 const bool defaultShowProgressIndicatorValue = true;
 const bool defaultCloseButtonDisplay = true;
+const bool defaultAutoDismiss = true;
 const ANIMATION defaultAnimationValue = ANIMATION.fromLeft;
 const NOTIFICATION_POSITION defaultNotificationAlignValue = NOTIFICATION_POSITION.top;
 
