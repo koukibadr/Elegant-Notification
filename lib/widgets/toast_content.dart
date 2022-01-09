@@ -55,8 +55,13 @@ class ToastContent extends StatelessWidget {
   ///
   final Function()? onCloseButtonPressed;
 
-  ///TODO add code documentation
+  ///Action widget rendered with clickable inkwell
+  ///by default `action == null`
   final Widget? action;
+
+
+  ///Function invoked when pressing `action` widget
+  ///must be not null when `action != null`
   final Function()? onActionPressed;
 
 
