@@ -38,6 +38,9 @@ class ElegantNotification extends StatefulWidget {
     if (showProgressIndicator) {
       assert(autoDismiss != false);
     }
+    if(action != null){
+      assert(onActionPressed != null);
+    }
   }
 
   ElegantNotification.success({
@@ -64,6 +67,9 @@ class ElegantNotification extends StatefulWidget {
 
     if (showProgressIndicator) {
       assert(autoDismiss != false);
+    }
+    if(action != null){
+      assert(onActionPressed != null);
     }
   }
 
@@ -92,6 +98,9 @@ class ElegantNotification extends StatefulWidget {
     if (showProgressIndicator) {
       assert(autoDismiss != false);
     }
+    if(action != null){
+      assert(onActionPressed != null);
+    }
   }
 
   ElegantNotification.info({
@@ -118,6 +127,9 @@ class ElegantNotification extends StatefulWidget {
 
     if (showProgressIndicator) {
       assert(autoDismiss != false);
+    }
+    if(action != null){
+      assert(onActionPressed != null);
     }
   }
 
@@ -232,8 +244,8 @@ class ElegantNotification extends StatefulWidget {
   ///
   final NOTIFICATION_POSITION notificationPosition;
 
+  
   //TODO add missing code documentation
-  //!*********
   final Widget? action;
   final Function()? onActionPressed;
   final bool autoDismiss;
