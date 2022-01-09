@@ -189,10 +189,10 @@ class ElegantNotification extends StatefulWidget {
   ///
   late double radius = defaultRadiusValue;
 
-  ///The duration how much the notification will take time, duration in milliseconds
+  ///How much the notification will take time,
   ///by default the duration is `2500 milliseconds`
   ///
-  final int toastDuration;
+  final Duration toastDuration;
 
   ///enable or disable the shadow rendering
   ///by default it's true
@@ -291,9 +291,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
     super.initState();
 
     closeTimer = Timer(
-        Duration(
-          milliseconds: widget.toastDuration,
-        ), () {
+        widget.toastDuration, () {
       slideController.reverse();
       slideController.addListener(() {
         if (slideController.isDismissed) {

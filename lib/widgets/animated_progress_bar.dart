@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class AnimatedProgressBar extends StatefulWidget {
   final Color foregroundColor;
-  final int duration;
+  final Duration duration;
   double value = 0;
 
   AnimatedProgressBar({
@@ -30,7 +30,7 @@ class _AnimatedProgressBarState extends State<AnimatedProgressBar>
     super.initState();
 
     _controller = AnimationController(
-      duration: Duration(milliseconds: widget.duration),
+      duration: widget.duration,
       vsync: this,
     );
     curve = CurvedAnimation(

@@ -11,7 +11,9 @@ const TextStyle defaultTitleStyle = TextStyle(
 const TextStyle defaultDescriptionStyle = TextStyle(
   fontSize: 12,
 );
-const int notificationToastDuration = 2500;
+const Duration notificationToastDuration = Duration(
+  milliseconds:  2500,
+);
 const String packageName = 'elegant_notification';
 
 const bool defaultEnableShadowValue = true;
