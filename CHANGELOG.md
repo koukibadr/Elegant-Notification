@@ -1,3 +1,12 @@
+## [1.3.0] - 09/01/2022
+
+* Add notification position parameter
+* Merge title and titleStyle parameters
+* Merge description and descriptionStyle parameters
+* Add action widget with onActionPressed callback
+* Add autoDismiss attribute
+* Bug fixes
+
 ## [1.2.0] - 31/12/2021
 
 * Optional title
