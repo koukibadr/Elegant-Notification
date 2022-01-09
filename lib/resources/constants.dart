@@ -12,7 +12,7 @@ const TextStyle defaultDescriptionStyle = TextStyle(
   fontSize: 12,
 );
 const Duration notificationToastDuration = Duration(
-  milliseconds:  2500,
+  milliseconds: 2500,
 );
 const String packageName = 'elegant_notification';
 
@@ -21,6 +21,7 @@ const bool defaultShowProgressIndicatorValue = true;
 const bool defaultCloseButtonDisplay = true;
 const bool defaultAutoDismiss = true;
 const ANIMATION defaultAnimationValue = ANIMATION.fromLeft;
-const NOTIFICATION_POSITION defaultNotificationAlignValue = NOTIFICATION_POSITION.top;
+const NOTIFICATION_POSITION defaultNotificationAlignValue =
+    NOTIFICATION_POSITION.top;
 
 const double defaultRadiusValue = 5.0;

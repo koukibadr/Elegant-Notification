@@ -2,8 +2,7 @@ import 'package:elegant_notification/resources/constants.dart';
 import 'package:flutter/cupertino.dart';
 
 extension TextExtension on Text {
-
-  Text cloneTitle(){
+  Text cloneTitle() {
     return Text(
       data ?? '',
       style: style ?? defaultTitleStyle,
@@ -17,12 +16,12 @@ extension TextExtension on Text {
       textAlign: textAlign,
       textDirection: textDirection,
       textHeightBehavior: textHeightBehavior,
-      textScaleFactor:  textScaleFactor,
+      textScaleFactor: textScaleFactor,
       textWidthBasis: textWidthBasis,
     );
   }
 
-  Text cloneDescription(){
+  Text cloneDescription() {
     return Text(
       data ?? '',
       style: style ?? defaultDescriptionStyle,
@@ -36,9 +35,8 @@ extension TextExtension on Text {
       textAlign: textAlign,
       textDirection: textDirection,
       textHeightBehavior: textHeightBehavior,
-      textScaleFactor:  textScaleFactor,
+      textScaleFactor: textScaleFactor,
       textWidthBasis: textWidthBasis,
     );
   }
-
 }

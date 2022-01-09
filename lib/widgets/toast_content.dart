@@ -59,11 +59,9 @@ class ToastContent extends StatelessWidget {
   ///by default `action == null`
   final Widget? action;
 
-
   ///Function invoked when pressing `action` widget
   ///must be not null when `action != null`
   final Function()? onActionPressed;
-
 
   @override
   Widget build(BuildContext context) {
@@ -98,16 +96,17 @@ class ToastContent extends StatelessWidget {
                 ),
               ],
               description.cloneDescription(),
-              if(action != null)
-                ...[
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  onActionPressed == null ? action! : InkWell(
-                    onTap: onActionPressed,
-                    child: action!,
-                  )
-                ]
+              if (action != null) ...[
+                const SizedBox(
+                  height: 5,
+                ),
+                onActionPressed == null
+                    ? action!
+                    : InkWell(
+                        onTap: onActionPressed,
+                        child: action!,
+                      )
+              ]
             ],
           ),
         ),

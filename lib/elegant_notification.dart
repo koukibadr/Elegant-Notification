@@ -38,7 +38,7 @@ class ElegantNotification extends StatefulWidget {
     if (showProgressIndicator) {
       assert(autoDismiss != false);
     }
-    if(action != null){
+    if (action != null) {
       assert(onActionPressed != null);
     }
   }
@@ -68,7 +68,7 @@ class ElegantNotification extends StatefulWidget {
     if (showProgressIndicator) {
       assert(autoDismiss != false);
     }
-    if(action != null){
+    if (action != null) {
       assert(onActionPressed != null);
     }
   }
@@ -98,7 +98,7 @@ class ElegantNotification extends StatefulWidget {
     if (showProgressIndicator) {
       assert(autoDismiss != false);
     }
-    if(action != null){
+    if (action != null) {
       assert(onActionPressed != null);
     }
   }
@@ -128,7 +128,7 @@ class ElegantNotification extends StatefulWidget {
     if (showProgressIndicator) {
       assert(autoDismiss != false);
     }
-    if(action != null){
+    if (action != null) {
       assert(onActionPressed != null);
     }
   }
@@ -244,16 +244,13 @@ class ElegantNotification extends StatefulWidget {
   ///
   final NOTIFICATION_POSITION notificationPosition;
 
-  
   ///Action widget rendered with clickable inkwell
   ///by default `action == null`
   final Widget? action;
 
-
   ///Function invoked when pressing `action` widget
   ///must be not null when `action != null`
   final Function()? onActionPressed;
-
 
   ///define whether the notification will be dismissed automatically or not
   ///by default `autoDimiss == false`
@@ -290,8 +287,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
   void initState() {
     super.initState();
 
-    closeTimer = Timer(
-        widget.toastDuration, () {
+    closeTimer = Timer(widget.toastDuration, () {
       slideController.reverse();
       slideController.addListener(() {
         if (slideController.isDismissed) {
