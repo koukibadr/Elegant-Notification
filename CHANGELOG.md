@@ -1,3 +1,9 @@
+## [1.4.0] - 22/01/2022
+
+* Add fromBottom animation type
+* Add notification width and height parameters
+* Bug fixes
+
 ## [1.3.0] - 09/01/2022
 
 * Add notification position parameter
