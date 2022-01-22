@@ -43,6 +43,12 @@ class ElegantNotification extends StatefulWidget {
     if (action != null) {
       assert(onActionPressed != null);
     }
+
+    if(notificationPosition == NOTIFICATION_POSITION.bottom){
+      assert(animation != ANIMATION.fromTop);
+    }else if(notificationPosition == NOTIFICATION_POSITION.top){
+      assert(animation != ANIMATION.fromBottom);
+    }
   }
 
   ElegantNotification.success({
@@ -74,6 +80,12 @@ class ElegantNotification extends StatefulWidget {
     }
     if (action != null) {
       assert(onActionPressed != null);
+    }
+
+    if(notificationPosition == NOTIFICATION_POSITION.bottom){
+      assert(animation != ANIMATION.fromTop);
+    }else if(notificationPosition == NOTIFICATION_POSITION.top){
+      assert(animation != ANIMATION.fromBottom);
     }
   }
 
@@ -107,6 +119,12 @@ class ElegantNotification extends StatefulWidget {
     if (action != null) {
       assert(onActionPressed != null);
     }
+
+    if(notificationPosition == NOTIFICATION_POSITION.bottom){
+      assert(animation != ANIMATION.fromTop);
+    }else if(notificationPosition == NOTIFICATION_POSITION.top){
+      assert(animation != ANIMATION.fromBottom);
+    }
   }
 
   ElegantNotification.info({
@@ -138,6 +156,12 @@ class ElegantNotification extends StatefulWidget {
     }
     if (action != null) {
       assert(onActionPressed != null);
+    }
+
+    if(notificationPosition == NOTIFICATION_POSITION.bottom){
+      assert(animation != ANIMATION.fromTop);
+    }else if(notificationPosition == NOTIFICATION_POSITION.top){
+      assert(animation != ANIMATION.fromBottom);
     }
   }
 
