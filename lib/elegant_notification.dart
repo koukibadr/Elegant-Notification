@@ -44,9 +44,9 @@ class ElegantNotification extends StatefulWidget {
       assert(onActionPressed != null);
     }
 
-    if(notificationPosition == NOTIFICATION_POSITION.bottom){
+    if (notificationPosition == NOTIFICATION_POSITION.bottom) {
       assert(animation != ANIMATION.fromTop);
-    }else if(notificationPosition == NOTIFICATION_POSITION.top){
+    } else if (notificationPosition == NOTIFICATION_POSITION.top) {
       assert(animation != ANIMATION.fromBottom);
     }
   }
@@ -82,9 +82,9 @@ class ElegantNotification extends StatefulWidget {
       assert(onActionPressed != null);
     }
 
-    if(notificationPosition == NOTIFICATION_POSITION.bottom){
+    if (notificationPosition == NOTIFICATION_POSITION.bottom) {
       assert(animation != ANIMATION.fromTop);
-    }else if(notificationPosition == NOTIFICATION_POSITION.top){
+    } else if (notificationPosition == NOTIFICATION_POSITION.top) {
       assert(animation != ANIMATION.fromBottom);
     }
   }
@@ -120,9 +120,9 @@ class ElegantNotification extends StatefulWidget {
       assert(onActionPressed != null);
     }
 
-    if(notificationPosition == NOTIFICATION_POSITION.bottom){
+    if (notificationPosition == NOTIFICATION_POSITION.bottom) {
       assert(animation != ANIMATION.fromTop);
-    }else if(notificationPosition == NOTIFICATION_POSITION.top){
+    } else if (notificationPosition == NOTIFICATION_POSITION.top) {
       assert(animation != ANIMATION.fromBottom);
     }
   }
@@ -158,9 +158,9 @@ class ElegantNotification extends StatefulWidget {
       assert(onActionPressed != null);
     }
 
-    if(notificationPosition == NOTIFICATION_POSITION.bottom){
+    if (notificationPosition == NOTIFICATION_POSITION.bottom) {
       assert(animation != ANIMATION.fromTop);
-    }else if(notificationPosition == NOTIFICATION_POSITION.top){
+    } else if (notificationPosition == NOTIFICATION_POSITION.top) {
       assert(animation != ANIMATION.fromBottom);
     }
   }
@@ -289,8 +289,10 @@ class ElegantNotification extends StatefulWidget {
   ///by default `autoDimiss == false`
   final bool autoDismiss;
 
-  ///TODO add code parameters
+  ///the width of the notification widget
   final double? width;
+
+  ///the height of the notification widget
   final double? height;
 
   ///display the notification on the screen
