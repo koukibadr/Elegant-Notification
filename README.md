@@ -40,15 +40,16 @@
 
 -  Display a top notification with animation
 -  Built-in themes (Success, Error, Info)
--  Different display animations
+-  Different display animations (fromTop, fromBottom, fromLeft, fromRight)
 -  Support custom theme implementation
 -  onClose and onProgressFinished callback handlers
 -  animated progress bar indicator
 -  background costumization
 -  Animation duration customization
-- Notification position customization
-- Add clickable action widget to notification
-- Notification dismiss customization
+-  Notification position customization
+-  Add clickable action widget to notification
+-  Notification dismiss customization
+-  Customizable notification dimensions (height and width)
 
   
 
@@ -66,7 +67,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.3.0
+	elegant_notification: ^1.4.0
 ```
 
   
@@ -99,7 +100,8 @@ late double iconSize;
 ///{
 ///fromLeft,
 ///fromRight,
-///fromTop
+///fromTop,
+///fromBottom
 ///}
 ///```
 ///default value `fromLeft`
@@ -193,6 +195,12 @@ final  Function()?  onActionPressed;
 ///define whether the notification will be dismissed automatically or not
 ///by default `autoDimiss == false`
 final  bool  autoDismiss;
+
+///the width of the notification widget
+final double? width;
+
+///the height of the notification widget
+final double? height;
 ```
 
   
