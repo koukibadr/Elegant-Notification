@@ -164,7 +164,8 @@ class ElegantNotification extends StatefulWidget {
   ///{
   ///fromLeft,
   ///fromRight,
-  ///fromTop
+  ///fromTop,
+  ///fromBottom,
   ///}
   ///```
   ///default value `fromLeft`
@@ -264,6 +265,7 @@ class ElegantNotification extends StatefulWidget {
   ///by default `autoDimiss == false`
   final bool autoDismiss;
 
+  ///TODO add code parameters
   final double? width;
   final double? height;
 
@@ -345,6 +347,17 @@ class _ElegantNotificationState extends State<ElegantNotification>
       case ANIMATION.fromTop:
         offsetAnimation = Tween<Offset>(
           begin: const Offset(0, -7),
+          end: const Offset(0, 0),
+        ).animate(
+          CurvedAnimation(
+            parent: slideController,
+            curve: Curves.ease,
+          ),
+        );
+        break;
+      case ANIMATION.fromBottom:
+        offsetAnimation = Tween<Offset>(
+          begin: const Offset(0, 4),
           end: const Offset(0, 0),
         ).animate(
           CurvedAnimation(

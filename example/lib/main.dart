@@ -1,4 +1,5 @@
 import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -199,6 +200,8 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
+                    animation: ANIMATION.fromBottom,
+                    notificationPosition: NOTIFICATION_POSITION.bottom,
                     description: Text(
                       'A new version is available to you please update.',
                     ),

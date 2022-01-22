@@ -8,6 +8,7 @@ enum ANIMATION {
   fromLeft,
   fromRight,
   fromTop,
+  fromBottom,
 }
 enum NOTIFICATION_POSITION {
   top,
