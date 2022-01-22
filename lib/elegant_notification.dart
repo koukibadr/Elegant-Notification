@@ -32,6 +32,8 @@ class ElegantNotification extends StatefulWidget {
     this.action,
     this.onActionPressed,
     this.autoDismiss = defaultAutoDismiss,
+    this.height,
+    this.width,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.custom;
 
@@ -60,6 +62,8 @@ class ElegantNotification extends StatefulWidget {
     this.action,
     this.onActionPressed,
     this.autoDismiss = defaultAutoDismiss,
+    this.height,
+    this.width,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.success;
     progressIndicatorColor = successColor;
@@ -90,6 +94,8 @@ class ElegantNotification extends StatefulWidget {
     this.action,
     this.onActionPressed,
     this.autoDismiss = defaultAutoDismiss,
+    this.height,
+    this.width,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.error;
     progressIndicatorColor = errorColor;
@@ -120,6 +126,8 @@ class ElegantNotification extends StatefulWidget {
     this.action,
     this.onActionPressed,
     this.autoDismiss = defaultAutoDismiss,
+    this.height,
+    this.width,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.info;
     progressIndicatorColor = inforColor;
@@ -256,6 +264,9 @@ class ElegantNotification extends StatefulWidget {
   ///by default `autoDimiss == false`
   final bool autoDismiss;
 
+  final double? width;
+  final double? height;
+
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
@@ -357,8 +368,8 @@ class _ElegantNotificationState extends State<ElegantNotification>
       child: SlideTransition(
         position: offsetAnimation,
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.7,
-          height: MediaQuery.of(context).size.height * 0.12,
+          width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
+          height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(widget.radius),
             color: widget.background,
