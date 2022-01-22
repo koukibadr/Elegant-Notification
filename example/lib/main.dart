@@ -200,7 +200,7 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
-                    animation: ANIMATION.fromBottom,
+                    animation: ANIMATION.fromTop,
                     notificationPosition: NOTIFICATION_POSITION.bottom,
                     description: Text(
                       'A new version is available to you please update.',
