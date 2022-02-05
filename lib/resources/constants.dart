@@ -25,3 +25,5 @@ const NOTIFICATION_POSITION defaultNotificationAlignValue =
     NOTIFICATION_POSITION.top;
 
 const double defaultRadiusValue = 5.0;
+
+const bool defaultDismissible = false;

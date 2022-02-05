@@ -34,6 +34,8 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = defaultAutoDismiss,
     this.height,
     this.width,
+    this.dismissible = defaultDismissible,
+    this.onDismiss,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.custom;
 
@@ -42,6 +44,9 @@ class ElegantNotification extends StatefulWidget {
     }
     if (action != null) {
       assert(onActionPressed != null);
+    }
+    if (!dismissible) {
+      assert(onDismiss == null);
     }
 
     if (notificationPosition == NOTIFICATION_POSITION.bottom) {
@@ -70,6 +75,8 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = defaultAutoDismiss,
     this.height,
     this.width,
+    this.dismissible = defaultDismissible,
+    this.onDismiss,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.success;
     progressIndicatorColor = successColor;
@@ -80,6 +87,9 @@ class ElegantNotification extends StatefulWidget {
     }
     if (action != null) {
       assert(onActionPressed != null);
+    }
+    if (!dismissible) {
+      assert(onDismiss == null);
     }
 
     if (notificationPosition == NOTIFICATION_POSITION.bottom) {
@@ -108,6 +118,8 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = defaultAutoDismiss,
     this.height,
     this.width,
+    this.dismissible = defaultDismissible,
+    this.onDismiss,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.error;
     progressIndicatorColor = errorColor;
@@ -118,6 +130,9 @@ class ElegantNotification extends StatefulWidget {
     }
     if (action != null) {
       assert(onActionPressed != null);
+    }
+    if (!dismissible) {
+      assert(onDismiss == null);
     }
 
     if (notificationPosition == NOTIFICATION_POSITION.bottom) {
@@ -146,6 +161,8 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = defaultAutoDismiss,
     this.height,
     this.width,
+    this.dismissible = defaultDismissible,
+    this.onDismiss,
   }) : super(key: key) {
     notificationType = NOTIFICATION_TYPE.info;
     progressIndicatorColor = inforColor;
@@ -156,6 +173,9 @@ class ElegantNotification extends StatefulWidget {
     }
     if (action != null) {
       assert(onActionPressed != null);
+    }
+    if (!dismissible) {
+      assert(onDismiss == null);
     }
 
     if (notificationPosition == NOTIFICATION_POSITION.bottom) {
@@ -295,21 +315,38 @@ class ElegantNotification extends StatefulWidget {
   ///the height of the notification widget
   final double? height;
 
+  ///dismiss notification by tapping outside
+  ///by default `dismissible == false`
+  final bool dismissible;
+
+  ///Function invoked when tapping outside the notification
+  final Function()? onDismiss;
+
+  ///use to know if notification close by another way than dismiss
+  late bool canLaunchActionOnDismiss = true;
+
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
+    double heightNotification = height ?? MediaQuery.of(context).size.height * 0.12;
+    double paddingTop = MediaQuery.of(context).size.height - 70 - heightNotification;
     Navigator.of(context).push(
       PageRouteBuilder(
+        barrierDismissible: dismissible,
         pageBuilder: (context, _, __) => AlertDialog(
           backgroundColor: Colors.transparent,
           contentPadding: const EdgeInsets.all(0),
-          insetPadding: const EdgeInsets.all(70),
+          insetPadding: EdgeInsets.fromLTRB(70, paddingTop, 70, 70),
           elevation: 0,
           content: this,
         ),
         opaque: false,
       ),
-    );
+    ).then((val){
+      if(canLaunchActionOnDismiss) {
+        onDismiss?.call();
+      }
+    });
   }
 
   @override
@@ -332,6 +369,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
         if (slideController.isDismissed) {
           Navigator.pop(context);
           widget.onProgressFinished?.call();
+          widget.canLaunchActionOnDismiss = false;
         }
       });
     });
@@ -436,6 +474,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
                     closeTimer.cancel();
                     slideController.reverse();
                     widget.onCloseButtonPressed?.call();
+                    widget.canLaunchActionOnDismiss = false;
                   },
                   iconSize: widget.iconSize,
                   action: widget.action,
