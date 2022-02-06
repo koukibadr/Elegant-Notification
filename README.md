@@ -50,6 +50,7 @@
 -  Add clickable action widget to notification
 -  Notification dismiss customization
 -  Customizable notification dimensions (height and width)
+-  Customizable barrier dismission and on dismiss action
 
   
 
@@ -67,7 +68,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.4.0
+	elegant_notification: ^1.5.0
 ```
 
   
@@ -201,6 +202,13 @@ final double? width;
 
 ///the height of the notification widget
 final double? height;
+
+///dismiss notification by tapping outside
+///by default `dismissible == false`
+final bool dismissible;
+
+///Function invoked when tapping outside the notification
+final Function()? onDismiss;
 ```
 
   
