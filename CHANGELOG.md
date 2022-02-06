@@ -1,3 +1,9 @@
+## [1.5.0] - 06/02/2022
+
+* Add dismiss and onDismiss parameters
+* Add barrier dismissable option
+* Bug fixes
+
 ## [1.4.0] - 22/01/2022
 
 * Add fromBottom animation type
