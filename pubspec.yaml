@@ -1,6 +1,6 @@
 name: elegant_notification
 description: A new flutter package to display notifications on top of the screen, full customizable with built-in themes
-version: 1.4.0
+version: 1.5.0
 homepage: https://github.com/koukibadr/Elegant-Notification
 
 environment:
