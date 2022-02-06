@@ -172,7 +172,7 @@ class ExampleApp extends StatelessWidget {
                         color: Colors.blue,
                       ),
                     ),
-                    onActionPressed: (){
+                    onActionPressed: () {
                       print('Oh yeahh!');
                     },
                     showProgressIndicator: false,
