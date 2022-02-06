@@ -177,7 +177,6 @@ final Function? onProgressFinished;
 ///center,
 ///bottom
 ///}
-///```
 ///default value `top`
 ///
 final  NOTIFICATION_POSITION  notificationPosition;
