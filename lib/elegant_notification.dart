@@ -328,9 +328,12 @@ class ElegantNotification extends StatefulWidget {
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
-    double heightNotification = height ?? MediaQuery.of(context).size.height * 0.12;
-    double paddingTop = MediaQuery.of(context).size.height - 70 - heightNotification;
-    Navigator.of(context).push(
+    double heightNotification =
+        height ?? MediaQuery.of(context).size.height * 0.12;
+    double paddingTop =
+        MediaQuery.of(context).size.height - 70 - heightNotification;
+    Navigator.of(context)
+        .push(
       PageRouteBuilder(
         barrierDismissible: dismissible,
         pageBuilder: (context, _, __) => AlertDialog(
@@ -342,8 +345,9 @@ class ElegantNotification extends StatefulWidget {
         ),
         opaque: false,
       ),
-    ).then((val){
-      if(canLaunchActionOnDismiss) {
+    )
+        .then((val) {
+      if (canLaunchActionOnDismiss) {
         onDismiss?.call();
       }
     });
