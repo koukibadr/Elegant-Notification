@@ -68,7 +68,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.5.0
+	elegant_notification: ^1.5.1
 ```
 
   
@@ -223,6 +223,10 @@ If you are using 1.0.0 you need to update `animation` attribute values following
 ##  Migration to 1.3.0
 
 If you are using version less than 1.3.0 you need to update the usage of title and description because in 1.3.0 there's no longer `descriptionStyle`  and `titleStyle` attributes those parameters are merged into `title` and `description` so now you pass a `Text` object.
+
+##  Migration to 1.5.1
+
+If you are using `dismissable` attribute in the 1.5.1 version the notification position should be set to `NOTIFICATION_POSITION.bottom` otherwise you need to set dismissable to false to change the notification position (center, bottom or top)
 
   
 
