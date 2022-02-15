@@ -1,3 +1,7 @@
+## [1.5.1] - 15/02/2022
+
+* Fix alignement position display bug (Center, Bottom, Top)
+
 ## [1.5.0] - 06/02/2022
 
 * Add dismiss and onDismiss parameters
