@@ -47,7 +47,7 @@ class ElegantNotification extends StatefulWidget {
     }
     if (!dismissible) {
       assert(onDismiss == null);
-    }else{
+    } else {
       assert(notificationPosition == NOTIFICATION_POSITION.bottom);
     }
 
@@ -92,7 +92,7 @@ class ElegantNotification extends StatefulWidget {
     }
     if (!dismissible) {
       assert(onDismiss == null);
-    }else{
+    } else {
       assert(notificationPosition == NOTIFICATION_POSITION.bottom);
     }
 
@@ -137,7 +137,7 @@ class ElegantNotification extends StatefulWidget {
     }
     if (!dismissible) {
       assert(onDismiss == null);
-    }else{
+    } else {
       assert(notificationPosition == NOTIFICATION_POSITION.bottom);
     }
 
@@ -182,7 +182,7 @@ class ElegantNotification extends StatefulWidget {
     }
     if (!dismissible) {
       assert(onDismiss == null);
-    }else{
+    } else {
       assert(notificationPosition == NOTIFICATION_POSITION.bottom);
     }
 
