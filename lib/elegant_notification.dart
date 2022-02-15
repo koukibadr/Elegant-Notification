@@ -47,6 +47,8 @@ class ElegantNotification extends StatefulWidget {
     }
     if (!dismissible) {
       assert(onDismiss == null);
+    }else{
+      assert(notificationPosition == NOTIFICATION_POSITION.bottom);
     }
 
     if (notificationPosition == NOTIFICATION_POSITION.bottom) {
@@ -90,6 +92,8 @@ class ElegantNotification extends StatefulWidget {
     }
     if (!dismissible) {
       assert(onDismiss == null);
+    }else{
+      assert(notificationPosition == NOTIFICATION_POSITION.bottom);
     }
 
     if (notificationPosition == NOTIFICATION_POSITION.bottom) {
@@ -133,6 +137,8 @@ class ElegantNotification extends StatefulWidget {
     }
     if (!dismissible) {
       assert(onDismiss == null);
+    }else{
+      assert(notificationPosition == NOTIFICATION_POSITION.bottom);
     }
 
     if (notificationPosition == NOTIFICATION_POSITION.bottom) {
@@ -176,6 +182,8 @@ class ElegantNotification extends StatefulWidget {
     }
     if (!dismissible) {
       assert(onDismiss == null);
+    }else{
+      assert(notificationPosition == NOTIFICATION_POSITION.bottom);
     }
 
     if (notificationPosition == NOTIFICATION_POSITION.bottom) {
@@ -328,21 +336,12 @@ class ElegantNotification extends StatefulWidget {
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
-    double heightNotification =
-        height ?? MediaQuery.of(context).size.height * 0.12;
-    double paddingTop =
-        MediaQuery.of(context).size.height - 70 - heightNotification;
     Navigator.of(context)
         .push(
       PageRouteBuilder(
         barrierDismissible: dismissible,
-        pageBuilder: (context, _, __) => AlertDialog(
-          backgroundColor: Colors.transparent,
-          contentPadding: const EdgeInsets.all(0),
-          insetPadding: EdgeInsets.fromLTRB(70, paddingTop, 70, 70),
-          elevation: 0,
-          content: this,
-        ),
+        pageBuilder: (context, _, __) =>
+            _generateElegantNotificationContent(context),
         opaque: false,
       ),
     )
@@ -351,6 +350,34 @@ class ElegantNotification extends StatefulWidget {
         onDismiss?.call();
       }
     });
+  }
+
+  Widget _generateElegantNotificationContent(BuildContext context) {
+    if (dismissible) {
+      double heightNotification =
+          height ?? MediaQuery.of(context).size.height * 0.12;
+      double paddingTop =
+          MediaQuery.of(context).size.height - 70 - heightNotification;
+      return AlertDialog(
+        backgroundColor: Colors.transparent,
+        contentPadding: const EdgeInsets.all(0),
+        insetPadding: EdgeInsets.fromLTRB(70, paddingTop, 70, 70),
+        elevation: 0,
+        content: this,
+      );
+    } else {
+      return SafeArea(
+        child: AlertDialog(
+          backgroundColor: Colors.transparent,
+          contentPadding: const EdgeInsets.all(0),
+          insetPadding: const EdgeInsets.only(
+            top: 30,
+          ),
+          elevation: 0,
+          content: this,
+        ),
+      );
+    }
   }
 
   @override

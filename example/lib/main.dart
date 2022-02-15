@@ -38,6 +38,8 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification.success(
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
+                    notificationPosition: NOTIFICATION_POSITION.bottom,
+                    dismissible: true,
                   ).show(context);
                 },
                 child: Container(
