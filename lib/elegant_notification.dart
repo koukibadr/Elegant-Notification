@@ -330,54 +330,37 @@ class ElegantNotification extends StatefulWidget {
   ///Function invoked when tapping outside the notification
   final Function()? onDismiss;
 
-  ///use to know if notification close by another way than dismiss
-  late bool canLaunchActionOnDismiss = true;
-
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
     Navigator.of(context)
         .push(
       PageRouteBuilder(
-        barrierDismissible: dismissible,
-        pageBuilder: (context, _, __) =>
-            _generateElegantNotificationContent(context),
+        pageBuilder: (context, _, __) => GestureDetector(
+          onTap: dismissible ? () {
+            Navigator.pop(context);
+            onDismiss?.call();
+          } : null,
+          child: _generateElegantNotificationContent(context),
+        ),
         opaque: false,
       ),
-    )
-        .then((val) {
-      if (canLaunchActionOnDismiss) {
-        onDismiss?.call();
-      }
-    });
+    );
   }
 
   Widget _generateElegantNotificationContent(BuildContext context) {
-    if (dismissible) {
-      double heightNotification =
-          height ?? MediaQuery.of(context).size.height * 0.12;
-      double paddingTop =
-          MediaQuery.of(context).size.height - 70 - heightNotification;
-      return AlertDialog(
-        backgroundColor: Colors.transparent,
-        contentPadding: const EdgeInsets.all(0),
-        insetPadding: EdgeInsets.fromLTRB(70, paddingTop, 70, 70),
-        elevation: 0,
-        content: this,
-      );
-    } else {
-      return SafeArea(
+    return SafeArea(
         child: AlertDialog(
           backgroundColor: Colors.transparent,
           contentPadding: const EdgeInsets.all(0),
           insetPadding: const EdgeInsets.only(
             top: 30,
+            bottom: 30,
           ),
           elevation: 0,
           content: this,
         ),
       );
-    }
   }
 
   @override
@@ -400,7 +383,6 @@ class _ElegantNotificationState extends State<ElegantNotification>
         if (slideController.isDismissed) {
           Navigator.pop(context);
           widget.onProgressFinished?.call();
-          widget.canLaunchActionOnDismiss = false;
         }
       });
     });
@@ -504,8 +486,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
                   onCloseButtonPressed: () {
                     closeTimer.cancel();
                     slideController.reverse();
-                    widget.onCloseButtonPressed?.call();
-                    widget.canLaunchActionOnDismiss = false;
+                    widget.onDismiss?.call();
                   },
                   iconSize: widget.iconSize,
                   action: widget.action,
