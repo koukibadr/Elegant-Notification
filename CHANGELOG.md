@@ -1,3 +1,7 @@
+## [1.5.2] - 08/04/2022
+
+* Fix alignement position display bug (Center, Bottom, Top)
+
 ## [1.5.1] - 15/02/2022
 
 * Fix alignement position display bug (Center, Bottom, Top)

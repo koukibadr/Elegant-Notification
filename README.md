@@ -68,7 +68,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.5.1
+	elegant_notification: ^1.5.2
 ```
 
   
