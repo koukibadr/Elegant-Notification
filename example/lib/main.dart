@@ -99,6 +99,7 @@ class ExampleApp extends StatelessWidget {
                     description: Text(
                       'This account will be updated once you exit',
                     ),
+                    dismissible: true,
                     showProgressIndicator: false,
                   ).show(context);
                 },
