@@ -313,14 +313,15 @@ class ElegantNotification extends StatefulWidget {
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
-    Navigator.of(context)
-        .push(
+    Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (context, _, __) => GestureDetector(
-          onTap: dismissible ? () {
-            Navigator.pop(context);
-            onDismiss?.call();
-          } : null,
+          onTap: dismissible
+              ? () {
+                  Navigator.pop(context);
+                  onDismiss?.call();
+                }
+              : null,
           child: _generateElegantNotificationContent(context),
         ),
         opaque: false,
@@ -330,17 +331,17 @@ class ElegantNotification extends StatefulWidget {
 
   Widget _generateElegantNotificationContent(BuildContext context) {
     return SafeArea(
-        child: AlertDialog(
-          backgroundColor: Colors.transparent,
-          contentPadding: const EdgeInsets.all(0),
-          insetPadding: const EdgeInsets.only(
-            top: 30,
-            bottom: 30,
-          ),
-          elevation: 0,
-          content: this,
+      child: AlertDialog(
+        backgroundColor: Colors.transparent,
+        contentPadding: const EdgeInsets.all(0),
+        insetPadding: const EdgeInsets.only(
+          top: 30,
+          bottom: 30,
         ),
-      );
+        elevation: 0,
+        content: this,
+      ),
+    );
   }
 
   @override
