@@ -5,6 +5,3 @@ const Color successColor = Color(0xff01CB67);
 const Color errorColor = Color(0xffFE355C);
 const Color greyColor = Color(0xffF3F3F3);
 
-const Color defaultShadowColor = Colors.grey;
-const Color defaultBackgroundColor = Colors.white;
-const Color defaultProgressColor = Colors.blue;

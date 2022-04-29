@@ -5,7 +5,11 @@ extension TextExtension on Text {
   Text cloneTitle() {
     return Text(
       data ?? '',
-      style: style ?? defaultTitleStyle,
+      style: style ??
+          const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
       locale: locale,
       maxLines: maxLines,
       overflow: overflow,
@@ -24,7 +28,10 @@ extension TextExtension on Text {
   Text cloneDescription() {
     return Text(
       data ?? '',
-      style: style ?? defaultDescriptionStyle,
+      style: style ??
+          const TextStyle(
+            fontSize: 12,
+          ),
       locale: locale,
       maxLines: maxLines,
       overflow: overflow,
