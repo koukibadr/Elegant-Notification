@@ -58,24 +58,14 @@
 
 ##  Getting Started
 
-  
-
-  
-
 To use this elegant notification package you need to add the dependency in `pubspec.yaml` file.
 
-  
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.5.2
+	elegant_notification: ^1.5.4
 ```
 
-  
-
-  
-
-  
 
 ##  Parameters
 
@@ -107,7 +97,7 @@ late double iconSize;
 ///```
 ///default value `fromLeft`
 ///
-final ANIMATION animation;
+final AnimationType animation;
 
   
 ///The duration of the animation
@@ -179,7 +169,7 @@ final Function? onProgressFinished;
 ///}
 ///default value `top`
 ///
-final  NOTIFICATION_POSITION  notificationPosition;
+final  NotificationPosition  notificationPosition;
 
 
 ///Action widget rendered with clickable inkwell
@@ -228,7 +218,13 @@ If you are using version less than 1.3.0 you need to update the usage of title a
 
 If you are using `dismissable` attribute in the 1.5.1 version the notification position should be set to `NOTIFICATION_POSITION.bottom` otherwise you need to set dismissable to false to change the notification position (center, bottom or top)
 
-  
+
+##  Migration to 1.5.4
+
+Enum names has been changed:
+`NOTIFICATION_POSITION` is now `NotificationPostion`
+`ANIMATION` is now `AnimationType`
+
 
   
 
