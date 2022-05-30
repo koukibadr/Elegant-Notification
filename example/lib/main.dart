@@ -38,7 +38,7 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification.success(
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
-                    notificationPosition: NOTIFICATION_POSITION.bottom,
+                    notificationPosition: NotificationPosition.bottom,
                     dismissible: true,
                   ).show(context);
                 },
@@ -203,8 +203,8 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
-                    animation: ANIMATION.fromTop,
-                    notificationPosition: NOTIFICATION_POSITION.bottom,
+                    animation: AnimationType.fromTop,
+                    notificationPosition: NotificationPosition.bottom,
                     description: Text(
                       'A new version is available to you please update.',
                     ),

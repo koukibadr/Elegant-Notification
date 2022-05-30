@@ -1,7 +1,6 @@
 import 'package:elegant_notification/gen/assets.gen.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/constants.dart';
-import 'package:elegant_notification/resources/dimens.dart';
 import 'package:elegant_notification/resources/extensions.dart';
 import 'package:flutter/material.dart';
 import '../resources/colors.dart';
@@ -15,7 +14,7 @@ class ToastContent extends StatelessWidget {
     required this.displayCloseButton,
     this.icon,
     this.onCloseButtonPressed,
-    this.iconSize = defaultIconSize,
+    this.iconSize = 20,
     this.action,
     this.onActionPressed,
   }) : super(key: key);
@@ -45,7 +44,7 @@ class ToastContent extends StatelessWidget {
   ///CUSTOM
   ///}
   ///```
-  final NOTIFICATION_TYPE notificationType;
+  final NotificationType notificationType;
 
   ///Display or hide the close button widget
   ///
@@ -141,11 +140,11 @@ class ToastContent extends StatelessWidget {
 
   Widget _getNotificationIcon() {
     switch (notificationType) {
-      case NOTIFICATION_TYPE.success:
+      case NotificationType.success:
         return _renderImage(Assets.icons.success.assetName);
-      case NOTIFICATION_TYPE.error:
+      case NotificationType.error:
         return _renderImage(Assets.icons.error.assetName);
-      case NOTIFICATION_TYPE.info:
+      case NotificationType.info:
         return _renderImage(Assets.icons.info.assetName);
       default:
         return icon!;

@@ -1,16 +1,18 @@
-enum NOTIFICATION_TYPE {
+enum NotificationType {
   success,
   error,
   info,
   custom,
 }
-enum ANIMATION {
+
+enum AnimationType {
   fromLeft,
   fromRight,
   fromTop,
   fromBottom,
 }
-enum NOTIFICATION_POSITION {
+
+enum NotificationPosition {
   top,
   center,
   bottom,
