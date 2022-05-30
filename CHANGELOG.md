@@ -1,3 +1,8 @@
+## [1.5.4] - 30/05/2022
+
+* Support Flutter 3 null safety
+* Update enum names
+
 ## [1.5.2] - 08/04/2022
 
 * Fix alignement position display bug (Center, Bottom, Top)
