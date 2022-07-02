@@ -327,17 +327,19 @@ class ElegantNotification extends StatefulWidget {
   ///[context] the context of the application
   void show(BuildContext context) {
     Navigator.of(context).push(
-      PageRouteBuilder(
-        pageBuilder: (context, _, __) => GestureDetector(
+      PageRouteBuilder<Widget>(
+        fullscreenDialog: false,
+        pageBuilder: (BuildContext context, _, __) => GestureDetector(
+          child: _generateElegantNotificationContent(context),
           onTap: dismissible
               ? () {
                   Navigator.pop(context);
                   onDismiss?.call();
                 }
               : null,
-          child: _generateElegantNotificationContent(context),
         ),
         opaque: false,
+        barrierDismissible: true,
       ),
     );
   }

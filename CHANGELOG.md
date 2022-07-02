@@ -1,3 +1,7 @@
+## [1.6.0] - 02/07/2022
+
+* Fix toast dismiss issues
+
 ## [1.5.5] - 02/07/2022
 
 * Fix static analysis issues

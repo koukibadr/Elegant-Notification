@@ -139,6 +139,7 @@ class ExampleApp extends StatelessWidget {
                       color: Colors.orange,
                     ),
                     progressIndicatorColor: Colors.orange,
+                    dismissible: true,
                   ).show(context);
                 },
                 child: Container(
@@ -201,7 +202,6 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
-                    animation: AnimationType.fromTop,
                     notificationPosition: NotificationPosition.bottom,
                     description: Text(
                       'A new version is available to you please update.',
