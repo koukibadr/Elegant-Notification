@@ -1,4 +1,3 @@
-import 'package:elegant_notification/resources/constants.dart';
 import 'package:flutter/cupertino.dart';
 
 extension TextExtension on Text {
