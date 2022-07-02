@@ -1,3 +1,7 @@
+## [1.5.5] - 02/07/2022
+
+* Fix static analysis issues
+
 ## [1.5.4] - 30/05/2022
 
 * Support Flutter 3 null safety
