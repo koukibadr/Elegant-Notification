@@ -442,9 +442,19 @@ class _ElegantNotificationState extends State<ElegantNotification>
       default:
     }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      slideController.forward();
-    });
+    
+    /// ! To support Flutter < 3.0.0
+    /// This allows a value of type T or T?
+    /// to be treated as a value of type T?.
+    ///
+    /// We use this so that APIs that have become
+    /// non-nullable can still be used with `!` and `?`
+    /// to support older versions of the API as well.
+    T? _ambiguate<T>(T? value) => value;
+
+    _ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
+      (_) => slideController.forward(),
+    );
   }
 
   @override
