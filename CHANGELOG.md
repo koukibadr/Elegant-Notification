@@ -1,3 +1,7 @@
+## [1.6.1] - 06/08/2022
+
+* Update package flutter 3 support
+
 ## [1.6.0] - 02/07/2022
 
 * Fix toast dismiss issues
