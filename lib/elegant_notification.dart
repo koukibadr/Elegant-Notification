@@ -442,7 +442,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
       default:
     }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       slideController.forward();
     });
   }
