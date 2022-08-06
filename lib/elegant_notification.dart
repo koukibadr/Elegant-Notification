@@ -442,7 +442,6 @@ class _ElegantNotificationState extends State<ElegantNotification>
       default:
     }
 
-    
     /// ! To support Flutter < 3.0.0
     /// This allows a value of type T or T?
     /// to be treated as a value of type T?.
