@@ -40,6 +40,9 @@ class ExampleApp extends StatelessWidget {
                     description: Text('Your data has been updated'),
                     notificationPosition: NotificationPosition.bottom,
                     dismissible: true,
+                    onDismiss: (){
+                      print('This print will be displayed when dismissing the popup');
+                    },
                   ).show(context);
                 },
                 child: Container(
