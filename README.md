@@ -33,7 +33,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.6.1
+	elegant_notification: ^1.6.2
 ```
 
 ## Parameters
@@ -166,6 +166,7 @@ final double? height;
 final bool dismissible;
 
 ///Function invoked when tapping outside the notification
+///Or when pressing the back button of the phone
 final Function()? onDismiss;
 ````
 

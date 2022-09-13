@@ -321,6 +321,7 @@ class ElegantNotification extends StatefulWidget {
   final bool dismissible;
 
   ///Function invoked when tapping outside the notification
+  ///Or when pressing the back button of the phone
   final Function()? onDismiss;
 
   ///display the notification on the screen
