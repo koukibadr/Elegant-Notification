@@ -1,3 +1,7 @@
+## [1.6.2] - 13/09/2022
+
+* Fix back button with onDismiss callback usage
+
 ## [1.6.1] - 06/08/2022
 
 * Update package flutter 3 support
