@@ -1,3 +1,7 @@
+## [1.6.3] - 18/09/2022
+
+* Fix inactive screen bug when toast is displayed
+
 ## [1.6.2] - 13/09/2022
 
 * Fix back button with onDismiss callback usage
