@@ -39,10 +39,10 @@ class ExampleApp extends StatelessWidget {
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
                     notificationPosition: NotificationPosition.bottom,
-                    dismissible: true,
                     onDismiss: () {
                       print(
-                          'This print will be displayed when dismissing the popup');
+                        'This print will be displayed when dismissing the popup',
+                      );
                     },
                   ).show(context);
                 },
@@ -70,6 +70,11 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification.error(
                     title: Text('Error'),
                     description: Text('Please verifiy your data'),
+                    onDismiss: () {
+                      print(
+                        'This print will be displayed when dismissing the popup',
+                      );
+                    },
                   ).show(context);
                 },
                 child: Container(
@@ -103,8 +108,12 @@ class ExampleApp extends StatelessWidget {
                     description: Text(
                       'This account will be updated once you exit',
                     ),
-                    dismissible: true,
                     showProgressIndicator: false,
+                    onDismiss: () {
+                      print(
+                        'This print will be displayed when dismissing the popup',
+                      );
+                    },
                   ).show(context);
                 },
                 child: Container(
@@ -143,7 +152,11 @@ class ExampleApp extends StatelessWidget {
                       color: Colors.orange,
                     ),
                     progressIndicatorColor: Colors.orange,
-                    dismissible: true,
+                    onDismiss: () {
+                      print(
+                        'This print will be displayed when dismissing the popup',
+                      );
+                    },
                   ).show(context);
                 },
                 child: Container(
@@ -182,6 +195,11 @@ class ExampleApp extends StatelessWidget {
                     ),
                     onActionPressed: () {},
                     showProgressIndicator: false,
+                    onDismiss: () {
+                      print(
+                        'This print will be displayed when dismissing the popup',
+                      );
+                    },
                   ).show(context);
                 },
                 child: Container(
@@ -217,6 +235,11 @@ class ExampleApp extends StatelessWidget {
                     progressIndicatorColor: Colors.orange,
                     showProgressIndicator: false,
                     autoDismiss: false,
+                    onDismiss: () {
+                      print(
+                        'This print will be displayed when dismissing the popup',
+                      );
+                    },
                   ).show(context);
                 },
                 child: Container(

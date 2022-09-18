@@ -35,7 +35,6 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = true,
     this.height,
     this.width,
-    this.dismissible = false,
     this.onDismiss,
   }) : super(key: key) {
     notificationType = NotificationType.custom;
@@ -77,7 +76,6 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = true,
     this.height,
     this.width,
-    this.dismissible = false,
     this.onDismiss,
   }) : super(key: key) {
     notificationType = NotificationType.success;
@@ -121,7 +119,6 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = true,
     this.height,
     this.width,
-    this.dismissible = false,
     this.onDismiss,
   }) : super(key: key) {
     notificationType = NotificationType.error;
@@ -165,7 +162,6 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = true,
     this.height,
     this.width,
-    this.dismissible = false,
     this.onDismiss,
   }) : super(key: key) {
     notificationType = NotificationType.info;
@@ -316,12 +312,9 @@ class ElegantNotification extends StatefulWidget {
   ///the height of the notification widget
   final double? height;
 
-  ///dismiss notification by tapping outside
-  ///by default `dismissible == false`
-  final bool dismissible;
-
   ///Function invoked when tapping outside the notification
   ///Or when pressing the back button of the phone
+  ///or when tapping on the screen
   final Function()? onDismiss;
 
   ///display the notification on the screen
@@ -332,10 +325,10 @@ class ElegantNotification extends StatefulWidget {
         fullscreenDialog: false,
         pageBuilder: (BuildContext context, _, __) => GestureDetector(
           child: _generateElegantNotificationContent(context),
-          onTap: dismissible
+          onTap: onDismiss != null
               ? () {
                   Navigator.pop(context);
-                  onDismiss?.call();
+                  onDismiss!.call();
                 }
               : null,
         ),
