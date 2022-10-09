@@ -16,10 +16,12 @@
 - Display a top notification with animation
 - Built-in themes (Success, Error, Info)
 - Different display animations (fromTop, fromBottom, fromLeft, fromRight)
+- Support for all display alignment positions
+  (TopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight)
 - Support custom theme implementation
 - onClose and onProgressFinished callback handlers
-- animated progress bar indicator
-- background costumization
+- Animated progress bar indicator
+- Background customization
 - Animation duration customization
 - Notification position customization
 - Add clickable action widget to notification
