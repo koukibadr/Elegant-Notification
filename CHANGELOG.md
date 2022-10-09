@@ -1,3 +1,7 @@
+## [1.6.4] - 09/10/2022
+
+* Add support for all display alignment positions (TopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight)
+
 ## [1.6.3] - 18/09/2022
 
 * Fix inactive screen bug when toast is displayed
@@ -25,11 +29,11 @@
 
 ## [1.5.2] - 08/04/2022
 
-* Fix alignement position display bug (Center, Bottom, Top)
+* Fix alignment position display bug (Center, Bottom, Top)
 
 ## [1.5.1] - 15/02/2022
 
-* Fix alignement position display bug (Center, Bottom, Top)
+* Fix alignment position display bug (Center, Bottom, Top)
 
 ## [1.5.0] - 06/02/2022
 
