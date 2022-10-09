@@ -13,7 +13,13 @@ enum AnimationType {
 }
 
 enum NotificationPosition {
-  top,
   center,
-  bottom,
+  centerRight,
+  centerLeft,
+  topCenter,
+  topRight,
+  topLeft,
+  bottomCenter,
+  bottomRight,
+  bottomLeft,
 }
