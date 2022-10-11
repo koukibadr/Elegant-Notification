@@ -36,9 +36,11 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.success(
+                    width: 360,
+                    notificationPosition: NotificationPosition.topLeft,
+                    animation: AnimationType.fromTop,
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
-                    notificationPosition: NotificationPosition.bottom,
                     onDismiss: () {
                       print(
                         'This print will be displayed when dismissing the popup',
@@ -54,7 +56,7 @@ class ExampleApp extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Success theme notification',
+                        'Success theme notification\n(top left)',
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -68,6 +70,9 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.error(
+                    width: 360,
+                    notificationPosition: NotificationPosition.topRight,
+                    animation: AnimationType.fromRight,
                     title: Text('Error'),
                     description: Text('Please verifiy your data'),
                     onDismiss: () {
@@ -85,7 +90,7 @@ class ExampleApp extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Error theme notification',
+                        'Error theme notification\n(top right)',
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -104,6 +109,9 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.info(
+                    width: 360,
+                    notificationPosition: NotificationPosition.centerLeft,
+                    animation: AnimationType.fromLeft,
                     title: Text('Info'),
                     description: Text(
                       'This account will be updated once you exit',
@@ -124,7 +132,7 @@ class ExampleApp extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Info theme notification',
+                        'Info theme notification\n(center left)',
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -138,6 +146,9 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
+                    width: 360,
+                    notificationPosition: NotificationPosition.centerRight,
+                    animation: AnimationType.fromRight,
                     title: Text(
                       'New version',
                       style: TextStyle(
@@ -165,8 +176,9 @@ class ExampleApp extends StatelessWidget {
                   color: Colors.blue,
                   child: Center(
                     child: Text(
-                      'Custom notification',
+                      'Custom notification\n(center right)',
                       style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -182,6 +194,9 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.info(
+                    width: 360,
+                    notificationPosition: NotificationPosition.bottomLeft,
+                    animation: AnimationType.fromLeft,
                     title: Text('Info'),
                     description: Text(
                       'This account will be updated once you exit',
@@ -210,7 +225,7 @@ class ExampleApp extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Notification with action',
+                        'Notification with action\n(bottom left)',
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -224,7 +239,9 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
-                    notificationPosition: NotificationPosition.bottom,
+                    width: 360,
+                    notificationPosition: NotificationPosition.bottomRight,
+                    animation: AnimationType.fromBottom,
                     description: Text(
                       'A new version is available to you please update.',
                     ),
@@ -248,7 +265,7 @@ class ExampleApp extends StatelessWidget {
                   color: Colors.blue,
                   child: Center(
                     child: Text(
-                      'Elegant notification without title',
+                      'Elegant notification without title\n(bottom right)',
                       style: TextStyle(color: Colors.white),
                       textAlign: TextAlign.center,
                     ),

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
 import 'package:elegant_notification/widgets/animated_progress_bar.dart';
@@ -19,17 +20,13 @@ class ElegantNotification extends StatefulWidget {
     this.showProgressIndicator = true,
     this.displayCloseButton = true,
     this.progressIndicatorColor = Colors.blue,
-    this.toastDuration = const Duration(
-      milliseconds: 2500,
-    ),
+    this.toastDuration = const Duration(milliseconds: 3000),
     this.onCloseButtonPressed,
     this.onProgressFinished,
-    this.animation = AnimationType.fromLeft,
-    this.animationDuration = const Duration(
-      milliseconds: 200,
-    ),
+    this.notificationPosition = NotificationPosition.topRight,
+    this.animation = AnimationType.fromRight,
+    this.animationDuration = const Duration(milliseconds: 600),
     this.iconSize = 20,
-    this.notificationPosition = NotificationPosition.top,
     this.action,
     this.onActionPressed,
     this.autoDismiss = true,
@@ -46,10 +43,50 @@ class ElegantNotification extends StatefulWidget {
       assert(onActionPressed != null);
     }
 
-    if (notificationPosition == NotificationPosition.bottom) {
-      assert(animation != AnimationType.fromTop);
-    } else if (notificationPosition == NotificationPosition.top) {
-      assert(animation != AnimationType.fromBottom);
+    if (notificationPosition == NotificationPosition.centerRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.centerLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.topCenter) {
+      assert(
+        animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromRight,
+      );
+    } else if (notificationPosition == NotificationPosition.topRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromBottom,
+      );
+    } else if (notificationPosition == NotificationPosition.topLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromBottom,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomCenter) {
+      assert(
+        animation != AnimationType.fromTop &&
+            animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromRight,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromTop,
+      );
     }
   }
 
@@ -59,18 +96,14 @@ class ElegantNotification extends StatefulWidget {
     required this.description,
     this.background = Colors.white,
     this.displayCloseButton = true,
-    this.toastDuration = const Duration(
-      milliseconds: 2500,
-    ),
+    this.toastDuration = const Duration(milliseconds: 3000),
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
-    this.animation = AnimationType.fromLeft,
-    this.animationDuration = const Duration(
-      milliseconds: 200,
-    ),
+    this.notificationPosition = NotificationPosition.topRight,
+    this.animation = AnimationType.fromRight,
+    this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
-    this.notificationPosition = NotificationPosition.top,
     this.action,
     this.onActionPressed,
     this.autoDismiss = true,
@@ -89,10 +122,50 @@ class ElegantNotification extends StatefulWidget {
       assert(onActionPressed != null);
     }
 
-    if (notificationPosition == NotificationPosition.bottom) {
-      assert(animation != AnimationType.fromTop);
-    } else if (notificationPosition == NotificationPosition.top) {
-      assert(animation != AnimationType.fromBottom);
+    if (notificationPosition == NotificationPosition.centerRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.centerLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.topCenter) {
+      assert(
+        animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromRight,
+      );
+    } else if (notificationPosition == NotificationPosition.topRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromBottom,
+      );
+    } else if (notificationPosition == NotificationPosition.topLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromBottom,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomCenter) {
+      assert(
+        animation != AnimationType.fromTop &&
+            animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromRight,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromTop,
+      );
     }
   }
 
@@ -102,18 +175,14 @@ class ElegantNotification extends StatefulWidget {
     required this.description,
     this.background = Colors.white,
     this.displayCloseButton = true,
-    this.toastDuration = const Duration(
-      milliseconds: 2500,
-    ),
+    this.toastDuration = const Duration(milliseconds: 3000),
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
-    this.animation = AnimationType.fromLeft,
-    this.animationDuration = const Duration(
-      milliseconds: 200,
-    ),
+    this.notificationPosition = NotificationPosition.topRight,
+    this.animation = AnimationType.fromRight,
+    this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
-    this.notificationPosition = NotificationPosition.top,
     this.action,
     this.onActionPressed,
     this.autoDismiss = true,
@@ -132,10 +201,50 @@ class ElegantNotification extends StatefulWidget {
       assert(onActionPressed != null);
     }
 
-    if (notificationPosition == NotificationPosition.bottom) {
-      assert(animation != AnimationType.fromTop);
-    } else if (notificationPosition == NotificationPosition.top) {
-      assert(animation != AnimationType.fromBottom);
+    if (notificationPosition == NotificationPosition.centerRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.centerLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.topCenter) {
+      assert(
+        animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromRight,
+      );
+    } else if (notificationPosition == NotificationPosition.topRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromBottom,
+      );
+    } else if (notificationPosition == NotificationPosition.topLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromBottom,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomCenter) {
+      assert(
+        animation != AnimationType.fromTop &&
+            animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromRight,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromTop,
+      );
     }
   }
 
@@ -145,18 +254,14 @@ class ElegantNotification extends StatefulWidget {
     required this.description,
     this.background = Colors.white,
     this.displayCloseButton = true,
-    this.toastDuration = const Duration(
-      milliseconds: 2500,
-    ),
+    this.toastDuration = const Duration(milliseconds: 3000),
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
-    this.animation = AnimationType.fromLeft,
-    this.animationDuration = const Duration(
-      milliseconds: 200,
-    ),
+    this.notificationPosition = NotificationPosition.topRight,
+    this.animation = AnimationType.fromRight,
+    this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
-    this.notificationPosition = NotificationPosition.top,
     this.action,
     this.onActionPressed,
     this.autoDismiss = true,
@@ -175,10 +280,50 @@ class ElegantNotification extends StatefulWidget {
       assert(onActionPressed != null);
     }
 
-    if (notificationPosition == NotificationPosition.bottom) {
-      assert(animation != AnimationType.fromTop);
-    } else if (notificationPosition == NotificationPosition.top) {
-      assert(animation != AnimationType.fromBottom);
+    if (notificationPosition == NotificationPosition.centerRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.centerLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.topCenter) {
+      assert(
+        animation != AnimationType.fromBottom &&
+            animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromRight,
+      );
+    } else if (notificationPosition == NotificationPosition.topRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromBottom,
+      );
+    } else if (notificationPosition == NotificationPosition.topLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromBottom,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomCenter) {
+      assert(
+        animation != AnimationType.fromTop &&
+            animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromRight,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomRight) {
+      assert(
+        animation != AnimationType.fromLeft &&
+            animation != AnimationType.fromTop,
+      );
+    } else if (notificationPosition == NotificationPosition.bottomLeft) {
+      assert(
+        animation != AnimationType.fromRight &&
+            animation != AnimationType.fromTop,
+      );
     }
   }
 
@@ -214,7 +359,7 @@ class ElegantNotification extends StatefulWidget {
   final AnimationType animation;
 
   ///The duration of the animation
-  ///Default value `Duration(milliseconds: 100)`
+  ///Default value `Duration(milliseconds: 600)`
   ///
   final Duration animationDuration;
 
@@ -240,7 +385,7 @@ class ElegantNotification extends StatefulWidget {
   late double radius = 5.0;
 
   ///How much the notification will take time,
-  ///by default the duration is `2500 milliseconds`
+  ///by default the duration is `3000 milliseconds`
   ///
   final Duration toastDuration;
 
@@ -339,6 +484,31 @@ class ElegantNotification extends StatefulWidget {
   }
 
   Widget _generateElegantNotificationContent(BuildContext context) {
+    Alignment _getNotificationAlign(NotificationPosition notificationPosition) {
+      switch (notificationPosition) {
+        case NotificationPosition.center:
+          return Alignment.center;
+        case NotificationPosition.centerRight:
+          return Alignment.centerRight;
+        case NotificationPosition.centerLeft:
+          return Alignment.centerLeft;
+        case NotificationPosition.topCenter:
+          return Alignment.topCenter;
+        case NotificationPosition.topRight:
+          return Alignment.topRight;
+        case NotificationPosition.topLeft:
+          return Alignment.topLeft;
+        case NotificationPosition.bottomCenter:
+          return Alignment.bottomCenter;
+        case NotificationPosition.bottomRight:
+          return Alignment.bottomRight;
+        case NotificationPosition.bottomLeft:
+          return Alignment.bottomLeft;
+        default:
+          return Alignment.topCenter;
+      }
+    }
+
     return WillPopScope(
       onWillPop: () async {
         onDismiss?.call();
@@ -346,12 +516,10 @@ class ElegantNotification extends StatefulWidget {
       },
       child: SafeArea(
         child: AlertDialog(
+          alignment: _getNotificationAlign(notificationPosition),
           backgroundColor: Colors.transparent,
           contentPadding: const EdgeInsets.all(0),
-          insetPadding: const EdgeInsets.only(
-            top: 30,
-            bottom: 30,
-          ),
+          insetPadding: const EdgeInsets.all(30),
           elevation: 0,
           content: this,
         ),
@@ -458,69 +626,53 @@ class _ElegantNotificationState extends State<ElegantNotification>
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: _getNotificationAlign(),
-      child: SlideTransition(
-        position: offsetAnimation,
-        child: Container(
-          width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
-          height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(widget.radius),
-            color: widget.background,
-            boxShadow: widget.enableShadow
-                ? [
-                    BoxShadow(
-                      color: widget.shadowColor.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: const Offset(0, 1), // changes position of shadow
-                    ),
-                  ]
-                : null,
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: ToastContent(
-                  title: widget.title,
-                  description: widget.description,
-                  displayCloseButton: widget.displayCloseButton,
-                  notificationType: widget.notificationType,
-                  icon: widget.icon,
-                  onCloseButtonPressed: () {
-                    closeTimer.cancel();
-                    slideController.reverse();
-                    widget.onDismiss?.call();
-                  },
-                  iconSize: widget.iconSize,
-                  action: widget.action,
-                  onActionPressed: widget.onActionPressed,
-                ),
+    return SlideTransition(
+      position: offsetAnimation,
+      child: Container(
+        width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
+        height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(widget.radius),
+          color: widget.background,
+          boxShadow: widget.enableShadow
+              ? [
+                  BoxShadow(
+                    color: widget.shadowColor.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 1,
+                    offset: const Offset(0, 1), // changes position of shadow
+                  ),
+                ]
+              : null,
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ToastContent(
+                title: widget.title,
+                description: widget.description,
+                displayCloseButton: widget.displayCloseButton,
+                notificationType: widget.notificationType,
+                icon: widget.icon,
+                onCloseButtonPressed: () {
+                  closeTimer.cancel();
+                  slideController.reverse();
+                  widget.onDismiss?.call();
+                },
+                iconSize: widget.iconSize,
+                action: widget.action,
+                onActionPressed: widget.onActionPressed,
               ),
-              if (widget.showProgressIndicator)
-                AnimatedProgressBar(
-                  foregroundColor: widget.progressIndicatorColor,
-                  duration: widget.toastDuration,
-                ),
-            ],
-          ),
+            ),
+            if (widget.showProgressIndicator)
+              AnimatedProgressBar(
+                foregroundColor: widget.progressIndicatorColor,
+                duration: widget.toastDuration,
+              ),
+          ],
         ),
       ),
     );
-  }
-
-  Alignment _getNotificationAlign() {
-    switch (widget.notificationPosition) {
-      case NotificationPosition.top:
-        return Alignment.topCenter;
-      case NotificationPosition.center:
-        return Alignment.center;
-      case NotificationPosition.bottom:
-        return Alignment.bottomCenter;
-      default:
-        return Alignment.topCenter;
-    }
   }
 
   @override
