@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
+import 'package:elegant_notification/resources/extensions.dart';
 import 'package:elegant_notification/widgets/animated_progress_bar.dart';
 import 'package:elegant_notification/widgets/toast_content.dart';
 import 'package:flutter/material.dart';
@@ -469,60 +470,31 @@ class ElegantNotification extends StatefulWidget {
       PageRouteBuilder<Widget>(
         fullscreenDialog: false,
         pageBuilder: (BuildContext context, _, __) => GestureDetector(
-          child: _generateElegantNotificationContent(context),
           onTap: onDismiss != null
               ? () {
                   Navigator.pop(context);
                   onDismiss!.call();
                 }
               : null,
+          child: WillPopScope(
+            onWillPop: () async {
+              onDismiss?.call();
+              return true;
+            },
+            child: SafeArea(
+              child: AlertDialog(
+                alignment: notificationPosition.alignment,
+                backgroundColor: Colors.transparent,
+                contentPadding: const EdgeInsets.all(0),
+                insetPadding: const EdgeInsets.all(30),
+                elevation: 0,
+                content: this,
+              ),
+            ),
+          ),
         ),
         opaque: false,
         barrierDismissible: true,
-      ),
-    );
-  }
-
-  Widget _generateElegantNotificationContent(BuildContext context) {
-    Alignment _getNotificationAlign(NotificationPosition notificationPosition) {
-      switch (notificationPosition) {
-        case NotificationPosition.center:
-          return Alignment.center;
-        case NotificationPosition.centerRight:
-          return Alignment.centerRight;
-        case NotificationPosition.centerLeft:
-          return Alignment.centerLeft;
-        case NotificationPosition.topCenter:
-          return Alignment.topCenter;
-        case NotificationPosition.topRight:
-          return Alignment.topRight;
-        case NotificationPosition.topLeft:
-          return Alignment.topLeft;
-        case NotificationPosition.bottomCenter:
-          return Alignment.bottomCenter;
-        case NotificationPosition.bottomRight:
-          return Alignment.bottomRight;
-        case NotificationPosition.bottomLeft:
-          return Alignment.bottomLeft;
-        default:
-          return Alignment.topCenter;
-      }
-    }
-
-    return WillPopScope(
-      onWillPop: () async {
-        onDismiss?.call();
-        return true;
-      },
-      child: SafeArea(
-        child: AlertDialog(
-          alignment: _getNotificationAlign(notificationPosition),
-          backgroundColor: Colors.transparent,
-          contentPadding: const EdgeInsets.all(0),
-          insetPadding: const EdgeInsets.all(30),
-          elevation: 0,
-          content: this,
-        ),
       ),
     );
   }
