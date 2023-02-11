@@ -463,47 +463,44 @@ class ElegantNotification extends StatefulWidget {
   ///or when tapping on the screen
   final Function()? onDismiss;
 
+  //Overlay that does not block the screen
+  OverlayEntry? overlayEntry;
+  
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
-    Navigator.of(context).push(
-      PageRouteBuilder<Widget>(
-        fullscreenDialog: false,
-        pageBuilder: (BuildContext context, _, __) => GestureDetector(
-          onTap: onDismiss != null
-              ? () {
-                  Navigator.pop(context);
-                  onDismiss!.call();
-                }
-              : null,
-          child: WillPopScope(
-            onWillPop: () async {
-              onDismiss?.call();
-              return true;
-            },
-            child: SafeArea(
-              child: AlertDialog(
-                alignment: notificationPosition.alignment,
-                backgroundColor: Colors.transparent,
-                contentPadding: const EdgeInsets.all(0),
-                insetPadding: const EdgeInsets.all(30),
-                elevation: 0,
-                content: this,
-              ),
-            ),
+    overlayEntry = _overlayEntryBuilder();
+    Overlay.of(context).insert(overlayEntry!);
+  }
+
+  void closeOverlay() {
+    overlayEntry?.remove();
+    overlayEntry = null;
+  }
+
+  OverlayEntry _overlayEntryBuilder() {
+    return OverlayEntry(
+      opaque: false,
+      builder: (context) {
+        return SafeArea(
+          child: AlertDialog(
+            alignment: notificationPosition.alignment,
+            backgroundColor: Colors.transparent,
+            contentPadding: const EdgeInsets.all(0),
+            insetPadding: const EdgeInsets.all(30),
+            elevation: 0,
+            content: this,
           ),
-        ),
-        opaque: false,
-        barrierDismissible: true,
-      ),
+        );
+      },
     );
   }
 
   @override
-  _ElegantNotificationState createState() => _ElegantNotificationState();
+  ElegantNotificationState createState() => ElegantNotificationState();
 }
 
-class _ElegantNotificationState extends State<ElegantNotification>
+class ElegantNotificationState extends State<ElegantNotification>
     with SingleTickerProviderStateMixin {
   late Timer closeTimer;
   late Animation<Offset> offsetAnimation;
@@ -517,8 +514,8 @@ class _ElegantNotificationState extends State<ElegantNotification>
       slideController.reverse();
       slideController.addListener(() {
         if (slideController.isDismissed) {
-          Navigator.pop(context);
           widget.onProgressFinished?.call();
+          widget.closeOverlay();
         }
       });
     });
@@ -630,6 +627,7 @@ class _ElegantNotificationState extends State<ElegantNotification>
                   closeTimer.cancel();
                   slideController.reverse();
                   widget.onDismiss?.call();
+                  widget.closeOverlay();
                 },
                 iconSize: widget.iconSize,
                 action: widget.action,
