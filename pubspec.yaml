@@ -1,37 +1,27 @@
 name: elegant_notification
-description: A new flutter package to display notifications on top of the screen, full customizable with built-in themes
+description: 'A new flutter package to display notifications on top of the screen, full customizable with built-in themes'
 version: 1.6.4
-homepage: https://github.com/koukibadr/Elegant-Notification
-
+homepage: 'https://github.com/koukibadr/Elegant-Notification'
 environment:
   sdk: '>=2.12.0 <3.0.0'
-  flutter: ">=1.17.0"
-
+  flutter: '>=1.17.0'
 dependencies:
   flutter:
     sdk: flutter
-
-  
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
-  build_runner:
-  flutter_gen_runner:
-
-
+  build_runner: null
+  flutter_gen_runner: null
 flutter_gen:
-  output: lib/gen/ 
-  line_length: 80 
-
-  # Optional
+  output: lib/gen/
+  line_length: 80
   integrations:
     flutter_svg: true
     flare_flutter: true
     rive: true
-
-# The following section is specific to Flutter.
 flutter:
   generate: true
   assets:
-    - assets/icons/
+  - assets/icons/
