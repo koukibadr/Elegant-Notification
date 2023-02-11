@@ -1,3 +1,8 @@
+## [1.7.0] - 11/02/2023
+
+* Added overlay config to package
+* Added slide back animation
+
 ## [1.6.4] - 09/10/2022
 
 * Add support for all display alignment positions (TopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight)
