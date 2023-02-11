@@ -113,7 +113,6 @@ class ToastContent extends StatelessWidget {
           visible: displayCloseButton,
           child: InkWell(
             onTap: () {
-              Navigator.pop(context);
               onCloseButtonPressed?.call();
             },
             child: Padding(
