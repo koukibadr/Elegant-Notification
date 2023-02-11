@@ -28,6 +28,7 @@
 - Notification dismiss customization
 - Customizable notification dimensions (height and width)
 - Customizable barrier dismission and on dismiss action
+- Slide back animation
 
 ## Getting Started
 
@@ -35,7 +36,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.6.3
+	elegant_notification: ^1.7.0
 ```
 
 ## Parameters
