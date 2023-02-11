@@ -14,12 +14,12 @@ class AnimatedProgressBar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AnimatedProgressBarState createState() {
-    return _AnimatedProgressBarState();
+  AnimatedProgressBarState createState() {
+    return AnimatedProgressBarState();
   }
 }
 
-class _AnimatedProgressBarState extends State<AnimatedProgressBar>
+class AnimatedProgressBarState extends State<AnimatedProgressBar>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> curve;
