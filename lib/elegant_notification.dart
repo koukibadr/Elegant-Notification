@@ -465,7 +465,7 @@ class ElegantNotification extends StatefulWidget {
 
   //Overlay that does not block the screen
   OverlayEntry? overlayEntry;
-  
+
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
