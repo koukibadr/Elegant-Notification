@@ -274,6 +274,66 @@ class ExampleApp extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  ElegantNotification(
+                    width: 360,
+                    notificationPosition: NotificationPosition.topRight,
+                    animation: AnimationType.fromRight,
+                    description: Text(
+                      'You can now leave the dashboard.',
+                    ),
+                    icon: Icon(
+                      Icons.dashboard_customize_outlined,
+                      color: Colors.purple,
+                    ),
+                    progressIndicatorColor: Colors.purple,
+                    showProgressIndicator: false,
+                    autoDismiss: false,
+                    closeButton: (dismiss) => Container(
+                      margin: EdgeInsets.only(right: 20),
+                      child: ElevatedButton(
+                        onPressed: dismiss,
+                        child: Icon(Icons.logout, color: Colors.white),
+                        style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
+                          padding: EdgeInsets.all(20),
+                          backgroundColor: Colors.purple, // <-- Button color
+                          foregroundColor: Colors.white, // <-- Splash color
+                        ),
+                      ),
+                    ),
+                    onDismiss: () {
+                      print(
+                        'This print will be displayed when dismissing the popup',
+                      );
+                    },
+                  ).show(context);
+                },
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Notification with custom close button\n(top right)',
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
