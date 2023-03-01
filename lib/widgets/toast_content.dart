@@ -115,27 +115,28 @@ class ToastContent extends StatelessWidget {
         ),
         Visibility(
           visible: displayCloseButton,
-          child: InkWell(
-            onTap: () {
-              onCloseButtonPressed.call();
-            },
-            child: closeButton?.call(onCloseButtonPressed) ?? Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-                right: 10,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Icon(
-                    Icons.close,
-                    color: Colors.grey,
-                    size: 15,
+          child: closeButton?.call(onCloseButtonPressed) ??
+              InkWell(
+                onTap: () {
+                  onCloseButtonPressed.call();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    right: 10,
                   ),
-                ],
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: const [
+                      Icon(
+                        Icons.close,
+                        color: Colors.grey,
+                        size: 15,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
         )
       ],
     );
