@@ -19,9 +19,10 @@ class ElegantNotification extends StatefulWidget {
     this.radius = 5.0,
     this.enableShadow = true,
     this.showProgressIndicator = true,
-    this.displayCloseButton = true,
+    this.closeButton,
     this.progressIndicatorColor = Colors.blue,
     this.toastDuration = const Duration(milliseconds: 3000),
+    this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.notificationPosition = NotificationPosition.topRight,
@@ -96,8 +97,9 @@ class ElegantNotification extends StatefulWidget {
     this.title,
     required this.description,
     this.background = Colors.white,
-    this.displayCloseButton = true,
+    this.closeButton,
     this.toastDuration = const Duration(milliseconds: 3000),
+    this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
@@ -175,8 +177,9 @@ class ElegantNotification extends StatefulWidget {
     this.title,
     required this.description,
     this.background = Colors.white,
-    this.displayCloseButton = true,
+    this.closeButton,
     this.toastDuration = const Duration(milliseconds: 3000),
+    this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
@@ -254,8 +257,9 @@ class ElegantNotification extends StatefulWidget {
     this.title,
     required this.description,
     this.background = Colors.white,
-    this.displayCloseButton = true,
+    this.closeButton,
     this.toastDuration = const Duration(milliseconds: 3000),
+    this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = 20,
@@ -407,6 +411,12 @@ class ElegantNotification extends StatefulWidget {
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   ///
   final bool displayCloseButton;
+
+  ///Close widget rendered as the close function
+  ///by default the close button is displayed, if you don't want it set `closeButton` to null
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  ///
+  final Widget Function(void Function() dismissNotification)? closeButton;
 
   ///Function invoked when user press on the close button
   final Function()? onCloseButtonPressed;
@@ -620,10 +630,12 @@ class ElegantNotificationState extends State<ElegantNotification>
               child: ToastContent(
                 title: widget.title,
                 description: widget.description,
-                displayCloseButton: widget.displayCloseButton,
                 notificationType: widget.notificationType,
                 icon: widget.icon,
+                displayCloseButton: widget.displayCloseButton,
+                closeButton: widget.closeButton,
                 onCloseButtonPressed: () {
+                  widget.onCloseButtonPressed?.call();
                   closeTimer.cancel();
                   slideController.reverse();
                   widget.onDismiss?.call();

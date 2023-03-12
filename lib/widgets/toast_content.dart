@@ -12,8 +12,9 @@ class ToastContent extends StatelessWidget {
     required this.description,
     required this.notificationType,
     required this.displayCloseButton,
+    required this.onCloseButtonPressed,
+    this.closeButton,
     this.icon,
-    this.onCloseButtonPressed,
     this.iconSize = 20,
     this.action,
     this.onActionPressed,
@@ -46,13 +47,16 @@ class ToastContent extends StatelessWidget {
   ///```
   final NotificationType notificationType;
 
+  ///The function invoked when pressing the close button
+  ///
+  final void Function() onCloseButtonPressed;
+
   ///Display or hide the close button widget
   ///
   final bool displayCloseButton;
 
-  ///The function invoked when pressing the close button
-  ///
-  final Function()? onCloseButtonPressed;
+  ///Display or hide the close button widget
+  final Widget Function(void Function() dismissNotification)? closeButton;
 
   ///Action widget rendered with clickable inkwell
   ///by default `action == null`
@@ -111,27 +115,28 @@ class ToastContent extends StatelessWidget {
         ),
         Visibility(
           visible: displayCloseButton,
-          child: InkWell(
-            onTap: () {
-              onCloseButtonPressed?.call();
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-                right: 10,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Icon(
-                    Icons.close,
-                    color: Colors.grey,
-                    size: 15,
+          child: closeButton?.call(onCloseButtonPressed) ??
+              InkWell(
+                onTap: () {
+                  onCloseButtonPressed.call();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    right: 10,
                   ),
-                ],
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: const [
+                      Icon(
+                        Icons.close,
+                        color: Colors.grey,
+                        size: 15,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
         )
       ],
     );
