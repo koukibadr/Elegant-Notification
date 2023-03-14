@@ -1,3 +1,7 @@
+## [1.8.0] - 14/03/2023
+
+* Customizable progress indicator background color [#78](https://github.com/koukibadr/Elegant-Notification/issues/78)
+* Customizable close button widget [PR #77](https://github.com/koukibadr/Elegant-Notification/pull/77)
 ## [1.7.0] - 11/02/2023
 
 * Added overlay config to package

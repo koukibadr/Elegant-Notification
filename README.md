@@ -29,6 +29,7 @@
 - Customizable notification dimensions (height and width)
 - Customizable barrier dismission and on dismiss action
 - Slide back animation
+- Customizable close button
 
 ## Getting Started
 
@@ -36,7 +37,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.7.0
+	elegant_notification: ^1.8.0
 ```
 
 ## Parameters
@@ -117,12 +118,15 @@ late bool enableShadow =  true;
 /// for types constructors (Success, Info, Delete) this parameter is unchangeable
 late bool showProgressIndicator;
 
-
 ///Display or hide the close button
 ///by default the close button is displayed
 /// for types constructors (Success, Info, Delete) this parameter is unchangeable
 final bool displayCloseButton;
 
+///Close widget rendered as the close function
+///by default the close button is displayed, if you don't want it set `closeButton` to null
+/// for types constructors (Success, Info, Delete) this parameter is unchangeable
+final Widget Function(void Function() dismissNotification)? closeButton;
 
 ///Function invoked when user press on the close button
 final Function? onCloseButtonPressed;
