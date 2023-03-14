@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class AnimatedProgressBar extends StatefulWidget {
   final Color foregroundColor;
+  final Color backgroundColor;
   final Duration duration;
   double value = 0;
 
   AnimatedProgressBar({
     Key? key,
     required this.foregroundColor,
+    required this.backgroundColor,
     required this.duration,
   }) : super(key: key);
 
@@ -73,7 +75,7 @@ class AnimatedProgressBarState extends State<AnimatedProgressBar>
       animation: curve,
       builder: (context, child) {
         return LinearProgressIndicator(
-          backgroundColor: greyColor,
+          backgroundColor: widget.backgroundColor,
           valueColor: AlwaysStoppedAnimation(widget.foregroundColor),
           value: valueTween.evaluate(curve),
         );

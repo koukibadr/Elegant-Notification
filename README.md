@@ -168,6 +168,10 @@ final double? height;
 ///Or when pressing the back button of the phone
 ///Or when taping on the screen when the toast is displayed
 final Function()? onDismiss;
+
+///The progress indicator background color
+///by default it's grey
+final Color progressIndicatorBackground;
 ````
 
 ## Migration to 1.1.0
