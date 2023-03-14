@@ -35,6 +35,7 @@ class ElegantNotification extends StatefulWidget {
     this.height,
     this.width,
     this.onDismiss,
+    this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
     notificationType = NotificationType.custom;
 
@@ -113,6 +114,7 @@ class ElegantNotification extends StatefulWidget {
     this.height,
     this.width,
     this.onDismiss,
+    this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
     notificationType = NotificationType.success;
     progressIndicatorColor = successColor;
@@ -193,6 +195,7 @@ class ElegantNotification extends StatefulWidget {
     this.height,
     this.width,
     this.onDismiss,
+    this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
     notificationType = NotificationType.error;
     progressIndicatorColor = errorColor;
@@ -273,6 +276,7 @@ class ElegantNotification extends StatefulWidget {
     this.height,
     this.width,
     this.onDismiss,
+    this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
     notificationType = NotificationType.info;
     progressIndicatorColor = inforColor;
@@ -476,6 +480,10 @@ class ElegantNotification extends StatefulWidget {
   //Overlay that does not block the screen
   OverlayEntry? overlayEntry;
 
+  ///The progress indicator background color
+  ///by default it's grey
+  final Color progressIndicatorBackground;
+
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
@@ -650,6 +658,7 @@ class ElegantNotificationState extends State<ElegantNotification>
               AnimatedProgressBar(
                 foregroundColor: widget.progressIndicatorColor,
                 duration: widget.toastDuration,
+                backgroundColor: widget.progressIndicatorBackground,
               ),
           ],
         ),
