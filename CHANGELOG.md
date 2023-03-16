@@ -1,3 +1,7 @@
+## [1.8.1] - 16/03/2023
+
+* Fix unhandled exception of the overlay creation with Flutter 3.7 [issue](https://github.com/koukibadr/Elegant-Notification/issues/80)
+
 ## [1.8.0] - 14/03/2023
 
 * Customizable progress indicator background color [#78](https://github.com/koukibadr/Elegant-Notification/issues/78)
