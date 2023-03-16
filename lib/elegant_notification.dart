@@ -488,7 +488,7 @@ class ElegantNotification extends StatefulWidget {
   ///[context] the context of the application
   void show(BuildContext context) {
     overlayEntry = _overlayEntryBuilder();
-    Overlay.of(context).insert(overlayEntry!);
+    Overlay.maybeOf(context)?.insert(overlayEntry!);
   }
 
   void closeOverlay() {
