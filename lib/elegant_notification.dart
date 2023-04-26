@@ -338,11 +338,11 @@ class ElegantNotification extends StatefulWidget {
 
   ///The toast title if any
   ///
-  final Text? title;
+  final Widget? title;
 
   ///The toast description text (required)
   ///
-  final Text description;
+  final Widget description;
 
   ///The toast icon, required only if using the default constructor
   ///for other toast types (Success, Info, error) the icon is not changeable

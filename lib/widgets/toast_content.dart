@@ -22,11 +22,11 @@ class ToastContent extends StatelessWidget {
 
   ///The title of the notification if any
   ///
-  final Text? title;
+  final Widget? title;
 
   ///The description of the notification text string
   ///
-  final Text description;
+  final Widget description;
 
   ///The notification icon
   final Widget? icon;
@@ -93,12 +93,12 @@ class ToastContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (title != null) ...[
-                title!.cloneTitle(),
+                title!,
                 const SizedBox(
                   height: 5,
                 ),
               ],
-              description.cloneDescription(),
+              description,
               if (action != null) ...[
                 const SizedBox(
                   height: 5,
