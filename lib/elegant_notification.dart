@@ -336,12 +336,10 @@ class ElegantNotification extends StatefulWidget {
     }
   }
 
-  ///The toast title if any
-  ///
+  ///The toast title widget
   final Widget? title;
 
-  ///The toast description text (required)
-  ///
+  ///The toast description widget
   final Widget description;
 
   ///The toast icon, required only if using the default constructor

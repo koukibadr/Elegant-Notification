@@ -1,3 +1,8 @@
+## [1.9.1] - 16/03/2023
+
+* Support any type of widget in Title and description attributes
+
+
 ## [1.8.1] - 16/03/2023
 
 * Fix unhandled exception of the overlay creation with Flutter 3.7 [issue](https://github.com/koukibadr/Elegant-Notification/issues/80)

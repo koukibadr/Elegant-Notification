@@ -37,145 +37,143 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.8.1
+	elegant_notification: ^1.9.1
 ```
 
 ## Parameters
 
 ````dart
-///The toast title if any
-final  Text?  title;
 
-///The toast description text (required)
-final  Text  description;
+///The toast title widget
+  final Widget? title;
 
-///The toast icon, required only if using the default constructor
-///for other toast types (Success, Info, error) the icon is not changeable
-late Widget? icon;
+  ///The toast description widget
+  final Widget description;
 
+  ///The toast icon, required only if using the default constructor
+  ///for other toast types (Success, Info, error) the icon is not changeable
+  ///
+  late Widget? icon;
 
-///The size of the icon, by default it's 40px
-late double iconSize;
+  ///The size of the icon, by default it's 40px
+  ///
+  late double iconSize;
 
+  ///The type of the animation set on the notification
+  ///possible values
+  ///```dart
+  ///{
+  ///fromLeft,
+  ///fromRight,
+  ///fromTop,
+  ///fromBottom,
+  ///}
+  ///```
+  ///default value `fromLeft`
+  ///
+  final AnimationType animation;
 
-///The type of the animation set on the notification
-///possible values
-///```dart
-///{
-///fromLeft,
-///fromRight,
-///fromTop,
-///fromBottom
-///}
-///```
-///default value `fromLeft`
-///
-final AnimationType animation;
+  ///The duration of the animation
+  ///Default value `Duration(milliseconds: 600)`
+  ///
+  final Duration animationDuration;
 
+  ///The shadow color applied on the notification widget
+  /// by defualt it's `Colors.grey`
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  late Color shadowColor = Colors.grey;
 
-///The duration of the animation
-///Default value `Duration(milliseconds: 100)`
-final Duration animationDuration;
+  /// the background color of the notification
+  /// by default it's set to white
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  late Color background;
 
+  ///The color of the progress
+  ///by default it's blue
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  late Color progressIndicatorColor;
 
-///The shadow color applied on the notification widget
-/// by defualt it's `Colors.grey`
-/// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late Color shadowColor = Colors.grey;
+  ///the border radius of the notification widget
+  ///this parameter it's only set if you are using the default constructor
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  ///
+  late double radius = 5.0;
 
+  ///How much the notification will take time,
+  ///by default the duration is `3000 milliseconds`
+  ///
+  final Duration toastDuration;
 
-/// the background color of the notification
-/// by default it's set to white
-/// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late Color background;
+  ///enable or disable the shadow rendering
+  ///by default it's true
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  ///
+  late bool enableShadow = true;
 
+  ///enable or disable the progress indicator rendering
+  ///by default the indicator is displayed
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  ///
+  late bool showProgressIndicator;
 
-///The color of the progress
-///by default it's blue
-/// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late Color progressIndicatorColor;
+  ///Display or hide the close button
+  ///by default the close button is displayed
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  ///
+  final bool displayCloseButton;
 
+  ///Close widget rendered as the close function
+  ///by default the close button is displayed, if you don't want it set `closeButton` to null
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  ///
+  final Widget Function(void Function() dismissNotification)? closeButton;
 
-///the border radius of the notification widget
-///this parameter it's only set if you are using the default constructor
-/// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late double radius;
+  ///Function invoked when user press on the close button
+  final Function()? onCloseButtonPressed;
 
+  ///Function invoked when the notification is closed after the finish of the progress indicator
+  ///
+  final Function()? onProgressFinished;
 
-///The duration how much the notification will take time, duration in milliseconds
-///by default the duration is `2500 milliseconds`
-final int toastDuration;
+  ///The type of the align set on the notification
+  ///possible values
+  ///```dart
+  ///{
+  ///top,
+  ///center,
+  ///bottom
+  ///}
+  ///```
+  ///default value `top`
+  ///
+  final NotificationPosition notificationPosition;
 
+  ///Action widget rendered with clickable inkwell
+  ///by default `action == null`
+  final Widget? action;
 
-///enable or disable the shadow rendering
-///by default it's true
-/// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late bool enableShadow =  true;
+  ///Function invoked when pressing `action` widget
+  ///must be not null when `action != null`
+  final Function()? onActionPressed;
 
+  ///define whether the notification will be dismissed automatically or not
+  ///by default `autoDimiss == false`
+  final bool autoDismiss;
 
-///enable or disable the progress indicator rendering
-///by default the indicator is displayed
-/// for types constructors (Success, Info, Delete) this parameter is unchangeable
-late bool showProgressIndicator;
+  ///the width of the notification widget
+  final double? width;
 
-///Display or hide the close button
-///by default the close button is displayed
-/// for types constructors (Success, Info, Delete) this parameter is unchangeable
-final bool displayCloseButton;
+  ///the height of the notification widget
+  final double? height;
 
-///Close widget rendered as the close function
-///by default the close button is displayed, if you don't want it set `closeButton` to null
-/// for types constructors (Success, Info, Delete) this parameter is unchangeable
-final Widget Function(void Function() dismissNotification)? closeButton;
+  ///Function invoked when tapping outside the notification
+  ///Or when pressing the back button of the phone
+  ///or when tapping on the screen
+  final Function()? onDismiss;
 
-///Function invoked when user press on the close button
-final Function? onCloseButtonPressed;
-
-
-///Function invoked when the notification is closed after the finish of the progress indicator
-final Function? onProgressFinished;
-
-
-///The type of the align set on the notification
-///possible values
-///{
-///top,
-///center,
-///bottom
-///}
-///default value `top`
-///
-final  NotificationPosition  notificationPosition;
-
-
-///Action widget rendered with clickable inkwell
-///by default `action == null`
-final  Widget?  action;
-
-
-///Function invoked when pressing `action` widget
-///must be not null when `action != null`
-final  Function()?  onActionPressed;
-
-
-///define whether the notification will be dismissed automatically or not
-///by default `autoDimiss == false`
-final  bool  autoDismiss;
-
-///the width of the notification widget
-final double? width;
-
-///the height of the notification widget
-final double? height;
-
-///Function invoked when tapping outside the notification
-///Or when pressing the back button of the phone
-///Or when taping on the screen when the toast is displayed
-final Function()? onDismiss;
-
-///The progress indicator background color
-///by default it's grey
-final Color progressIndicatorBackground;
+  ///The progress indicator background color
+  ///by default it's grey
+  final Color progressIndicatorBackground;
 ````
 
 ## Migration to 1.1.0
