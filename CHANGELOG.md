@@ -1,3 +1,7 @@
+## [1.10.0] - 08/05/2023
+
+* Added RTL support [#84](https://github.com/koukibadr/Elegant-Notification/issues/84)
+
 ## [1.9.1] - 16/03/2023
 
 * Support any type of widget in Title and description attributes

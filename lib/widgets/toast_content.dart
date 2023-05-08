@@ -2,6 +2,7 @@ import 'package:elegant_notification/gen/assets.gen.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/constants.dart';
 import 'package:flutter/material.dart';
+
 import '../resources/colors.dart';
 
 class ToastContent extends StatelessWidget {
@@ -67,10 +68,14 @@ class ToastContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isRtl = Directionality.of(context) == TextDirection.rtl;
+
     return Row(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10),
+          padding: isRtl
+              ? const EdgeInsets.only(right: horizontalComponentPadding)
+              : const EdgeInsets.only(left: horizontalComponentPadding),
           child: _getNotificationIcon(),
         ),
         const SizedBox(
@@ -120,10 +125,15 @@ class ToastContent extends StatelessWidget {
                   onCloseButtonPressed.call();
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 20,
-                    right: 10,
-                  ),
+                  padding: isRtl
+                      ? const EdgeInsets.only(
+                          top: verticalComponentPadding,
+                          left: horizontalComponentPadding,
+                        )
+                      : const EdgeInsets.only(
+                          top: verticalComponentPadding,
+                          right: horizontalComponentPadding,
+                        ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
