@@ -30,6 +30,7 @@
 - Customizable barrier dismission and on dismiss action
 - Slide back animation
 - Customizable close button
+- RTL support
 
 ## Getting Started
 
