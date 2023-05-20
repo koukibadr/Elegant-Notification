@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
+import 'package:elegant_notification/resources/constants.dart';
 import 'package:elegant_notification/resources/extensions.dart';
 import 'package:elegant_notification/widgets/animated_progress_bar.dart';
 import 'package:elegant_notification/widgets/toast_content.dart';
@@ -28,7 +29,7 @@ class ElegantNotification extends StatefulWidget {
     this.notificationPosition = NotificationPosition.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
-    this.iconSize = 20,
+    this.iconSize = defaultIconSize,
     this.action,
     this.onActionPressed,
     this.autoDismiss = true,
@@ -51,7 +52,7 @@ class ElegantNotification extends StatefulWidget {
     this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
-    this.iconSize = 20,
+    this.iconSize = defaultIconSize,
     this.notificationPosition = NotificationPosition.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -80,7 +81,7 @@ class ElegantNotification extends StatefulWidget {
     this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
-    this.iconSize = 20,
+    this.iconSize = defaultIconSize,
     this.notificationPosition = NotificationPosition.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -109,7 +110,7 @@ class ElegantNotification extends StatefulWidget {
     this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
-    this.iconSize = 20,
+    this.iconSize = defaultIconSize,
     this.notificationPosition = NotificationPosition.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -195,9 +196,9 @@ class ElegantNotification extends StatefulWidget {
   ///
   late Widget? icon;
 
-  ///The size of the icon, by default it's 40px
+  ///The size of the icon, by default it's 20px
   ///
-  late double iconSize;
+  final double iconSize;
 
   ///The type of the animation set on the notification
   ///possible values
