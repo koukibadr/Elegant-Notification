@@ -297,7 +297,9 @@ class ExampleApp extends StatelessWidget {
                     showProgressIndicator: false,
                     autoDismiss: false,
                     closeButton: (dismiss) => Container(
-                      margin: EdgeInsets.only(right: 20),
+                      margin: Directionality.of(context) == TextDirection.rtl
+                          ? EdgeInsets.only(left: 20)
+                          : EdgeInsets.only(right: 20),
                       child: ElevatedButton(
                         onPressed: dismiss,
                         child: Icon(Icons.logout, color: Colors.white),
