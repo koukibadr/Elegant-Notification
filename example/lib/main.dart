@@ -41,11 +41,7 @@ class ExampleApp extends StatelessWidget {
                     animation: AnimationType.fromTop,
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
-                    onDismiss: () {
-                      print(
-                        'This print will be displayed when dismissing the popup',
-                      );
-                    },
+                    onDismiss: () {},
                   ).show(context);
                 },
                 child: Container(
@@ -75,11 +71,7 @@ class ExampleApp extends StatelessWidget {
                     animation: AnimationType.fromRight,
                     title: Text('Error'),
                     description: Text('Please verifiy your data'),
-                    onDismiss: () {
-                      print(
-                        'This print will be displayed when dismissing the popup',
-                      );
-                    },
+                    onDismiss: () {},
                   ).show(context);
                 },
                 child: Container(
@@ -117,11 +109,7 @@ class ExampleApp extends StatelessWidget {
                       'This account will be updated once you exit',
                     ),
                     showProgressIndicator: false,
-                    onDismiss: () {
-                      print(
-                        'This print will be displayed when dismissing the popup',
-                      );
-                    },
+                    onDismiss: () {},
                   ).show(context);
                 },
                 child: Container(
@@ -163,11 +151,7 @@ class ExampleApp extends StatelessWidget {
                       color: Colors.orange,
                     ),
                     progressIndicatorColor: Colors.orange,
-                    onDismiss: () {
-                      print(
-                        'This print will be displayed when dismissing the popup',
-                      );
-                    },
+                    onDismiss: () {},
                   ).show(context);
                 },
                 child: Container(
@@ -210,11 +194,7 @@ class ExampleApp extends StatelessWidget {
                     ),
                     onActionPressed: () {},
                     showProgressIndicator: false,
-                    onDismiss: () {
-                      print(
-                        'This print will be displayed when dismissing the popup',
-                      );
-                    },
+                    onDismiss: () {},
                   ).show(context);
                 },
                 child: Container(
@@ -252,11 +232,7 @@ class ExampleApp extends StatelessWidget {
                     progressIndicatorColor: Colors.orange,
                     showProgressIndicator: false,
                     autoDismiss: false,
-                    onDismiss: () {
-                      print(
-                        'This print will be displayed when dismissing the popup',
-                      );
-                    },
+                    onDismiss: () {},
                   ).show(context);
                 },
                 child: Container(
@@ -311,11 +287,7 @@ class ExampleApp extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onDismiss: () {
-                      print(
-                        'This print will be displayed when dismissing the popup',
-                      );
-                    },
+                    onDismiss: () {},
                   ).show(context);
                 },
                 child: Container(
