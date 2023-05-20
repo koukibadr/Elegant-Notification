@@ -38,59 +38,7 @@ class ElegantNotification extends StatefulWidget {
     this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
     notificationType = NotificationType.custom;
-
-    if (showProgressIndicator) {
-      assert(autoDismiss != false);
-    }
-    if (action != null) {
-      assert(onActionPressed != null);
-    }
-
-    if (notificationPosition == NotificationPosition.centerRight) {
-      assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromTop,
-      );
-    } else if (notificationPosition == NotificationPosition.centerLeft) {
-      assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromTop,
-      );
-    } else if (notificationPosition == NotificationPosition.topCenter) {
-      assert(
-        animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromRight,
-      );
-    } else if (notificationPosition == NotificationPosition.topRight) {
-      assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromBottom,
-      );
-    } else if (notificationPosition == NotificationPosition.topLeft) {
-      assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromBottom,
-      );
-    } else if (notificationPosition == NotificationPosition.bottomCenter) {
-      assert(
-        animation != AnimationType.fromTop &&
-            animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromRight,
-      );
-    } else if (notificationPosition == NotificationPosition.bottomRight) {
-      assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromTop,
-      );
-    } else if (notificationPosition == NotificationPosition.bottomLeft) {
-      assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromTop,
-      );
-    }
+    checkAssertions();
   }
 
   ElegantNotification.success({
@@ -119,59 +67,7 @@ class ElegantNotification extends StatefulWidget {
     notificationType = NotificationType.success;
     progressIndicatorColor = successColor;
     icon = null;
-
-    if (showProgressIndicator) {
-      assert(autoDismiss != false);
-    }
-    if (action != null) {
-      assert(onActionPressed != null);
-    }
-
-    if (notificationPosition == NotificationPosition.centerRight) {
-      assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromTop,
-      );
-    } else if (notificationPosition == NotificationPosition.centerLeft) {
-      assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromTop,
-      );
-    } else if (notificationPosition == NotificationPosition.topCenter) {
-      assert(
-        animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromRight,
-      );
-    } else if (notificationPosition == NotificationPosition.topRight) {
-      assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromBottom,
-      );
-    } else if (notificationPosition == NotificationPosition.topLeft) {
-      assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromBottom,
-      );
-    } else if (notificationPosition == NotificationPosition.bottomCenter) {
-      assert(
-        animation != AnimationType.fromTop &&
-            animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromRight,
-      );
-    } else if (notificationPosition == NotificationPosition.bottomRight) {
-      assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromTop,
-      );
-    } else if (notificationPosition == NotificationPosition.bottomLeft) {
-      assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromTop,
-      );
-    }
+    checkAssertions();
   }
 
   ElegantNotification.error({
@@ -200,59 +96,7 @@ class ElegantNotification extends StatefulWidget {
     notificationType = NotificationType.error;
     progressIndicatorColor = errorColor;
     icon = null;
-
-    if (showProgressIndicator) {
-      assert(autoDismiss != false);
-    }
-    if (action != null) {
-      assert(onActionPressed != null);
-    }
-
-    if (notificationPosition == NotificationPosition.centerRight) {
-      assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromTop,
-      );
-    } else if (notificationPosition == NotificationPosition.centerLeft) {
-      assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromTop,
-      );
-    } else if (notificationPosition == NotificationPosition.topCenter) {
-      assert(
-        animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromRight,
-      );
-    } else if (notificationPosition == NotificationPosition.topRight) {
-      assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromBottom,
-      );
-    } else if (notificationPosition == NotificationPosition.topLeft) {
-      assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromBottom,
-      );
-    } else if (notificationPosition == NotificationPosition.bottomCenter) {
-      assert(
-        animation != AnimationType.fromTop &&
-            animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromRight,
-      );
-    } else if (notificationPosition == NotificationPosition.bottomRight) {
-      assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromTop,
-      );
-    } else if (notificationPosition == NotificationPosition.bottomLeft) {
-      assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromTop,
-      );
-    }
+    checkAssertions();
   }
 
   ElegantNotification.info({
@@ -281,7 +125,11 @@ class ElegantNotification extends StatefulWidget {
     notificationType = NotificationType.info;
     progressIndicatorColor = inforColor;
     icon = null;
+    checkAssertions();
+  }
 
+  ///Checks assertions for various constructors of this package
+  void checkAssertions() {
     if (showProgressIndicator) {
       assert(autoDismiss != false);
     }
