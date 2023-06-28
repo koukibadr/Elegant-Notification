@@ -66,7 +66,7 @@ class ElegantNotification extends StatefulWidget {
     this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
     notificationType = NotificationType.success;
-    progressIndicatorColor = successColor;
+    progressIndicatorColor = notificationType.color();
     icon = null;
     checkAssertions();
   }
@@ -95,7 +95,7 @@ class ElegantNotification extends StatefulWidget {
     this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
     notificationType = NotificationType.error;
-    progressIndicatorColor = errorColor;
+    progressIndicatorColor = notificationType.color();
     icon = null;
     checkAssertions();
   }
@@ -124,7 +124,7 @@ class ElegantNotification extends StatefulWidget {
     this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
     notificationType = NotificationType.info;
-    progressIndicatorColor = inforColor;
+    progressIndicatorColor = notificationType.color();
     icon = null;
     checkAssertions();
   }
