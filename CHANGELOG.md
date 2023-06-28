@@ -1,3 +1,9 @@
+## [1.10.1] - 20/05/2023
+
+* DRY refactorings:
+  * assertions in ```elegant_notification.dart```
+  * Default icon size property 
+
 ## [1.10.0] - 08/05/2023
 
 * Added RTL support [#84](https://github.com/koukibadr/Elegant-Notification/issues/84)
