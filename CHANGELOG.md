@@ -1,4 +1,4 @@
-## [1.10.1] - 20/05/2023
+## [1.10.1] - 28/06/2023
 
 * DRY refactorings:
   * assertions in ```elegant_notification.dart```
