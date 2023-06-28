@@ -1,5 +1,6 @@
 import 'package:elegant_notification/resources/arrays.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:elegant_notification/resources/colors.dart';
+import 'package:flutter/material.dart';
 
 extension NotificationPositionExtension on NotificationPosition {
   Alignment get alignment {
@@ -24,6 +25,21 @@ extension NotificationPositionExtension on NotificationPosition {
         return Alignment.bottomLeft;
       default:
         return Alignment.topCenter;
+    }
+  }
+}
+
+extension NotificationTypeExtension on NotificationType {
+  Color color() {
+    switch (this) {
+      case NotificationType.success:
+        return successColor;
+      case NotificationType.error:
+        return errorColor;
+      case NotificationType.info:
+        return inforColor;
+      default:
+        return Colors.blue;
     }
   }
 }
