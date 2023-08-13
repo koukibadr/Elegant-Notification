@@ -1,3 +1,8 @@
+## [1.11.0] - 13/08/2023
+
+* Add width, height and padding to progress indicator widget [#88](https://github.com/koukibadr/Elegant-Notification/issues/88)
+* Update package example
+
 ## [1.10.1] - 28/06/2023
 
 * DRY refactorings:

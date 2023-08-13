@@ -38,7 +38,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.10.1
+	elegant_notification: ^1.11.1
 ```
 
 ## Parameters
@@ -166,6 +166,15 @@ dependencies:
 
   ///the height of the notification widget
   final double? height;
+
+  ///progress bar indicator width, by default it's null so it takes the widget's width
+  final double? progressBarWidth;
+
+  ///progress bar indicator height, by default it's null so it takes the widget's height
+  final double? progressBarHeight;
+
+  ///progress bar indicator padding constraints
+  final EdgeInsetsGeometry? progressBarPadding;
 
   ///Function invoked when tapping outside the notification
   ///Or when pressing the back button of the phone
