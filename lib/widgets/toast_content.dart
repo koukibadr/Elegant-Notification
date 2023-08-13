@@ -112,8 +112,8 @@ class ToastContent extends StatelessWidget {
                     : InkWell(
                         onTap: onActionPressed,
                         child: action!,
-                      )
-              ]
+                      ),
+              ],
             ],
           ),
         ),
@@ -134,9 +134,9 @@ class ToastContent extends StatelessWidget {
                           top: verticalComponentPadding,
                           right: horizontalComponentPadding,
                         ),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.close,
                         color: Colors.grey,
@@ -146,7 +146,7 @@ class ToastContent extends StatelessWidget {
                   ),
                 ),
               ),
-        )
+        ),
       ],
     );
   }
