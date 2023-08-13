@@ -35,6 +35,9 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = true,
     this.height,
     this.width,
+    this.progressBarHeight,
+    this.progressBarWidth,
+    this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
@@ -62,6 +65,9 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = true,
     this.height,
     this.width,
+    this.progressBarHeight,
+    this.progressBarWidth,
+    this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
@@ -91,6 +97,9 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = true,
     this.height,
     this.width,
+    this.progressBarHeight,
+    this.progressBarWidth,
+    this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
@@ -120,6 +129,9 @@ class ElegantNotification extends StatefulWidget {
     this.autoDismiss = true,
     this.height,
     this.width,
+    this.progressBarHeight,
+    this.progressBarWidth,
+    this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
   }) : super(key: key) {
@@ -319,6 +331,15 @@ class ElegantNotification extends StatefulWidget {
   ///the height of the notification widget
   final double? height;
 
+  ///progress bar indicator width, by default it's null so it takes the widget's width
+  final double? progressBarWidth;
+
+  ///progress bar indicator height, by default it's null so it takes the widget's height
+  final double? progressBarHeight;
+
+  ///progress bar indicator padding constraints
+  final EdgeInsetsGeometry? progressBarPadding;
+
   ///Function invoked when tapping outside the notification
   ///Or when pressing the back button of the phone
   ///or when tapping on the screen
@@ -502,10 +523,17 @@ class ElegantNotificationState extends State<ElegantNotification>
               ),
             ),
             if (widget.showProgressIndicator)
-              AnimatedProgressBar(
-                foregroundColor: widget.progressIndicatorColor,
-                duration: widget.toastDuration,
-                backgroundColor: widget.progressIndicatorBackground,
+              Padding(
+                padding: widget.progressBarPadding ?? const EdgeInsets.all(0),
+                child: SizedBox(
+                  width: widget.progressBarWidth,
+                  height: widget.progressBarHeight,
+                  child: AnimatedProgressBar(
+                    foregroundColor: widget.progressIndicatorColor,
+                    duration: widget.toastDuration,
+                    backgroundColor: widget.progressIndicatorBackground,
+                  ),
+                ),
               ),
           ],
         ),

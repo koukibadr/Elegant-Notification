@@ -306,6 +306,36 @@ class ExampleApp extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(
+                width: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  ElegantNotification.success(
+                    description: Text('Your account has been created succesfully'),
+                    progressBarHeight: 10,
+                    progressBarPadding: EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    progressIndicatorBackground: Colors.green[100]!,
+                  ).show(context);
+                },
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Custom progress bar sizes',
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ],
