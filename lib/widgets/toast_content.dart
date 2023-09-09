@@ -134,9 +134,9 @@ class ToastContent extends StatelessWidget {
                           top: verticalComponentPadding,
                           right: horizontalComponentPadding,
                         ),
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
+                    children: const [
                       Icon(
                         Icons.close,
                         color: Colors.grey,
