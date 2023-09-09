@@ -1,3 +1,7 @@
+## [1.11.1] - 09/09/2023
+
+* Fix const error in `toast_content.dart` file
+
 ## [1.11.0] - 13/08/2023
 
 * Add width, height and padding to progress indicator widget [#88](https://github.com/koukibadr/Elegant-Notification/issues/88)
