@@ -311,7 +311,7 @@ class ElegantNotification extends StatefulWidget {
   ///```
   ///default value `top`
   ///
-  final NotificationPosition notificationPosition;
+  final NotificationPosition notificationPosition; //TODO replace it with `Alignement` object
 
   ///Action widget rendered with clickable inkwell
   ///by default `action == null`

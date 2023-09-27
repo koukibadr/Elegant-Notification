@@ -37,7 +37,7 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.success(
                     width: 360,
-                    notificationPosition: NotificationPosition.topLeft,
+                    notificationPosition: NotificationPosition.topCenter,
                     animation: AnimationType.fromTop,
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
