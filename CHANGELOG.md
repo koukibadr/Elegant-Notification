@@ -1,3 +1,7 @@
+## [1.11.2] - 27/09/2023
+
+* Update package license to MIT license
+
 ## [1.11.1] - 09/09/2023
 
 * Fix const error in `toast_content.dart` file
