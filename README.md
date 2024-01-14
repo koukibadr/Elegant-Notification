@@ -38,7 +38,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.11.2
+	elegant_notification: ^1.12.0
 ```
 
 ## Parameters
@@ -136,18 +136,8 @@ dependencies:
   ///
   final Function()? onProgressFinished;
 
-  ///The type of the align set on the notification
-  ///possible values
-  ///```dart
-  ///{
-  ///top,
-  ///center,
-  ///bottom
-  ///}
-  ///```
-  ///default value `top`
-  ///
-  final NotificationPosition notificationPosition;
+
+  final Alignment position;
 
   ///Action widget rendered with clickable inkwell
   ///by default `action == null`
@@ -204,6 +194,11 @@ If you are using `dismissable` attribute in the 1.5.1 version the notification p
 Enum names has been changed:
 `NOTIFICATION_POSITION` is now `NotificationPostion`
 `ANIMATION` is now `AnimationType`
+
+
+## Migration to 1.12.0
+
+**`notificationPosition` will no longer set the alert position instead use `position` with `Alignment` type**
 
 ## Examples
 
