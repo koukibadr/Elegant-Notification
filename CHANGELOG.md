@@ -1,3 +1,7 @@
+## [1.12.0] - 14/01/2024
+
+* Replace `notificationPosition` with `position` with `Alignment` type instead of `NotificationPosition`
+
 ## [1.11.2] - 27/09/2023
 
 * Update package license to MIT license
