@@ -304,7 +304,7 @@ class ElegantNotification extends StatefulWidget {
   ///```
   late NotificationType notificationType;
 
-  @Deprecated("`notificationPosition` is depreacted use `position` instead")
+  @Deprecated('`notificationPosition` is depreacted use `position` instead')
   final NotificationPosition notificationPosition;
   final Alignment position;
 
