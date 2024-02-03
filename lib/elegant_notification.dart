@@ -41,6 +41,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.onTap,
+    this.closeOnTap = false,
   }) : super(key: key) {
     notificationType = NotificationType.custom;
     checkAssertions();
@@ -72,6 +74,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.onTap,
+    this.closeOnTap = false,
   }) : super(key: key) {
     notificationType = NotificationType.success;
     progressIndicatorColor = notificationType.color();
@@ -105,6 +109,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.onTap,
+    this.closeOnTap = false,
   }) : super(key: key) {
     notificationType = NotificationType.error;
     progressIndicatorColor = notificationType.color();
@@ -138,6 +144,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.onTap,
+    this.closeOnTap = false,
   }) : super(key: key) {
     notificationType = NotificationType.info;
     progressIndicatorColor = notificationType.color();
@@ -152,6 +160,12 @@ class ElegantNotification extends StatefulWidget {
     }
     if (action != null) {
       assert(onActionPressed != null);
+    }
+    if (onTap != null) {
+      assert(
+        action == null && onActionPressed == null,
+        'You can not set both an action and an onTap method',
+      );
     }
 
     if (position == Alignment.centerRight) {
@@ -286,11 +300,18 @@ class ElegantNotification extends StatefulWidget {
   final Widget Function(void Function() dismissNotification)? closeButton;
 
   ///Function invoked when user press on the close button
-  final Function()? onCloseButtonPressed;
+  final void Function()? onCloseButtonPressed;
 
   ///Function invoked when the notification is closed after the finish of the progress indicator
   ///
-  final Function()? onProgressFinished;
+  final void Function()? onProgressFinished;
+
+  ///Function invoked when the user taps on the notification
+  final void Function()? onTap;
+
+  ///Whether to close the notification when the tap on an action or on the
+  ///notification itself
+  final bool closeOnTap;
 
   ///The type of the notification, will be set automatically on every constructor
   ///possible values
@@ -474,63 +495,83 @@ class ElegantNotificationState extends State<ElegantNotification>
     );
   }
 
+  void closeNotification() {
+    widget.onCloseButtonPressed?.call();
+    closeTimer.cancel();
+    slideController.reverse();
+    widget.onDismiss?.call();
+    widget.closeOverlay();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SlideTransition(
       position: offsetAnimation,
-      child: Container(
-        width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
-        height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(widget.radius),
-          color: widget.background,
-          boxShadow: widget.enableShadow
-              ? [
-                  BoxShadow(
-                    color: widget.shadowColor.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                    offset: const Offset(0, 1), // changes position of shadow
-                  ),
-                ]
-              : null,
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              child: ToastContent(
-                title: widget.title,
-                description: widget.description,
-                notificationType: widget.notificationType,
-                icon: widget.icon,
-                displayCloseButton: widget.displayCloseButton,
-                closeButton: widget.closeButton,
-                onCloseButtonPressed: () {
-                  widget.onCloseButtonPressed?.call();
-                  closeTimer.cancel();
-                  slideController.reverse();
-                  widget.onDismiss?.call();
-                  widget.closeOverlay();
-                },
-                iconSize: widget.iconSize,
-                action: widget.action,
-                onActionPressed: widget.onActionPressed,
-              ),
-            ),
-            if (widget.showProgressIndicator)
-              Padding(
-                padding: widget.progressBarPadding ?? const EdgeInsets.all(0),
-                child: SizedBox(
-                  width: widget.progressBarWidth,
-                  height: widget.progressBarHeight,
-                  child: AnimatedProgressBar(
-                    foregroundColor: widget.progressIndicatorColor,
-                    duration: widget.toastDuration,
-                    backgroundColor: widget.progressIndicatorBackground,
-                  ),
+      child: InkWell(
+        onTap: widget.onTap == null
+            ? null
+            : () {
+                widget.onTap!();
+                if (widget.closeOnTap) {
+                  closeNotification();
+                }
+              },
+        child: Container(
+          width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
+          height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(widget.radius),
+            color: widget.background,
+            boxShadow: widget.enableShadow
+                ? [
+                    BoxShadow(
+                      color: widget.shadowColor.withOpacity(0.2),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 1), // changes position of shadow
+                    ),
+                  ]
+                : null,
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                child: ToastContent(
+                  title: widget.title,
+                  description: widget.description,
+                  notificationType: widget.notificationType,
+                  icon: widget.icon,
+                  displayCloseButton:
+                      widget.onTap == null ? widget.displayCloseButton : false,
+                  closeButton: widget.closeButton,
+                  onCloseButtonPressed: closeNotification,
+                  iconSize: widget.iconSize,
+                  action: widget.action,
+                  onActionPressed: widget.onActionPressed == null
+                      ? null
+                      : () {
+                          widget.onActionPressed!();
+                          if (widget.closeOnTap) {
+                            closeNotification();
+                          }
+                        },
                 ),
               ),
-          ],
+              if (widget.showProgressIndicator)
+                Padding(
+                  padding: widget.progressBarPadding ?? const EdgeInsets.all(0),
+                  child: SizedBox(
+                    width: widget.progressBarWidth,
+                    height: widget.progressBarHeight,
+                    child: AnimatedProgressBar(
+                      foregroundColor: widget.progressIndicatorColor,
+                      duration: widget.toastDuration,
+                      backgroundColor: widget.progressIndicatorBackground,
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
