@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: ExampleApp(),
+        body: SafeArea(
+          bottom: false,
+          child: ExampleApp(),
+        ),
       ),
     );
   }
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
 class ExampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -312,8 +315,7 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.success(
-                    description:
-                        Text('Your account has been created succesfully'),
+                    description: Text('Your account has been created succesfully'),
                     progressBarHeight: 10,
                     progressBarPadding: EdgeInsets.symmetric(
                       horizontal: 20,
@@ -330,6 +332,98 @@ class ExampleApp extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'Custom progress bar sizes',
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  ElegantNotification(
+                    width: 360,
+                    position: Alignment.topRight,
+                    animation: AnimationType.fromRight,
+                    onTap: () {},
+                    description: Text(
+                      'You can tap anywhere on the notification.',
+                    ),
+                    icon: Icon(
+                      Icons.touch_app,
+                      color: Colors.blue,
+                    ),
+                    showProgressIndicator: false,
+                    autoDismiss: false,
+                    displayCloseButton: false,
+                    onDismiss: () {},
+                  ).show(context);
+                },
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Notification with on Tap',
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  ElegantNotification(
+                    width: 360,
+                    position: Alignment.topRight,
+                    animation: AnimationType.fromRight,
+                    onTap: () {},
+                    dismissOnTap: false,
+                    description: Text(
+                      'Tappable notification can also have actions and close buttons!',
+                    ),
+                    icon: Icon(
+                      Icons.touch_app_outlined,
+                      color: Colors.blue,
+                    ),
+                    action: Text(
+                      'Link',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    onActionPressed: () {},
+                    progressIndicatorColor: Colors.purple,
+                    showProgressIndicator: false,
+                    autoDismiss: false,
+                    onDismiss: () {},
+                  ).show(context);
+                },
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.blue,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Notification with on Tap and Actions',
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),

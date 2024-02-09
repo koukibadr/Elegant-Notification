@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
@@ -41,6 +42,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.onTap,
+    this.dismissOnTap = true,
   }) : super(key: key) {
     notificationType = NotificationType.custom;
     checkAssertions();
@@ -72,6 +75,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.onTap,
+    this.dismissOnTap = true,
   }) : super(key: key) {
     notificationType = NotificationType.success;
     progressIndicatorColor = notificationType.color();
@@ -105,6 +110,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.onTap,
+    this.dismissOnTap = true,
   }) : super(key: key) {
     notificationType = NotificationType.error;
     progressIndicatorColor = notificationType.color();
@@ -138,6 +145,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarPadding,
     this.onDismiss,
     this.progressIndicatorBackground = greyColor,
+    this.onTap,
+    this.dismissOnTap = true,
   }) : super(key: key) {
     notificationType = NotificationType.info;
     progressIndicatorColor = notificationType.color();
@@ -174,13 +183,11 @@ class ElegantNotification extends StatefulWidget {
       );
     } else if (position == Alignment.topRight) {
       assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromBottom,
+        animation != AnimationType.fromLeft && animation != AnimationType.fromBottom,
       );
     } else if (position == Alignment.topLeft) {
       assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromBottom,
+        animation != AnimationType.fromRight && animation != AnimationType.fromBottom,
       );
     } else if (position == Alignment.bottomCenter) {
       assert(
@@ -190,13 +197,11 @@ class ElegantNotification extends StatefulWidget {
       );
     } else if (position == Alignment.bottomRight) {
       assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromTop,
+        animation != AnimationType.fromLeft && animation != AnimationType.fromTop,
       );
     } else if (position == Alignment.bottomLeft) {
       assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromTop,
+        animation != AnimationType.fromRight && animation != AnimationType.fromTop,
       );
     }
   }
@@ -315,6 +320,13 @@ class ElegantNotification extends StatefulWidget {
   ///Function invoked when pressing `action` widget
   ///must be not null when `action != null`
   final Function()? onActionPressed;
+
+  ///Function invoked when tapping on the notification material widget.
+  final Function()? onTap;
+
+  ///Define whether the notification will be dismissed when the [onTap] function is called.
+  ///by default `dismissOnTap == true`
+  final bool dismissOnTap;
 
   ///define whether the notification will be dismissed automatically or not
   ///by default `autoDimiss == false`
@@ -478,59 +490,63 @@ class ElegantNotificationState extends State<ElegantNotification>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: offsetAnimation,
-      child: Container(
-        width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
-        height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(widget.radius),
-          color: widget.background,
-          boxShadow: widget.enableShadow
-              ? [
-                  BoxShadow(
-                    color: widget.shadowColor.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                    offset: const Offset(0, 1), // changes position of shadow
-                  ),
-                ]
-              : null,
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              child: ToastContent(
-                title: widget.title,
-                description: widget.description,
-                notificationType: widget.notificationType,
-                icon: widget.icon,
-                displayCloseButton: widget.displayCloseButton,
-                closeButton: widget.closeButton,
-                onCloseButtonPressed: () {
-                  widget.onCloseButtonPressed?.call();
-                  closeTimer.cancel();
-                  slideController.reverse();
-                  widget.onDismiss?.call();
-                  widget.closeOverlay();
+      child: Material(
+        color: widget.background,
+        child: InkWell(
+          onTap: widget.onTap == null
+              ? null
+              : () {
+                  widget.onTap?.call();
+                  if (widget.dismissOnTap) {
+                    closeTimer.cancel();
+                    widget.onDismiss?.call();
+                    slideController.reverse().then((value) => widget.closeOverlay());
+                  }
                 },
-                iconSize: widget.iconSize,
-                action: widget.action,
-                onActionPressed: widget.onActionPressed,
-              ),
+          child: Container(
+            width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
+            height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(widget.radius),
             ),
-            if (widget.showProgressIndicator)
-              Padding(
-                padding: widget.progressBarPadding ?? const EdgeInsets.all(0),
-                child: SizedBox(
-                  width: widget.progressBarWidth,
-                  height: widget.progressBarHeight,
-                  child: AnimatedProgressBar(
-                    foregroundColor: widget.progressIndicatorColor,
-                    duration: widget.toastDuration,
-                    backgroundColor: widget.progressIndicatorBackground,
+            child: Column(
+              children: [
+                Expanded(
+                  child: ToastContent(
+                    title: widget.title,
+                    description: widget.description,
+                    notificationType: widget.notificationType,
+                    icon: widget.icon,
+                    displayCloseButton: widget.displayCloseButton,
+                    closeButton: widget.closeButton,
+                    onCloseButtonPressed: () {
+                      widget.onCloseButtonPressed?.call();
+                      closeTimer.cancel();
+                      slideController.reverse();
+                      widget.onDismiss?.call();
+                      widget.closeOverlay();
+                    },
+                    iconSize: widget.iconSize,
+                    action: widget.action,
+                    onActionPressed: widget.onActionPressed,
                   ),
                 ),
-              ),
-          ],
+                if (widget.showProgressIndicator)
+                  Padding(
+                    padding: widget.progressBarPadding ?? const EdgeInsets.all(0),
+                    child: SizedBox(
+                      width: widget.progressBarWidth,
+                      height: widget.progressBarHeight,
+                      child: AnimatedProgressBar(
+                        foregroundColor: widget.progressIndicatorColor,
+                        duration: widget.toastDuration,
+                        backgroundColor: widget.progressIndicatorBackground,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
         ),
       ),
     );
