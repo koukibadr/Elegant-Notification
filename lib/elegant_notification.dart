@@ -420,16 +420,18 @@ class ElegantNotification extends StatefulWidget {
             contentPadding: const EdgeInsets.all(0),
             insetPadding: const EdgeInsets.all(30),
             elevation: 0,
-            content: Dismissible(
-              key: dismissibleKey,
-              direction: dismissDirection,
-              onDismissed: (direction) {
-                _closeTimer.cancel();
-                onDismiss?.call();
-                closeOverlay();
-              },
-              child: this,
-            ),
+            content: isDismissible
+                ? Dismissible(
+                    key: dismissibleKey,
+                    direction: dismissDirection,
+                    onDismissed: (direction) {
+                      _closeTimer.cancel();
+                      onDismiss?.call();
+                      closeOverlay();
+                    },
+                    child: this,
+                  )
+                : this,
           ),
         );
       },
