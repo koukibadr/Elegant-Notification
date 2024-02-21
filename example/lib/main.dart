@@ -41,7 +41,13 @@ class ExampleApp extends StatelessWidget {
                     animation: AnimationType.fromTop,
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
-                    onDismiss: () {},
+                    onDismiss: () {
+                      print('Message when the notification is dismissed');
+                    },
+                    onTap: () {
+                      print('Message when the notification is pressed');
+                    },
+                    closeOnTap: true,
                   ).show(context);
                 },
                 child: Container(
