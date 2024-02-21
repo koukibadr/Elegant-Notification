@@ -29,6 +29,8 @@ class ElegantNotification extends StatefulWidget {
     this.notificationPosition = NotificationPosition.topRight,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
+    this.dismissDirection = DismissDirection.horizontal,
+    this.isDismissible = true,
     this.animationDuration = const Duration(milliseconds: 600),
     this.iconSize = defaultIconSize,
     this.action,
@@ -62,6 +64,8 @@ class ElegantNotification extends StatefulWidget {
     this.notificationPosition = NotificationPosition.topRight,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
+    this.dismissDirection = DismissDirection.horizontal,
+    this.isDismissible = true,
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
@@ -97,6 +101,8 @@ class ElegantNotification extends StatefulWidget {
     this.notificationPosition = NotificationPosition.topRight,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
+    this.dismissDirection = DismissDirection.horizontal,
+    this.isDismissible = true,
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
@@ -132,6 +138,8 @@ class ElegantNotification extends StatefulWidget {
     this.notificationPosition = NotificationPosition.topRight,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
+    this.dismissDirection = DismissDirection.horizontal,
+    this.isDismissible = true,
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
@@ -329,6 +337,14 @@ class ElegantNotification extends StatefulWidget {
   final NotificationPosition notificationPosition;
   final Alignment position;
 
+  ///define whether the notification will be dismissible or not
+  ///by default `isDismissible == true`
+  final bool isDismissible;
+
+  ///The direction of the dismiss action
+  ///by default `dismissDirection == DismissDirection.horizontal`
+  final DismissDirection dismissDirection;
+
   ///Action widget rendered with clickable inkwell
   ///by default `action == null`
   final Widget? action;
@@ -393,6 +409,7 @@ class ElegantNotification extends StatefulWidget {
   late AnimationController _slideController;
 
   OverlayEntry _overlayEntryBuilder() {
+    final dismissibleKey = UniqueKey();
     return OverlayEntry(
       opaque: false,
       builder: (context) {
@@ -403,7 +420,16 @@ class ElegantNotification extends StatefulWidget {
             contentPadding: const EdgeInsets.all(0),
             insetPadding: const EdgeInsets.all(30),
             elevation: 0,
-            content: this,
+            content: Dismissible(
+              key: dismissibleKey,
+              direction: dismissDirection,
+              onDismissed: (direction) {
+                _closeTimer.cancel();
+                onDismiss?.call();
+                closeOverlay();
+              },
+              child: this,
+            ),
           ),
         );
       },
