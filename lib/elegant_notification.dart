@@ -364,9 +364,6 @@ class ElegantNotification extends StatefulWidget {
   ///by default it's grey
   final Color progressIndicatorBackground;
 
-  //Overlay that does not block the screen
-  OverlayEntry? overlayEntry;
-
   late Timer _closeTimer;
   late Animation<Offset> _offsetAnimation;
   late AnimationController _slideController;
