@@ -28,6 +28,8 @@ class ElegantNotification extends StatefulWidget {
     this.onProgressFinished,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
+    this.dismissDirection = DismissDirection.horizontal,
+    this.isDismissible = true,
     this.animationDuration = const Duration(milliseconds: 600),
     this.iconSize = defaultIconSize,
     this.action,
@@ -61,6 +63,8 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
+    this.dismissDirection = DismissDirection.horizontal,
+    this.isDismissible = true,
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
@@ -96,6 +100,8 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
+    this.dismissDirection = DismissDirection.horizontal,
+    this.isDismissible = true,
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
@@ -131,6 +137,8 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
+    this.dismissDirection = DismissDirection.horizontal,
+    this.isDismissible = true,
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
@@ -324,6 +332,14 @@ class ElegantNotification extends StatefulWidget {
   ///The notification position in the screen
   ///by default the position is set to `Alignment.topRight`
   final Alignment position;
+
+  ///define whether the notification will be dismissible or not
+  ///by default `isDismissible == true`
+  final bool isDismissible;
+
+  ///The direction of the dismiss action
+  ///by default `dismissDirection == DismissDirection.horizontal`
+  final DismissDirection dismissDirection;
 
   ///Action widget rendered with clickable inkwell
   ///by default `action == null`
