@@ -384,6 +384,10 @@ class ElegantNotification extends StatefulWidget {
   ///by default it's grey
   final Color progressIndicatorBackground;
 
+  late Timer _closeTimer;
+  late Animation<Offset> _offsetAnimation;
+  late AnimationController _slideController;
+
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
@@ -403,10 +407,6 @@ class ElegantNotification extends StatefulWidget {
       closeOverlay();
     });
   }
-
-  late Timer _closeTimer;
-  late Animation<Offset> _offsetAnimation;
-  late AnimationController _slideController;
 
   OverlayEntry _overlayEntryBuilder() {
     final dismissibleKey = UniqueKey();
