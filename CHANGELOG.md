@@ -1,3 +1,11 @@
+## [1.13.0] - 21/01/2024
+
+* `notificationPosition` and `NotificationPosition` are removed completly from the notification package
+* **Enhancement:**
+* `onTap` added to the package class, a callback that will be invoked when the notification is tapped [PR](https://github.com/koukibadr/Elegant-Notification/pull/105)
+* `closeOnTap` added to indicate if the notification will be dismissed or not when the notification is pressed [PR](https://github.com/koukibadr/Elegant-Notification/pull/105)
+
+
 ## [1.12.0] - 14/01/2024
 
 * Replace `notificationPosition` with `position` with `Alignment` type instead of `NotificationPosition`

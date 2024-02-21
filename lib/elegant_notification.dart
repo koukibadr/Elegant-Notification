@@ -26,7 +26,6 @@ class ElegantNotification extends StatefulWidget {
     this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
-    this.notificationPosition = NotificationPosition.topRight,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -59,7 +58,6 @@ class ElegantNotification extends StatefulWidget {
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = defaultIconSize,
-    this.notificationPosition = NotificationPosition.topRight,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -94,7 +92,6 @@ class ElegantNotification extends StatefulWidget {
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = defaultIconSize,
-    this.notificationPosition = NotificationPosition.topRight,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -129,7 +126,6 @@ class ElegantNotification extends StatefulWidget {
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = defaultIconSize,
-    this.notificationPosition = NotificationPosition.topRight,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -325,8 +321,8 @@ class ElegantNotification extends StatefulWidget {
   ///```
   late NotificationType notificationType;
 
-  @Deprecated('`notificationPosition` is depreacted use `position` instead')
-  final NotificationPosition notificationPosition;
+  ///The notification position in the screen
+  ///by default the position is set to `Alignment.topRight`
   final Alignment position;
 
   ///Action widget rendered with clickable inkwell

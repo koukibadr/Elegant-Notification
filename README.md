@@ -38,7 +38,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.12.0
+	elegant_notification: ^1.13.0
 ```
 
 ## Parameters
@@ -135,8 +135,9 @@ dependencies:
   ///Function invoked when the notification is closed after the finish of the progress indicator
   ///
   final Function()? onProgressFinished;
-
-
+  
+  ///The notification position in the screen
+  ///by default the position is set to `Alignment.topRight`
   final Alignment position;
 
   ///Action widget rendered with clickable inkwell
@@ -174,6 +175,13 @@ dependencies:
   ///The progress indicator background color
   ///by default it's grey
   final Color progressIndicatorBackground;
+
+  ///Function invoked when the user taps on the notification
+  final void Function()? onTap;
+
+  ///Whether to close the notification when the tap on an action or on the
+  ///notification itself
+  final bool closeOnTap;
 ````
 
 ## Migration to 1.1.0
@@ -207,7 +215,14 @@ Enum names has been changed:
 ```dart
 ElegantNotification.success(
 	title:  Text("Update"),
-	description:  Text("Your data has been updated")
+	description:  Text("Your data has been updated"),
+  onDismiss: () {
+      print('Message when the notification is dismissed');
+  },
+  onTap: () {
+      print('Message when the notification is pressed');
+  },
+  closeOnTap: true,
 ).show(context);
 
 ```
