@@ -40,6 +40,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
+    this.isDismissible = true,
+    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onTap,
     this.closeOnTap = false,
@@ -73,6 +75,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
+    this.isDismissible = true,
+    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onTap,
     this.closeOnTap = false,
@@ -108,6 +112,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
+    this.isDismissible = true,
+    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onTap,
     this.closeOnTap = false,
@@ -143,6 +149,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
+    this.isDismissible = true,
+    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onTap,
     this.closeOnTap = false,
@@ -361,6 +369,14 @@ class ElegantNotification extends StatefulWidget {
   ///or when tapping on the screen
   final Function()? onDismiss;
 
+  ///The direction of the dismissible widget
+  ///by default it's `DismissDirection.horizontal`
+  final DismissDirection dismissDirection;
+
+  ///If the notification is dismissible or not
+  ///by default it's true
+  final bool isDismissible;
+
   //Overlay that does not block the screen
   OverlayEntry? overlayEntry;
 
@@ -393,6 +409,7 @@ class ElegantNotification extends StatefulWidget {
   late AnimationController _slideController;
 
   OverlayEntry _overlayEntryBuilder() {
+    final dismissibleKey = UniqueKey();
     return OverlayEntry(
       opaque: false,
       builder: (context) {
@@ -403,7 +420,18 @@ class ElegantNotification extends StatefulWidget {
             contentPadding: const EdgeInsets.all(0),
             insetPadding: const EdgeInsets.all(30),
             elevation: 0,
-            content: this,
+            content: isDismissible
+                ? Dismissible(
+                    key: dismissibleKey,
+                    direction: dismissDirection,
+                    onDismissed: (direction) {
+                      _closeTimer.cancel();
+                      onDismiss?.call();
+                      closeOverlay();
+                    },
+                    child: this,
+                  )
+                : this,
           ),
         );
       },
