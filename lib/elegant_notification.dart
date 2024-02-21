@@ -380,6 +380,18 @@ class ElegantNotification extends StatefulWidget {
     overlayEntry = null;
   }
 
+  Future<void> dismiss() {
+    _closeTimer.cancel();
+    return _slideController.reverse().then((value) {
+      onDismiss?.call();
+      closeOverlay();
+    });
+  }
+
+  late Timer _closeTimer;
+  late Animation<Offset> _offsetAnimation;
+  late AnimationController _slideController;
+
   OverlayEntry _overlayEntryBuilder() {
     return OverlayEntry(
       opaque: false,
@@ -404,76 +416,71 @@ class ElegantNotification extends StatefulWidget {
 
 class ElegantNotificationState extends State<ElegantNotification>
     with SingleTickerProviderStateMixin {
-  late Timer closeTimer;
-  late Animation<Offset> offsetAnimation;
-  late AnimationController slideController;
-
   @override
   void initState() {
     super.initState();
-
-    closeTimer = Timer(widget.toastDuration, () {
-      slideController.reverse();
-      slideController.addListener(() {
-        if (slideController.isDismissed) {
+    widget._closeTimer = Timer(widget.toastDuration, () {
+      widget._slideController.reverse();
+      widget._slideController.addListener(() {
+        if (widget._slideController.isDismissed) {
           widget.onProgressFinished?.call();
           widget.closeOverlay();
         }
       });
     });
     if (!widget.autoDismiss) {
-      closeTimer.cancel();
+      widget._closeTimer.cancel();
     }
     _initializeAnimation();
   }
 
   void _initializeAnimation() {
-    slideController = AnimationController(
+    widget._slideController = AnimationController(
       duration: widget.animationDuration,
       vsync: this,
     );
 
     switch (widget.animation) {
       case AnimationType.fromLeft:
-        offsetAnimation = Tween<Offset>(
+        widget._offsetAnimation = Tween<Offset>(
           begin: const Offset(-2, 0),
           end: const Offset(0, 0),
         ).animate(
           CurvedAnimation(
-            parent: slideController,
+            parent: widget._slideController,
             curve: Curves.ease,
           ),
         );
         break;
       case AnimationType.fromRight:
-        offsetAnimation = Tween<Offset>(
+        widget._offsetAnimation = Tween<Offset>(
           begin: const Offset(2, 0),
           end: const Offset(0, 0),
         ).animate(
           CurvedAnimation(
-            parent: slideController,
+            parent: widget._slideController,
             curve: Curves.ease,
           ),
         );
         break;
       case AnimationType.fromTop:
-        offsetAnimation = Tween<Offset>(
+        widget._offsetAnimation = Tween<Offset>(
           begin: const Offset(0, -7),
           end: const Offset(0, 0),
         ).animate(
           CurvedAnimation(
-            parent: slideController,
+            parent: widget._slideController,
             curve: Curves.ease,
           ),
         );
         break;
       case AnimationType.fromBottom:
-        offsetAnimation = Tween<Offset>(
+        widget._offsetAnimation = Tween<Offset>(
           begin: const Offset(0, 4),
           end: const Offset(0, 0),
         ).animate(
           CurvedAnimation(
-            parent: slideController,
+            parent: widget._slideController,
             curve: Curves.ease,
           ),
         );
@@ -491,8 +498,16 @@ class ElegantNotificationState extends State<ElegantNotification>
     T? ambiguate<T>(T? value) => value;
 
     ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
-      (_) => slideController.forward(),
+      (_) => widget._slideController.forward(),
     );
+  }
+
+  void closeNotification() {
+    widget.onCloseButtonPressed?.call();
+    closeTimer.cancel();
+    slideController.reverse();
+    widget.onDismiss?.call();
+    widget.closeOverlay();
   }
 
   void closeNotification() {
@@ -579,8 +594,8 @@ class ElegantNotificationState extends State<ElegantNotification>
 
   @override
   void dispose() {
-    slideController.dispose();
-    closeTimer.cancel();
+    widget._slideController.dispose();
+    widget._closeTimer.cancel();
     super.dispose();
   }
 }
