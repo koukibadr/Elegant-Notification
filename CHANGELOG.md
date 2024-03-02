@@ -1,3 +1,8 @@
+## [1.13.1] - 02/03/2024
+
+* Update lint rules to avoid `Dangling library doc comment` analysis error
+
+
 ## [1.13.0] - 21/01/2024
 
 * `notificationPosition` and `NotificationPosition` are removed completly from the notification package

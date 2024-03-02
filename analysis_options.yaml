@@ -17,6 +17,7 @@ linter:
      prefer_single_quotes: true
      always_declare_return_types: true
      require_trailing_commas: true
+     dangling_library_doc_comments: false
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
