@@ -44,8 +44,6 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
-    this.isDismissible = true,
-    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
   }) : super(key: key) {
@@ -79,8 +77,6 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
-    this.isDismissible = true,
-    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
   }) : super(key: key) {
@@ -116,8 +112,6 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
-    this.isDismissible = true,
-    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
   }) : super(key: key) {
@@ -153,8 +147,6 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
-    this.isDismissible = true,
-    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
   }) : super(key: key) {
