@@ -44,10 +44,10 @@ class ExampleApp extends StatelessWidget {
                     onDismiss: () {
                       print('Message when the notification is dismissed');
                     },
-                    onTap: () {
+                    onNotificationPressed: () {
                       print('Message when the notification is pressed');
                     },
-                    closeOnTap: true,
+                    isDismissible: true,
                   ).show(context);
                 },
                 child: Container(

@@ -1,3 +1,11 @@
+## [1.14.0] - 10/03/2024
+
+* **Enhancements:**
+* Removal of `closeOnTap` attribute and replace it with `isDismissible` with `dismissDirection` attributes [PR Link](https://github.com/koukibadr/Elegant-Notification/pull/109)
+* Rename `onTap` attribute to `onNotificationPressed`
+* Add `dismissDirection` to customize the direction where the notification can be dismissed
+
+
 ## [1.13.1] - 02/03/2024
 
 * Update lint rules to avoid `Dangling library doc comment` analysis error

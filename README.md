@@ -13,14 +13,15 @@
 
 ## Features
 
-- Display a top notification with animation
-- Built-in themes (Success, Error, Info)
+- **Display a top notification with animation**
+- **Built-in themes (Success, Error, Info)**
 - Different display animations (fromTop, fromBottom, fromLeft, fromRight)
 - Support for all display alignment positions
   (TopLeft, TopCenter, TopRight, CenterLeft, Center, CenterRight, BottomLeft, BottomCenter, BottomRight)
 - Support custom theme implementation
-- onClose and onProgressFinished callback handlers
+- on close and on progress finished callback handlers
 - Animated progress bar indicator
+- Customizable dismiss direction
 - Background customization
 - Animation duration customization
 - Notification position customization
@@ -38,14 +39,14 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.13.1
+	elegant_notification: ^1.14.0
 ```
 
 ## Parameters
 
 ````dart
 
-///The toast title widget
+  ///The toast title widget
   final Widget? title;
 
   ///The toast description widget
@@ -56,9 +57,9 @@ dependencies:
   ///
   late Widget? icon;
 
-  ///The size of the icon, by default it's 40px
+  ///The size of the icon, by default it's 20px
   ///
-  late double iconSize;
+  final double iconSize;
 
   ///The type of the animation set on the notification
   ///possible values
@@ -130,12 +131,27 @@ dependencies:
   final Widget Function(void Function() dismissNotification)? closeButton;
 
   ///Function invoked when user press on the close button
-  final Function()? onCloseButtonPressed;
+  final void Function()? onCloseButtonPressed;
 
   ///Function invoked when the notification is closed after the finish of the progress indicator
   ///
-  final Function()? onProgressFinished;
-  
+  final void Function()? onProgressFinished;
+
+  ///Function invoked when the user taps on the notification
+  final void Function()? onNotificationPressed;
+
+  ///The type of the notification, will be set automatically on every constructor
+  ///possible values
+  ///```dart
+  ///{
+  ///success,
+  ///error,
+  ///info,
+  ///custom
+  ///}
+  ///```
+  late NotificationType notificationType;
+
   ///The notification position in the screen
   ///by default the position is set to `Alignment.topRight`
   final Alignment position;
@@ -172,16 +188,17 @@ dependencies:
   ///or when tapping on the screen
   final Function()? onDismiss;
 
+  ///The direction of the dismissible widget
+  ///by default it's `DismissDirection.horizontal`
+  final DismissDirection dismissDirection;
+
+  ///If the notification is dismissible or not
+  ///by default it's true
+  final bool isDismissible;
+
   ///The progress indicator background color
   ///by default it's grey
   final Color progressIndicatorBackground;
-
-  ///Function invoked when the user taps on the notification
-  final void Function()? onTap;
-
-  ///Whether to close the notification when the tap on an action or on the
-  ///notification itself
-  final bool closeOnTap;
 ````
 
 ## Migration to 1.1.0
@@ -207,6 +224,13 @@ Enum names has been changed:
 ## Migration to 1.12.0
 
 **`notificationPosition` will no longer set the alert position instead use `position` with `Alignment` type**
+
+
+
+## Migration from 1.13.1 to 1.14.0
+
+- `onTap` is `onNotificationPressed` now
+- `closeOnTap` is removed and replaced with `isDismissble` and `dismissDirection` attributes
 
 ## Examples
 
@@ -305,6 +329,27 @@ ElegantNotification.info(
 		print('Link pressed');
 	},
 ).show(context);
+```
+
+- Using `dismissDirection` attribute
+
+```dart
+ElegantNotification.success(
+  width: 360,
+  position: Alignment.topCenter,
+  animation: AnimationType.fromTop,
+  title: Text('Update'),
+  description: Text('Your data has been updated'),
+  onDismiss: () {
+    print('Message when the notification is dismissed');
+  },
+  onNotificationPressed: () {
+    print('Message when the notification is pressed');
+  },
+  isDismissible: true,
+  dismissDirection: DismissDirection.up,
+).show(context);
+
 ```
 
 ## Contribution

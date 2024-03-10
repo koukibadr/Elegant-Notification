@@ -42,8 +42,7 @@ class ElegantNotification extends StatefulWidget {
     this.isDismissible = true,
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
-    this.onTap,
-    this.closeOnTap = false,
+    this.onNotificationPressed,
   }) : super(key: key) {
     notificationType = NotificationType.custom;
     checkAssertions();
@@ -76,8 +75,7 @@ class ElegantNotification extends StatefulWidget {
     this.isDismissible = true,
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
-    this.onTap,
-    this.closeOnTap = false,
+    this.onNotificationPressed,
   }) : super(key: key) {
     notificationType = NotificationType.success;
     progressIndicatorColor = notificationType.color();
@@ -112,8 +110,7 @@ class ElegantNotification extends StatefulWidget {
     this.isDismissible = true,
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
-    this.onTap,
-    this.closeOnTap = false,
+    this.onNotificationPressed,
   }) : super(key: key) {
     notificationType = NotificationType.error;
     progressIndicatorColor = notificationType.color();
@@ -148,8 +145,7 @@ class ElegantNotification extends StatefulWidget {
     this.isDismissible = true,
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
-    this.onTap,
-    this.closeOnTap = false,
+    this.onNotificationPressed,
   }) : super(key: key) {
     notificationType = NotificationType.info;
     progressIndicatorColor = notificationType.color();
@@ -165,7 +161,7 @@ class ElegantNotification extends StatefulWidget {
     if (action != null) {
       assert(onActionPressed != null);
     }
-    if (onTap != null) {
+    if (onNotificationPressed != null) {
       assert(
         action == null && onActionPressed == null,
         'You can not set both an action and an onTap method',
@@ -311,11 +307,7 @@ class ElegantNotification extends StatefulWidget {
   final void Function()? onProgressFinished;
 
   ///Function invoked when the user taps on the notification
-  final void Function()? onTap;
-
-  ///Whether to close the notification when the tap on an action or on the
-  ///notification itself
-  final bool closeOnTap;
+  final void Function()? onNotificationPressed;
 
   ///The type of the notification, will be set automatically on every constructor
   ///possible values
@@ -373,12 +365,12 @@ class ElegantNotification extends StatefulWidget {
   ///by default it's true
   final bool isDismissible;
 
-  //Overlay that does not block the screen
-  OverlayEntry? overlayEntry;
-
   ///The progress indicator background color
   ///by default it's grey
   final Color progressIndicatorBackground;
+
+  //Overlay that does not block the screen
+  OverlayEntry? overlayEntry;
 
   late Timer _closeTimer;
   late Animation<Offset> _offsetAnimation;
@@ -539,14 +531,7 @@ class ElegantNotificationState extends State<ElegantNotification>
     return SlideTransition(
       position: widget._offsetAnimation,
       child: InkWell(
-        onTap: widget.onTap == null
-            ? null
-            : () {
-                widget.onTap!();
-                if (widget.closeOnTap) {
-                  closeNotification();
-                }
-              },
+        onTap: widget.onNotificationPressed,
         child: Container(
           width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
           height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
@@ -573,7 +558,7 @@ class ElegantNotificationState extends State<ElegantNotification>
                   notificationType: widget.notificationType,
                   icon: widget.icon,
                   displayCloseButton:
-                      widget.onTap == null ? widget.displayCloseButton : false,
+                      widget.onNotificationPressed == null ? widget.displayCloseButton : false,
                   closeButton: widget.closeButton,
                   onCloseButtonPressed: closeNotification,
                   iconSize: widget.iconSize,
@@ -582,9 +567,6 @@ class ElegantNotificationState extends State<ElegantNotification>
                       ? null
                       : () {
                           widget.onActionPressed!();
-                          if (widget.closeOnTap) {
-                            closeNotification();
-                          }
                         },
                 ),
               ),
