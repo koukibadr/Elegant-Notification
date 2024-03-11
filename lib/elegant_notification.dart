@@ -44,6 +44,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
+    this.isDismissible = true,
+    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
   }) : super(key: key) {
@@ -77,6 +79,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
+    this.isDismissible = true,
+    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
   }) : super(key: key) {
@@ -112,6 +116,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
+    this.isDismissible = true,
+    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
   }) : super(key: key) {
@@ -147,6 +153,8 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
+    this.isDismissible = true,
+    this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
   }) : super(key: key) {
@@ -366,7 +374,15 @@ class ElegantNotification extends StatefulWidget {
   ///or when tapping on the screen
   final Function()? onDismiss;
 
-  //Overlay that does not block the screen
+  ///The direction of the dismissible widget
+  ///by default it's `DismissDirection.horizontal`
+  final DismissDirection dismissDirection;
+
+  ///If the notification is dismissible or not
+  ///by default it's true
+  final bool isDismissible;
+
+  /// Overlay that does not block the screen
   OverlayEntry? overlayEntry;
 
   ///The progress indicator background color
@@ -610,61 +626,73 @@ class ElegantNotificationState extends State<ElegantNotification>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: widget._offsetAnimation,
-      child: InkWell(
-        onTap: widget.onNotificationPressed,
-        child: Container(
-          width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
-          height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(widget.radius),
-            color: widget.background,
-            boxShadow: widget.enableShadow
-                ? [
-                    BoxShadow(
-                      color: widget.shadowColor.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: const Offset(0, 1), // changes position of shadow
-                    ),
-                  ]
-                : null,
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: ToastContent(
-                  title: widget.title,
-                  description: widget.description,
-                  notificationType: widget.notificationType,
-                  icon: widget.icon,
-                  displayCloseButton: widget.onNotificationPressed == null
-                      ? widget.displayCloseButton
-                      : false,
-                  closeButton: widget.closeButton,
-                  onCloseButtonPressed: closeNotification,
-                  iconSize: widget.iconSize,
-                  action: widget.action,
-                  onActionPressed: widget.onActionPressed == null
-                      ? null
-                      : () {
-                          widget.onActionPressed!();
-                        },
-                ),
-              ),
-              if (widget.showProgressIndicator)
-                Padding(
-                  padding: widget.progressBarPadding ?? const EdgeInsets.all(0),
-                  child: SizedBox(
-                    width: widget.progressBarWidth,
-                    height: widget.progressBarHeight,
-                    child: AnimatedProgressBar(
-                      foregroundColor: widget.progressIndicatorColor,
-                      duration: widget.toastDuration,
-                      backgroundColor: widget.progressIndicatorBackground,
-                    ),
+      child: Dismissible(
+        key: widget.uniqueKey,
+        direction: widget.isDismissible
+            ? widget.dismissDirection
+            : DismissDirection.none,
+        onDismissed: (direction) {
+          widget.onDismiss?.call();
+          widget.closeOverlay();
+        },
+        child: InkWell(
+          onTap: widget.onNotificationPressed,
+          child: Container(
+            width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
+            height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(widget.radius),
+              color: widget.background,
+              boxShadow: widget.enableShadow
+                  ? [
+                      BoxShadow(
+                        color: widget.shadowColor.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset:
+                            const Offset(0, 1), // changes position of shadow
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ToastContent(
+                    title: widget.title,
+                    description: widget.description,
+                    notificationType: widget.notificationType,
+                    icon: widget.icon,
+                    displayCloseButton: widget.onNotificationPressed == null
+                        ? widget.displayCloseButton
+                        : false,
+                    closeButton: widget.closeButton,
+                    onCloseButtonPressed: closeNotification,
+                    iconSize: widget.iconSize,
+                    action: widget.action,
+                    onActionPressed: widget.onActionPressed == null
+                        ? null
+                        : () {
+                            widget.onActionPressed!();
+                          },
                   ),
                 ),
-            ],
+                if (widget.showProgressIndicator)
+                  Padding(
+                    padding:
+                        widget.progressBarPadding ?? const EdgeInsets.all(0),
+                    child: SizedBox(
+                      width: widget.progressBarWidth,
+                      height: widget.progressBarHeight,
+                      child: AnimatedProgressBar(
+                        foregroundColor: widget.progressIndicatorColor,
+                        duration: widget.toastDuration,
+                        backgroundColor: widget.progressIndicatorBackground,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
