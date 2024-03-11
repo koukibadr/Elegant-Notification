@@ -38,6 +38,7 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.success(
                     width: 360,
+                    isDismissible: false,
                     stackedOptions: StackedOptions(
                       key: 'top',
                       type: StackedType.same,
@@ -53,7 +54,6 @@ class ExampleApp extends StatelessWidget {
                     onNotificationPressed: () {
                       print('Message when the notification is pressed');
                     },
-                    isDismissible: true,
                   ).show(context);
                 },
                 child: Container(
