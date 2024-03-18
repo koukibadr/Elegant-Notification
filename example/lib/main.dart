@@ -161,6 +161,11 @@ class ExampleApp extends StatelessWidget {
                     width: 360,
                     position: Alignment.centerRight,
                     animation: AnimationType.fromRight,
+                    stackedOptions: StackedOptions(
+                      key: 'top',
+                      type: StackedType.same,
+                      itemOffset: Offset(-1, -6),
+                    ),
                     title: Text(
                       'New version',
                       style: TextStyle(
@@ -336,8 +341,9 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.success(
-                    description:
-                        Text('Your account has been created succesfully'),
+                    description: Text(
+                      'Your account has been created succesfully',
+                    ),
                     progressBarHeight: 10,
                     progressBarPadding: EdgeInsets.symmetric(
                       horizontal: 20,
