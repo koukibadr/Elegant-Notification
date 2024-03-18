@@ -4,8 +4,11 @@ import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
 import 'package:elegant_notification/resources/constants.dart';
 import 'package:elegant_notification/resources/extensions.dart';
+import 'package:elegant_notification/resources/stacked_options.dart';
 import 'package:elegant_notification/widgets/animated_progress_bar.dart';
+import 'package:elegant_notification/widgets/overlay_manager.dart';
 import 'package:elegant_notification/widgets/toast_content.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -21,6 +24,8 @@ class ElegantNotification extends StatefulWidget {
     this.enableShadow = true,
     this.showProgressIndicator = true,
     this.closeButton,
+    this.stackedOptions,
+    this.notificationMargin = 20,
     this.progressIndicatorColor = Colors.blue,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
@@ -54,6 +59,8 @@ class ElegantNotification extends StatefulWidget {
     required this.description,
     this.background = Colors.white,
     this.closeButton,
+    this.stackedOptions,
+    this.notificationMargin = 20,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
     this.onCloseButtonPressed,
@@ -89,6 +96,8 @@ class ElegantNotification extends StatefulWidget {
     required this.description,
     this.background = Colors.white,
     this.closeButton,
+    this.stackedOptions,
+    this.notificationMargin = 20,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
     this.onCloseButtonPressed,
@@ -124,6 +133,8 @@ class ElegantNotification extends StatefulWidget {
     required this.description,
     this.background = Colors.white,
     this.closeButton,
+    this.stackedOptions,
+    this.notificationMargin = 20,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
     this.onCloseButtonPressed,
@@ -214,6 +225,12 @@ class ElegantNotification extends StatefulWidget {
       );
     }
   }
+
+  /// The margin between the notification and the edge of the screen
+  final double notificationMargin;
+
+  /// The options for the stacked mode
+  final StackedOptions? stackedOptions;
 
   ///The toast title widget
   final Widget? title;
@@ -365,27 +382,36 @@ class ElegantNotification extends StatefulWidget {
   ///by default it's true
   final bool isDismissible;
 
+  /// Overlay that does not block the screen
+  OverlayEntry? overlayEntry;
+
   ///The progress indicator background color
   ///by default it's grey
   final Color progressIndicatorBackground;
 
-  //Overlay that does not block the screen
-  OverlayEntry? overlayEntry;
-
   late Timer _closeTimer;
   late Animation<Offset> _offsetAnimation;
   late AnimationController _slideController;
+  final OverlayManager overlayManager = OverlayManager();
+
+  final Key uniqueKey = UniqueKey();
+
+  String get internalKey => stackedOptions != null
+      ? '${stackedOptions?.key}%${uniqueKey.toString()}'
+      : uniqueKey.toString();
 
   ///display the notification on the screen
   ///[context] the context of the application
   void show(BuildContext context) {
     overlayEntry = _overlayEntryBuilder();
     Overlay.maybeOf(context)?.insert(overlayEntry!);
+    overlayManager.addOverlay(internalKey, overlayEntry!);
   }
 
   void closeOverlay() {
     overlayEntry?.remove();
     overlayEntry = null;
+    overlayManager.removeOverlay(internalKey);
   }
 
   Future<void> dismiss() {
@@ -396,30 +422,95 @@ class ElegantNotification extends StatefulWidget {
     });
   }
 
+  int get stackOverlaysLength => overlayManager.overlays.keys
+      .where(
+        (element) => element.split('%').first == internalKey.split('%').first,
+      )
+      .length;
+
+  int get stackedItemPosition => overlayManager.overlays.keys
+      .where(
+        (element) => element.split('%').first == internalKey.split('%').first,
+      )
+      .toList()
+      .indexWhere((element) => element == internalKey);
+
+  double mainContainerHeight(BuildContext context) =>
+      height ?? MediaQuery.of(context).size.height * 0.12;
+  double mainContainerWidth(BuildContext context) =>
+      width ?? MediaQuery.of(context).size.width * 0.7;
+
+  double getTopPos(context) {
+    if (stackedOptions?.type == StackedType.above) {
+      return -(mainContainerHeight(context) * stackedItemPosition) +
+          (stackedOptions?.itemOffset.dy ?? 0) * stackedItemPosition;
+    } else if (stackedOptions?.type == StackedType.below) {
+      return (mainContainerHeight(context) * stackedItemPosition) +
+          (stackedOptions?.itemOffset.dy ?? 0) * stackedItemPosition;
+    } else {
+      return (stackedOptions?.itemOffset.dy ?? 0) *
+          (stackOverlaysLength - 1 - stackedItemPosition);
+    }
+  }
+
+  double alignmentToLeftPos(BuildContext context) {
+    if (position.x == 1) {
+      return MediaQuery.of(context).size.width -
+          mainContainerWidth(context) -
+          notificationMargin;
+    } else if (position.x == -1) {
+      return notificationMargin;
+    } else {
+      return ((position.x + 1) / 2) * MediaQuery.of(context).size.width -
+          (mainContainerWidth(context) / 2);
+    }
+  }
+
+  double alignmentToTopPos(BuildContext context) {
+    if (position.y == 1) {
+      return MediaQuery.of(context).size.height -
+          mainContainerHeight(context) -
+          notificationMargin;
+    } else if (position.y == -1) {
+      return notificationMargin;
+    } else {
+      return ((position.y + 1) / 2) * MediaQuery.of(context).size.height -
+          (mainContainerHeight(context) / 2);
+    }
+  }
+
+  double getScale() {
+    if (stackedOptions?.scaleFactor != null) {
+      return clampDouble(
+        (1 -
+            (stackedOptions?.scaleFactor ?? 0) *
+                (stackOverlaysLength - (stackedItemPosition + 1))),
+        0,
+        1,
+      );
+    } else {
+      return 1.0;
+    }
+  }
+
   OverlayEntry _overlayEntryBuilder() {
-    final dismissibleKey = UniqueKey();
     return OverlayEntry(
       opaque: false,
       builder: (context) {
-        return SafeArea(
-          child: AlertDialog(
-            alignment: position,
-            backgroundColor: Colors.transparent,
-            contentPadding: const EdgeInsets.all(0),
-            insetPadding: const EdgeInsets.all(30),
-            elevation: 0,
-            content: isDismissible
-                ? Dismissible(
-                    key: dismissibleKey,
-                    direction: dismissDirection,
-                    onDismissed: (direction) {
-                      _closeTimer.cancel();
-                      onDismiss?.call();
-                      closeOverlay();
-                    },
-                    child: this,
-                  )
-                : this,
+        return AnimatedPositioned(
+          duration: const Duration(milliseconds: 300),
+          left: alignmentToLeftPos(context) +
+              (stackedOptions?.itemOffset.dx ?? 0) *
+                  (stackOverlaysLength - 1 - stackedItemPosition),
+          top: alignmentToTopPos(context) + getTopPos(context),
+          child: AnimatedScale(
+            duration: const Duration(milliseconds: 300),
+            scale: getScale(),
+            alignment: Alignment.bottomCenter,
+            child: Material(
+              color: Colors.transparent,
+              child: this,
+            ),
           ),
         );
       },
@@ -526,65 +617,82 @@ class ElegantNotificationState extends State<ElegantNotification>
     widget.closeOverlay();
   }
 
+  double get mainContainerHeight =>
+      widget.height ?? MediaQuery.of(context).size.height * 0.12;
+  double get mainContainerWidth =>
+      widget.width ?? MediaQuery.of(context).size.width * 0.7;
+
   @override
   Widget build(BuildContext context) {
     return SlideTransition(
       position: widget._offsetAnimation,
-      child: InkWell(
-        onTap: widget.onNotificationPressed,
-        child: Container(
-          width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
-          height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(widget.radius),
-            color: widget.background,
-            boxShadow: widget.enableShadow
-                ? [
-                    BoxShadow(
-                      color: widget.shadowColor.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: const Offset(0, 1), // changes position of shadow
-                    ),
-                  ]
-                : null,
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: ToastContent(
-                  title: widget.title,
-                  description: widget.description,
-                  notificationType: widget.notificationType,
-                  icon: widget.icon,
-                  displayCloseButton: widget.onNotificationPressed == null
-                      ? widget.displayCloseButton
-                      : false,
-                  closeButton: widget.closeButton,
-                  onCloseButtonPressed: closeNotification,
-                  iconSize: widget.iconSize,
-                  action: widget.action,
-                  onActionPressed: widget.onActionPressed == null
-                      ? null
-                      : () {
-                          widget.onActionPressed!();
-                        },
-                ),
-              ),
-              if (widget.showProgressIndicator)
-                Padding(
-                  padding: widget.progressBarPadding ?? const EdgeInsets.all(0),
-                  child: SizedBox(
-                    width: widget.progressBarWidth,
-                    height: widget.progressBarHeight,
-                    child: AnimatedProgressBar(
-                      foregroundColor: widget.progressIndicatorColor,
-                      duration: widget.toastDuration,
-                      backgroundColor: widget.progressIndicatorBackground,
-                    ),
+      child: Dismissible(
+        key: widget.uniqueKey,
+        direction: widget.isDismissible
+            ? widget.dismissDirection
+            : DismissDirection.none,
+        onDismissed: (direction) {
+          widget.onDismiss?.call();
+          widget.closeOverlay();
+        },
+        child: InkWell(
+          onTap: widget.onNotificationPressed,
+          child: Container(
+            width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
+            height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(widget.radius),
+              color: widget.background,
+              boxShadow: widget.enableShadow
+                  ? [
+                      BoxShadow(
+                        color: widget.shadowColor.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset:
+                            const Offset(0, 1), // changes position of shadow
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ToastContent(
+                    title: widget.title,
+                    description: widget.description,
+                    notificationType: widget.notificationType,
+                    icon: widget.icon,
+                    displayCloseButton: widget.onNotificationPressed == null
+                        ? widget.displayCloseButton
+                        : false,
+                    closeButton: widget.closeButton,
+                    onCloseButtonPressed: closeNotification,
+                    iconSize: widget.iconSize,
+                    action: widget.action,
+                    onActionPressed: widget.onActionPressed == null
+                        ? null
+                        : () {
+                            widget.onActionPressed!();
+                          },
                   ),
                 ),
-            ],
+                if (widget.showProgressIndicator)
+                  Padding(
+                    padding:
+                        widget.progressBarPadding ?? const EdgeInsets.all(0),
+                    child: SizedBox(
+                      width: widget.progressBarWidth,
+                      height: widget.progressBarHeight,
+                      child: AnimatedProgressBar(
+                        foregroundColor: widget.progressIndicatorColor,
+                        duration: widget.toastDuration,
+                        backgroundColor: widget.progressIndicatorBackground,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
