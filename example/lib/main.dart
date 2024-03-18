@@ -1,5 +1,6 @@
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
+import 'package:elegant_notification/resources/stacked_options.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -37,6 +38,12 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.success(
                     width: 360,
+                    isDismissible: false,
+                    stackedOptions: StackedOptions(
+                      key: 'top',
+                      type: StackedType.same,
+                      itemOffset: Offset(-5, -5),
+                    ),
                     position: Alignment.topCenter,
                     animation: AnimationType.fromTop,
                     title: Text('Update'),
@@ -47,7 +54,6 @@ class ExampleApp extends StatelessWidget {
                     onNotificationPressed: () {
                       print('Message when the notification is pressed');
                     },
-                    isDismissible: true,
                   ).show(context);
                 },
                 child: Container(
@@ -58,7 +64,7 @@ class ExampleApp extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Success theme notification\n(top left)',
+                        'Success theme notification stacked\n(top center)',
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -73,6 +79,11 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.error(
                     width: 360,
+                    stackedOptions: StackedOptions(
+                      key: 'topRight',
+                      type: StackedType.below,
+                      itemOffset: Offset(0, 5),
+                    ),
                     position: Alignment.topRight,
                     animation: AnimationType.fromRight,
                     title: Text('Error'),
@@ -108,6 +119,13 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.info(
                     width: 360,
+                    stackedOptions: StackedOptions(
+                      key: 'left',
+                      type: StackedType.same,
+                      scaleFactor: 0.2,
+                      itemOffset: Offset(-20, 10),
+                    ),
+                    toastDuration: Duration(seconds: 5),
                     position: Alignment.centerLeft,
                     animation: AnimationType.fromLeft,
                     title: Text('Info'),
@@ -143,6 +161,11 @@ class ExampleApp extends StatelessWidget {
                     width: 360,
                     position: Alignment.centerRight,
                     animation: AnimationType.fromRight,
+                    stackedOptions: StackedOptions(
+                      key: 'top',
+                      type: StackedType.same,
+                      itemOffset: Offset(-1, -6),
+                    ),
                     title: Text(
                       'New version',
                       style: TextStyle(
@@ -318,8 +341,9 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification.success(
-                    description:
-                        Text('Your account has been created succesfully'),
+                    description: Text(
+                      'Your account has been created succesfully',
+                    ),
                     progressBarHeight: 10,
                     progressBarPadding: EdgeInsets.symmetric(
                       horizontal: 20,
