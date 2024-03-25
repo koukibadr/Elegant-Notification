@@ -38,6 +38,7 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.success(
                     width: 360,
+                    background: Colors.white,
                     isDismissible: false,
                     stackedOptions: StackedOptions(
                       key: 'top',
@@ -87,7 +88,7 @@ class ExampleApp extends StatelessWidget {
                     position: Alignment.topRight,
                     animation: AnimationType.fromRight,
                     title: Text('Error'),
-                    description: Text('Please verifiy your data'),
+                    description: Text('Error example notification'),
                     onDismiss: () {},
                   ).show(context);
                 },
