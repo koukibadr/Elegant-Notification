@@ -82,7 +82,10 @@ class ToastContent extends StatelessWidget {
           width: 15,
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 20),
+          padding: const EdgeInsets.only(
+            top: 20,
+            bottom: 20,
+          ),
           child: Container(
             width: 1,
             color: greyColor,
@@ -134,9 +137,9 @@ class ToastContent extends StatelessWidget {
                           top: verticalComponentPadding,
                           right: horizontalComponentPadding,
                         ),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       Icon(
                         Icons.close,
                         color: Colors.grey,

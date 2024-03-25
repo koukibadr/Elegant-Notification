@@ -49,10 +49,10 @@ class ExampleApp extends StatelessWidget {
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
                     onDismiss: () {
-                      print('Message when the notification is dismissed');
+                      //Message when the notification is dismissed
                     },
                     onNotificationPressed: () {
-                      print('Message when the notification is pressed');
+                      //Message when the notification is pressed
                     },
                   ).show(context);
                 },
@@ -87,7 +87,7 @@ class ExampleApp extends StatelessWidget {
                     position: Alignment.topRight,
                     animation: AnimationType.fromRight,
                     title: Text('Error'),
-                    description: Text('Please verifiy your data'),
+                    description: Text('Error example notification'),
                     onDismiss: () {},
                   ).show(context);
                 },
