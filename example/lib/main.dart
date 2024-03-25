@@ -38,7 +38,6 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.success(
                     width: 360,
-                    background: Colors.white,
                     isDismissible: false,
                     stackedOptions: StackedOptions(
                       key: 'top',
