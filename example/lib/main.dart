@@ -50,10 +50,10 @@ class ExampleApp extends StatelessWidget {
                     title: Text('Update'),
                     description: Text('Your data has been updated'),
                     onDismiss: () {
-                      print('Message when the notification is dismissed');
+                      //Message when the notification is dismissed
                     },
                     onNotificationPressed: () {
-                      print('Message when the notification is pressed');
+                      //Message when the notification is pressed
                     },
                   ).show(context);
                 },
