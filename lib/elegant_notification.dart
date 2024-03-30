@@ -18,10 +18,8 @@ class ElegantNotification extends StatefulWidget {
     this.title,
     required this.description,
     required this.icon,
-    this.shadowColor = Colors.grey,
     this.background = Colors.white,
     this.radius = 5.0,
-    this.enableShadow = true,
     this.showProgressIndicator = true,
     this.closeButton,
     this.stackedOptions,
@@ -47,6 +45,8 @@ class ElegantNotification extends StatefulWidget {
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
+    this.animationCurve = Curves.ease,
+    this.shadow,
   }) : super(key: key) {
     notificationType = NotificationType.custom;
     checkAssertions();
@@ -81,6 +81,8 @@ class ElegantNotification extends StatefulWidget {
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
+    this.animationCurve = Curves.ease,
+    this.shadow,
   }) : super(key: key) {
     notificationType = NotificationType.success;
     progressIndicatorColor = notificationType.color();
@@ -117,6 +119,8 @@ class ElegantNotification extends StatefulWidget {
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
+    this.animationCurve = Curves.ease,
+    this.shadow,
   }) : super(key: key) {
     notificationType = NotificationType.error;
     progressIndicatorColor = notificationType.color();
@@ -153,6 +157,8 @@ class ElegantNotification extends StatefulWidget {
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
+    this.animationCurve = Curves.ease,
+    this.shadow,
   }) : super(key: key) {
     notificationType = NotificationType.info;
     progressIndicatorColor = notificationType.color();
@@ -259,11 +265,6 @@ class ElegantNotification extends StatefulWidget {
   ///
   final Duration animationDuration;
 
-  ///The shadow color applied on the notification widget
-  /// by defualt it's `Colors.grey`
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  late Color shadowColor = Colors.grey;
-
   /// the background color of the notification
   /// by default it's set to white
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
@@ -285,11 +286,8 @@ class ElegantNotification extends StatefulWidget {
   ///
   final Duration toastDuration;
 
-  ///enable or disable the shadow rendering
-  ///by default it's true
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  ///
-  late bool enableShadow = true;
+  ///The notification shadow
+  final BoxShadow? shadow;
 
   ///enable or disable the progress indicator rendering
   ///by default the indicator is displayed
@@ -374,6 +372,9 @@ class ElegantNotification extends StatefulWidget {
   ///The progress indicator background color
   ///by default it's grey
   final Color progressIndicatorBackground;
+
+  //The toast animation curve by default the curve is set to [Curves.ease]
+  final Curve animationCurve;
 
   /// Overlay that does not block the screen
   OverlayEntry? overlayEntry;
@@ -544,7 +545,7 @@ class ElegantNotificationState extends State<ElegantNotification>
         ).animate(
           CurvedAnimation(
             parent: widget._slideController,
-            curve: Curves.ease,
+            curve: widget.animationCurve,
           ),
         );
         break;
@@ -555,7 +556,7 @@ class ElegantNotificationState extends State<ElegantNotification>
         ).animate(
           CurvedAnimation(
             parent: widget._slideController,
-            curve: Curves.ease,
+            curve: widget.animationCurve,
           ),
         );
         break;
@@ -566,7 +567,7 @@ class ElegantNotificationState extends State<ElegantNotification>
         ).animate(
           CurvedAnimation(
             parent: widget._slideController,
-            curve: Curves.ease,
+            curve: widget.animationCurve,
           ),
         );
         break;
@@ -577,7 +578,7 @@ class ElegantNotificationState extends State<ElegantNotification>
         ).animate(
           CurvedAnimation(
             parent: widget._slideController,
-            curve: Curves.ease,
+            curve: widget.animationCurve,
           ),
         );
         break;
@@ -632,17 +633,9 @@ class ElegantNotificationState extends State<ElegantNotification>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(widget.radius),
               color: widget.background,
-              boxShadow: widget.enableShadow
-                  ? [
-                      BoxShadow(
-                        color: widget.shadowColor.withOpacity(0.2),
-                        spreadRadius: 1,
-                        blurRadius: 1,
-                        offset:
-                            const Offset(0, 1), // changes position of shadow
-                      ),
-                    ]
-                  : null,
+              boxShadow: [
+                widget.shadow ?? const BoxShadow(),
+              ],
             ),
             child: Column(
               children: [
