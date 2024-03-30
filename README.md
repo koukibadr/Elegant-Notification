@@ -1,19 +1,25 @@
 # Elegant Notification
 
 <p  align="center">
-<img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/elegant_notification_logo.gif?raw=true"/>
+<img  src="https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/elegant_notification_logo.gif?raw=true"/>
 <br>
 <b>An elegant notification to display important messages to users</b>
 
 </p>
 
-| ![success_notification.gif](https://github.com/koukibadr/Elegant-Notification/blob/main/example/success_elegant_notification.gif?raw=true) | ![info_notification.gif](https://github.com/koukibadr/Elegant-Notification/blob/main/example/info_elegant_notification.gif?raw=true)     |
+|![success_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/success_elegant_notification.gif?raw=true) | ![info_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/info_elegant_notification.gif?raw=true)|
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| ![error_notification.gif](https://github.com/koukibadr/Elegant-Notification/blob/main/example/error_elegant_notification.gif?raw=true)     | ![custom_notification.gif](https://github.com/koukibadr/Elegant-Notification/blob/main/example/custom_elegant_notification.gif?raw=true) |
+|![error_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/error_elegant_notification.gif?raw=true) | ![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/custom_elegant_notification.gif?raw=true)|
+
+**Stacked elegant notification**
+![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/stacked_example_1.gif?raw=true)
+
+
 
 ## Features
 
 - **Display a top notification with animation**
+- **A-stacked friendly toast**
 - **Built-in themes (Success, Error, Info)**
 - Different display animations (fromTop, fromBottom, fromLeft, fromRight)
 - Support for all display alignment positions
@@ -39,18 +45,23 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^1.14.0
+	elegant_notification: ^2.0.0
 ```
 
 ## Parameters
 
-````dart
+`
 
+````dart
   ///The toast title widget
   final Widget? title;
 
   ///The toast description widget
   final Widget description;
+
+  ///a secondary widget displayed under the description widget
+  ///by default `action == null`
+  final Widget? action;
 
   ///The toast icon, required only if using the default constructor
   ///for other toast types (Success, Info, error) the icon is not changeable
@@ -71,29 +82,25 @@ dependencies:
   ///fromBottom,
   ///}
   ///```
+
   ///default value `fromLeft`
+
   ///
   final AnimationType animation;
 
   ///The duration of the animation
   ///Default value `Duration(milliseconds: 600)`
+
   ///
   final Duration animationDuration;
 
-  ///The shadow color applied on the notification widget
-  /// by defualt it's `Colors.grey`
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  late Color shadowColor = Colors.grey;
+  //The toast animation curve by default the curve is set to [Curves.ease]
+  final Curve animationCurve;
 
   /// the background color of the notification
   /// by default it's set to white
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color background;
-
-  ///The color of the progress
-  ///by default it's blue
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  late Color progressIndicatorColor;
 
   ///the border radius of the notification widget
   ///this parameter it's only set if you are using the default constructor
@@ -103,20 +110,36 @@ dependencies:
 
   ///How much the notification will take time,
   ///by default the duration is `3000 milliseconds`
+
   ///
   final Duration toastDuration;
 
-  ///enable or disable the shadow rendering
-  ///by default it's true
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  ///
-  late bool enableShadow = true;
+  ///The notification shadow
+  final BoxShadow? shadow;
 
   ///enable or disable the progress indicator rendering
   ///by default the indicator is displayed
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   ///
   late bool showProgressIndicator;
+
+  ///The color of the progress
+  ///by default it's blue
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  late Color progressIndicatorColor;
+
+  ///progress bar indicator width, by default it's null so it takes the widget's width
+  final double? progressBarWidth;
+
+  ///progress bar indicator height, by default it's null so it takes the widget's height
+  final double? progressBarHeight;
+
+  ///progress bar indicator padding constraints
+  final EdgeInsetsGeometry? progressBarPadding;
+
+  ///The progress indicator background color
+  ///by default it's grey
+  final Color progressIndicatorBackground;
 
   ///Display or hide the close button
   ///by default the close button is displayed
@@ -140,33 +163,25 @@ dependencies:
   ///Function invoked when the user taps on the notification
   final void Function()? onNotificationPressed;
 
-  ///The type of the notification, will be set automatically on every constructor
-  ///possible values
-  ///```dart
-  ///{
-  ///success,
-  ///error,
-  ///info,
-  ///custom
-  ///}
-  ///```
-  late NotificationType notificationType;
-
-  ///The notification position in the screen
-  ///by default the position is set to `Alignment.topRight`
-  final Alignment position;
-
-  ///Action widget rendered with clickable inkwell
-  ///by default `action == null`
-  final Widget? action;
-
-  ///Function invoked when pressing `action` widget
-  ///must be not null when `action != null`
-  final Function()? onActionPressed;
+  ///Function invoked when tapping outside the notification
+  ///Or when pressing the back button of the phone
+  ///or when tapping on the screen
+  final Function()? onDismiss;
 
   ///define whether the notification will be dismissed automatically or not
   ///by default `autoDimiss == false`
+
   final bool autoDismiss;
+
+  ///The direction of the dismissible widget
+  ///by default it's `DismissDirection.horizontal`
+
+  final DismissDirection dismissDirection;
+
+  ///The notification position in the screen
+  ///by default the position is set to `Alignment.topRight`
+
+  final Alignment position;
 
   ///the width of the notification widget
   final double? width;
@@ -174,67 +189,27 @@ dependencies:
   ///the height of the notification widget
   final double? height;
 
-  ///progress bar indicator width, by default it's null so it takes the widget's width
-  final double? progressBarWidth;
-
-  ///progress bar indicator height, by default it's null so it takes the widget's height
-  final double? progressBarHeight;
-
-  ///progress bar indicator padding constraints
-  final EdgeInsetsGeometry? progressBarPadding;
-
-  ///Function invoked when tapping outside the notification
-  ///Or when pressing the back button of the phone
-  ///or when tapping on the screen
-  final Function()? onDismiss;
-
-  ///The direction of the dismissible widget
-  ///by default it's `DismissDirection.horizontal`
-  final DismissDirection dismissDirection;
-
   ///If the notification is dismissible or not
   ///by default it's true
-  final bool isDismissible;
+  final bool isDismissable;
 
-  ///The progress indicator background color
-  ///by default it's grey
-  final Color progressIndicatorBackground;
+  /// The margin between the notification and the edge of the screen
+  final double notificationMargin;
+
+  /// The options for the stacked mode
+  final StackedOptions? stackedOptions;
+`
+
 ````
 
-## Migration to 1.1.0
+## Migration to 2.0.0
 
-If you are using 1.0.0 you need to update `animation` attribute values following the camelCase conventions
-(eg: FROM_TOP -> fromTop)
-
-## Migration to 1.3.0
-
-If you are using version less than 1.3.0 you need to update the usage of title and description because in 1.3.0 there's no longer `descriptionStyle` and `titleStyle` attributes those parameters are merged into `title` and `description` so now you pass a `Text` object.
-
-## Migration to 1.5.1
-
-If you are using `dismissable` attribute in the 1.5.1 version the notification position should be set to `NOTIFICATION_POSITION.bottom` otherwise you need to set dismissable to false to change the notification position (center, bottom or top)
-
-## Migration to 1.5.4
-
-Enum names has been changed:
-`NOTIFICATION_POSITION` is now `NotificationPostion`
-`ANIMATION` is now `AnimationType`
-
-
-## Migration to 1.12.0
-
-**`notificationPosition` will no longer set the alert position instead use `position` with `Alignment` type**
-
-
-
-## Migration from 1.13.1 to 1.14.0
-
-- `onTap` is `onNotificationPressed` now
-- `closeOnTap` is removed and replaced with `isDismissble` and `dismissDirection` attributes
+- `enableShadow` and `shadowColor` are removed replaced with `shadow`
+- `onActionPressed` is removed directly you can wrap the action widget with `InkWell` or `GestureDetector`
 
 ## Examples
 
-- Success theme animation example
+- **Success theme animation example**
 
 ```dart
 ElegantNotification.success(
@@ -251,13 +226,79 @@ ElegantNotification.success(
 
 ```
 
-<p  align="center">
-<img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/success_elegant_notification.gif?raw=true"/>
-</p>
+<br>
+
+- **Stacked notifications Example 1**
+
+```dart
+ElegantNotification.success(
+  width: 360,
+  isDismissable: false,
+  animationCurve: Curves.bounceOut,
+  stackedOptions: StackedOptions(
+    key: 'top',
+    type: StackedType.same,
+    itemOffset: Offset(-5, -5),
+  ),
+  position: Alignment.topCenter,
+  nimation: AnimationType.fromTop,
+  title: Text('Update'),
+  description: Text('Your data has been updated'),
+  onDismiss: () {},
+  onNotificationPressed: () {},
+).show(context);
+```
 
 <br>
 
-- Info theme animation example
+
+- **Stacked notifications Example 2**
+
+```dart
+ElegantNotification.error(
+  width: 360,
+  stackedOptions: StackedOptions(
+    key: 'topRight',
+    type: StackedType.below,
+    itemOffset: Offset(0, 5),
+  ),
+  position: Alignment.topRight,
+  animation: AnimationType.fromRight,
+  title: Text('Error'),
+  description: Text('Error example notification'),
+  onDismiss: () {},
+).show(context);
+```
+
+<br>
+
+
+- **With box shadow example**
+
+```dart
+ElegantNotification.success(
+  width: 360,
+  isDismissable: false,
+  animationCurve: Curves.bounceOut,
+  position: Alignment.topCenter,
+  animation: AnimationType.fromTop,
+  title: Text('Update'),
+  description: Text('Your data has been updated'),
+  onDismiss: () {},
+  onNotificationPressed: () {},
+  shadow: BoxShadow(
+    color: Colors.green.withOpacity(0.2),
+    spreadRadius: 2,
+    blurRadius: 5,
+    offset: const Offset(0, 4),
+    ),
+).show(context);
+
+```
+
+<br>
+
+- **Info theme animation example**
 
 ```dart
 ElegantNotification.info(
@@ -266,13 +307,9 @@ ElegantNotification.info(
 ).show(context);
 
 ```
+<br>
 
-<p  align="center">
-<img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/info_elegant_notification.gif?raw=true"/>
-
-</p>
-
-- Error theme animation example
+- **Error theme animation example**
 
 ```dart
 ElegantNotification.error(
@@ -282,11 +319,7 @@ ElegantNotification.error(
 
 ```
 
-<p  align="center">
-<img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/error_elegant_notification.gif?raw=true"/>
-</p>
-
-- Custom theme animation example
+- **Custom theme animation example**
 
 ```dart
 ElegantNotification(
@@ -301,11 +334,7 @@ ElegantNotification(
 
 ```
 
-<p  align="center">
-<img  src="https://github.com/koukibadr/Elegant-Notification/blob/main/example/custom_elegant_notification.gif?raw=true"/>
-</p>
-
-- Without title
+- **Without title**
 
 ```dart
 ElegantNotification.error(
@@ -313,25 +342,26 @@ ElegantNotification.error(
 ).show(context);
 ```
 
-- With Action
+- **With Action**
 
 ```dart
 ElegantNotification.info(
 	description:  Text('This account will be updated once you exit',),
-	action:  Text(
-		'Link',
-		style:  TextStyle(
-			decoration:  TextDecoration.underline,
-			color:  Colors.blue,
-		),
-	),
-	onActionPressed: (){
-		print('Link pressed');
-	},
+	action: InkWell(
+    onTap: (){
+      print('Link pressed')
+    }
+    child:Text( 'Link',
+      style:  TextStyle(
+        decoration:  TextDecoration.underline,
+        color:  Colors.blue,
+      ),
+    )
+  ),
 ).show(context);
 ```
 
-- Using `dismissDirection` attribute
+- **Using `dismissDirection` attribute**
 
 ```dart
 ElegantNotification.success(

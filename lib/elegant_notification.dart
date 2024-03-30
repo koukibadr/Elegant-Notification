@@ -225,17 +225,15 @@ class ElegantNotification extends StatefulWidget {
     }
   }
 
-  /// The margin between the notification and the edge of the screen
-  final double notificationMargin;
-
-  /// The options for the stacked mode
-  final StackedOptions? stackedOptions;
-
   ///The toast title widget
   final Widget? title;
 
   ///The toast description widget
   final Widget description;
+
+  ///a secondary widget displayed under the description widget
+  ///by default `action == null`
+  final Widget? action;
 
   ///The toast icon, required only if using the default constructor
   ///for other toast types (Success, Info, error) the icon is not changeable
@@ -265,15 +263,14 @@ class ElegantNotification extends StatefulWidget {
   ///
   final Duration animationDuration;
 
+  //The toast animation curve by default the curve is set to [Curves.ease]
+  final Curve animationCurve;
+
   /// the background color of the notification
   /// by default it's set to white
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color background;
 
-  ///The color of the progress
-  ///by default it's blue
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  late Color progressIndicatorColor;
 
   ///the border radius of the notification widget
   ///this parameter it's only set if you are using the default constructor
@@ -294,6 +291,24 @@ class ElegantNotification extends StatefulWidget {
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   ///
   late bool showProgressIndicator;
+
+  ///The color of the progress
+  ///by default it's blue
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  late Color progressIndicatorColor;
+
+  ///progress bar indicator width, by default it's null so it takes the widget's width
+  final double? progressBarWidth;
+
+  ///progress bar indicator height, by default it's null so it takes the widget's height
+  final double? progressBarHeight;
+
+  ///progress bar indicator padding constraints
+  final EdgeInsetsGeometry? progressBarPadding;
+
+  ///The progress indicator background color
+  ///by default it's grey
+  final Color progressIndicatorBackground;
 
   ///Display or hide the close button
   ///by default the close button is displayed
@@ -317,6 +332,39 @@ class ElegantNotification extends StatefulWidget {
   ///Function invoked when the user taps on the notification
   final void Function()? onNotificationPressed;
 
+  ///Function invoked when tapping outside the notification
+  ///Or when pressing the back button of the phone
+  ///or when tapping on the screen
+  final Function()? onDismiss;
+
+  ///define whether the notification will be dismissed automatically or not
+  ///by default `autoDimiss == false`
+  final bool autoDismiss;
+
+  ///The direction of the dismissible widget
+  ///by default it's `DismissDirection.horizontal`
+  final DismissDirection dismissDirection;
+
+  ///The notification position in the screen
+  ///by default the position is set to `Alignment.topRight`
+  final Alignment position;
+
+  ///the width of the notification widget
+  final double? width;
+
+  ///the height of the notification widget
+  final double? height;
+
+  ///If the notification is dismissible or not
+  ///by default it's true
+  final bool isDismissable;
+
+  /// The margin between the notification and the edge of the screen
+  final double notificationMargin;
+
+  /// The options for the stacked mode
+  final StackedOptions? stackedOptions;
+
   ///The type of the notification, will be set automatically on every constructor
   ///possible values
   ///```dart
@@ -328,53 +376,6 @@ class ElegantNotification extends StatefulWidget {
   ///}
   ///```
   late NotificationType notificationType;
-
-  ///The notification position in the screen
-  ///by default the position is set to `Alignment.topRight`
-  final Alignment position;
-
-  ///a secondary widget displayed under the description widget
-  ///by default `action == null`
-  final Widget? action;
-
-  ///define whether the notification will be dismissed automatically or not
-  ///by default `autoDimiss == false`
-  final bool autoDismiss;
-
-  ///the width of the notification widget
-  final double? width;
-
-  ///the height of the notification widget
-  final double? height;
-
-  ///progress bar indicator width, by default it's null so it takes the widget's width
-  final double? progressBarWidth;
-
-  ///progress bar indicator height, by default it's null so it takes the widget's height
-  final double? progressBarHeight;
-
-  ///progress bar indicator padding constraints
-  final EdgeInsetsGeometry? progressBarPadding;
-
-  ///Function invoked when tapping outside the notification
-  ///Or when pressing the back button of the phone
-  ///or when tapping on the screen
-  final Function()? onDismiss;
-
-  ///The direction of the dismissible widget
-  ///by default it's `DismissDirection.horizontal`
-  final DismissDirection dismissDirection;
-
-  ///If the notification is dismissible or not
-  ///by default it's true
-  final bool isDismissable;
-
-  ///The progress indicator background color
-  ///by default it's grey
-  final Color progressIndicatorBackground;
-
-  //The toast animation curve by default the curve is set to [Curves.ease]
-  final Curve animationCurve;
 
   /// Overlay that does not block the screen
   OverlayEntry? overlayEntry;

@@ -1,3 +1,11 @@
+## [2.0.0] - 30/03/2024
+
+* **Enhancements:**
+* Elegant notification now support stacked toasts [PR Link](https://github.com/koukibadr/Elegant-Notification/pull/111)
+* Removal of `enableShadow` and `shadowColor` attribute and replace it with `shadow` of `BoxShadow` type.
+* Add `animationCurve` attribute
+* remove `onActionPressed` function attribute.
+
 ## [1.14.0] - 10/03/2024
 
 * **Enhancements:**
