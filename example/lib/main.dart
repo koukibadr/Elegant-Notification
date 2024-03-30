@@ -38,7 +38,7 @@ class ExampleApp extends StatelessWidget {
                 onTap: () {
                   ElegantNotification.success(
                     width: 360,
-                    isDismissible: false,
+                    isDismissable: false,
                     stackedOptions: StackedOptions(
                       key: 'top',
                       type: StackedType.same,
@@ -214,14 +214,18 @@ class ExampleApp extends StatelessWidget {
                     description: Text(
                       'This account will be updated once you exit',
                     ),
-                    action: Text(
-                      'Link',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue,
+                    action: InkWell(
+                      onTap: () {
+                        
+                      },
+                      child: Text(
+                        'Link',
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
-                    onActionPressed: () {},
                     showProgressIndicator: false,
                     onDismiss: () {},
                   ).show(context);
