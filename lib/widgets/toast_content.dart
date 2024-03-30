@@ -17,54 +17,17 @@ class ToastContent extends StatelessWidget {
     this.icon,
     this.iconSize = 20,
     this.action,
-    this.onActionPressed,
   }) : super(key: key);
 
-  ///The title of the notification if any
-  ///
   final Widget? title;
-
-  ///The description of the notification text string
-  ///
   final Widget description;
-
-  ///The notification icon
   final Widget? icon;
-
-  ///The icon size on pixels
-  ///
   final double iconSize;
-
-  ///The type of the notification, will be set automatically on every constructor
-  ///possible values
-  ///```dart
-  ///{
-  ///SUCCESS,
-  ///ERROR,
-  ///INFO,
-  ///CUSTOM
-  ///}
-  ///```
   final NotificationType notificationType;
-
-  ///The function invoked when pressing the close button
-  ///
   final void Function() onCloseButtonPressed;
-
-  ///Display or hide the close button widget
-  ///
   final bool displayCloseButton;
-
-  ///Display or hide the close button widget
   final Widget Function(void Function() dismissNotification)? closeButton;
-
-  ///Action widget rendered with clickable inkwell
-  ///by default `action == null`
   final Widget? action;
-
-  ///Function invoked when pressing `action` widget
-  ///must be not null when `action != null`
-  final Function()? onActionPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -110,12 +73,7 @@ class ToastContent extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                onActionPressed == null
-                    ? action!
-                    : InkWell(
-                        onTap: onActionPressed,
-                        child: action!,
-                      ),
+                action!,
               ],
             ],
           ),

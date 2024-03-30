@@ -36,7 +36,6 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.iconSize = defaultIconSize,
     this.action,
-    this.onActionPressed,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -44,7 +43,7 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
-    this.isDismissible = true,
+    this.isDismissable = true,
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
@@ -71,7 +70,6 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
-    this.onActionPressed,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -79,7 +77,7 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
-    this.isDismissible = true,
+    this.isDismissable = true,
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
@@ -108,7 +106,6 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
-    this.onActionPressed,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -116,7 +113,7 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
-    this.isDismissible = true,
+    this.isDismissable = true,
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
@@ -145,7 +142,6 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
-    this.onActionPressed,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -153,7 +149,7 @@ class ElegantNotification extends StatefulWidget {
     this.progressBarWidth,
     this.progressBarPadding,
     this.onDismiss,
-    this.isDismissible = true,
+    this.isDismissable = true,
     this.dismissDirection = DismissDirection.horizontal,
     this.progressIndicatorBackground = greyColor,
     this.onNotificationPressed,
@@ -169,12 +165,9 @@ class ElegantNotification extends StatefulWidget {
     if (showProgressIndicator) {
       assert(autoDismiss != false);
     }
-    if (action != null) {
-      assert(onActionPressed != null);
-    }
     if (onNotificationPressed != null) {
       assert(
-        action == null && onActionPressed == null,
+        action == null,
         'You can not set both an action and an onTap method',
       );
     }
@@ -342,13 +335,9 @@ class ElegantNotification extends StatefulWidget {
   ///by default the position is set to `Alignment.topRight`
   final Alignment position;
 
-  ///Action widget rendered with clickable inkwell
+  ///a secondary widget displayed under the description widget
   ///by default `action == null`
   final Widget? action;
-
-  ///Function invoked when pressing `action` widget
-  ///must be not null when `action != null`
-  final Function()? onActionPressed;
 
   ///define whether the notification will be dismissed automatically or not
   ///by default `autoDimiss == false`
@@ -380,14 +369,14 @@ class ElegantNotification extends StatefulWidget {
 
   ///If the notification is dismissible or not
   ///by default it's true
-  final bool isDismissible;
-
-  /// Overlay that does not block the screen
-  OverlayEntry? overlayEntry;
+  final bool isDismissable;
 
   ///The progress indicator background color
   ///by default it's grey
   final Color progressIndicatorBackground;
+
+  /// Overlay that does not block the screen
+  OverlayEntry? overlayEntry;
 
   late Timer _closeTimer;
   late Animation<Offset> _offsetAnimation;
@@ -628,7 +617,7 @@ class ElegantNotificationState extends State<ElegantNotification>
       position: widget._offsetAnimation,
       child: Dismissible(
         key: widget.uniqueKey,
-        direction: widget.isDismissible
+        direction: widget.isDismissable
             ? widget.dismissDirection
             : DismissDirection.none,
         onDismissed: (direction) {
@@ -670,11 +659,6 @@ class ElegantNotificationState extends State<ElegantNotification>
                     onCloseButtonPressed: closeNotification,
                     iconSize: widget.iconSize,
                     action: widget.action,
-                    onActionPressed: widget.onActionPressed == null
-                        ? null
-                        : () {
-                            widget.onActionPressed!();
-                          },
                   ),
                 ),
                 if (widget.showProgressIndicator)
