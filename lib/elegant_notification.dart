@@ -19,7 +19,8 @@ class ElegantNotification extends StatefulWidget {
     required this.description,
     required this.icon,
     this.background = Colors.white,
-    this.radius = 5.0,
+    this.borderRadius,
+    this.border,
     this.showProgressIndicator = true,
     this.closeButton,
     this.stackedOptions,
@@ -48,7 +49,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationCurve = Curves.ease,
     this.shadow,
   }) : super(key: key) {
-    notificationType = NotificationType.custom;
+    _notificationType = NotificationType.custom;
     checkAssertions();
   }
 
@@ -83,9 +84,11 @@ class ElegantNotification extends StatefulWidget {
     this.onNotificationPressed,
     this.animationCurve = Curves.ease,
     this.shadow,
+    this.borderRadius,
+    this.border,
   }) : super(key: key) {
-    notificationType = NotificationType.success;
-    progressIndicatorColor = notificationType.color();
+    _notificationType = NotificationType.success;
+    progressIndicatorColor = _notificationType.color();
     icon = null;
     checkAssertions();
   }
@@ -121,9 +124,11 @@ class ElegantNotification extends StatefulWidget {
     this.onNotificationPressed,
     this.animationCurve = Curves.ease,
     this.shadow,
+    this.borderRadius,
+    this.border,
   }) : super(key: key) {
-    notificationType = NotificationType.error;
-    progressIndicatorColor = notificationType.color();
+    _notificationType = NotificationType.error;
+    progressIndicatorColor = _notificationType.color();
     icon = null;
     checkAssertions();
   }
@@ -159,9 +164,11 @@ class ElegantNotification extends StatefulWidget {
     this.onNotificationPressed,
     this.animationCurve = Curves.ease,
     this.shadow,
+    this.borderRadius,
+    this.border,
   }) : super(key: key) {
-    notificationType = NotificationType.info;
-    progressIndicatorColor = notificationType.color();
+    _notificationType = NotificationType.info;
+    progressIndicatorColor = _notificationType.color();
     icon = null;
     checkAssertions();
   }
@@ -271,12 +278,11 @@ class ElegantNotification extends StatefulWidget {
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color background;
 
-
   ///the border radius of the notification widget
-  ///this parameter it's only set if you are using the default constructor
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  ///
-  late double radius = 5.0;
+  final BorderRadius? borderRadius;
+
+  ///The notification widget border
+  final BoxBorder? border;
 
   ///How much the notification will take time,
   ///by default the duration is `3000 milliseconds`
@@ -365,19 +371,7 @@ class ElegantNotification extends StatefulWidget {
   /// The options for the stacked mode
   final StackedOptions? stackedOptions;
 
-  ///The type of the notification, will be set automatically on every constructor
-  ///possible values
-  ///```dart
-  ///{
-  ///success,
-  ///error,
-  ///info,
-  ///custom
-  ///}
-  ///```
-  late NotificationType notificationType;
-
-  /// Overlay that does not block the screen
+  late NotificationType _notificationType;
   OverlayEntry? overlayEntry;
 
   late Timer _closeTimer;
@@ -632,7 +626,8 @@ class ElegantNotificationState extends State<ElegantNotification>
             width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
             height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(widget.radius),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(5.0),
+              border: widget.border,
               color: widget.background,
               boxShadow: [
                 widget.shadow ?? const BoxShadow(),
@@ -644,7 +639,7 @@ class ElegantNotificationState extends State<ElegantNotification>
                   child: ToastContent(
                     title: widget.title,
                     description: widget.description,
-                    notificationType: widget.notificationType,
+                    notificationType: widget._notificationType,
                     icon: widget.icon,
                     displayCloseButton: widget.onNotificationPressed == null
                         ? widget.displayCloseButton
