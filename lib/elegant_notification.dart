@@ -19,7 +19,8 @@ class ElegantNotification extends StatefulWidget {
     required this.description,
     required this.icon,
     this.background = Colors.white,
-    this.radius = 5.0,
+    this.borderRadius,
+    this.border,
     this.showProgressIndicator = true,
     this.closeButton,
     this.stackedOptions,
@@ -83,6 +84,8 @@ class ElegantNotification extends StatefulWidget {
     this.onNotificationPressed,
     this.animationCurve = Curves.ease,
     this.shadow,
+    this.borderRadius,
+    this.border,
   }) : super(key: key) {
     notificationType = NotificationType.success;
     progressIndicatorColor = notificationType.color();
@@ -121,6 +124,8 @@ class ElegantNotification extends StatefulWidget {
     this.onNotificationPressed,
     this.animationCurve = Curves.ease,
     this.shadow,
+    this.borderRadius,
+    this.border,
   }) : super(key: key) {
     notificationType = NotificationType.error;
     progressIndicatorColor = notificationType.color();
@@ -159,6 +164,8 @@ class ElegantNotification extends StatefulWidget {
     this.onNotificationPressed,
     this.animationCurve = Curves.ease,
     this.shadow,
+    this.borderRadius,
+    this.border,
   }) : super(key: key) {
     notificationType = NotificationType.info;
     progressIndicatorColor = notificationType.color();
@@ -276,7 +283,8 @@ class ElegantNotification extends StatefulWidget {
   ///this parameter it's only set if you are using the default constructor
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   ///
-  late double radius = 5.0;
+  final BorderRadius? borderRadius;
+  final BoxBorder? border;
 
   ///How much the notification will take time,
   ///by default the duration is `3000 milliseconds`
@@ -632,7 +640,8 @@ class ElegantNotificationState extends State<ElegantNotification>
             width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
             height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(widget.radius),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(5.0),
+              border: widget.border,
               color: widget.background,
               boxShadow: [
                 widget.shadow ?? const BoxShadow(),
