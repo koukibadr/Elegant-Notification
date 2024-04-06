@@ -16,6 +16,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        dialogTheme: DialogTheme(
+          surfaceTintColor: Colors.blue,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(28),
+            side: const BorderSide(
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
       home: Scaffold(
         body: ExampleApp(),
@@ -61,11 +70,20 @@ class ExampleApp extends StatelessWidget {
                       blurRadius: 5,
                       offset: const Offset(0, 4), // changes position of shadow
                     ),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(30),
+                    ),
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Colors.green,
+                        width: 2,
+                      ),
+                    ),
                   ).show(context);
                 },
                 child: Container(
                   width: 150,
-                  height: 150,
+                  height: 100,
                   color: Colors.blue,
                   child: Center(
                     child: Padding(
@@ -100,7 +118,7 @@ class ExampleApp extends StatelessWidget {
                 },
                 child: Container(
                   width: 150,
-                  height: 150,
+                  height: 100,
                   color: Colors.blue,
                   child: Center(
                     child: Padding(
@@ -145,7 +163,7 @@ class ExampleApp extends StatelessWidget {
                 },
                 child: Container(
                   width: 150,
-                  height: 150,
+                  height: 100,
                   color: Colors.blue,
                   child: Center(
                     child: Padding(
@@ -192,7 +210,7 @@ class ExampleApp extends StatelessWidget {
                 },
                 child: Container(
                   width: 150,
-                  height: 150,
+                  height: 100,
                   color: Colors.blue,
                   child: Center(
                     child: Text(
@@ -237,7 +255,7 @@ class ExampleApp extends StatelessWidget {
                 },
                 child: Container(
                   width: 150,
-                  height: 150,
+                  height: 100,
                   color: Colors.blue,
                   child: Center(
                     child: Padding(
@@ -275,7 +293,7 @@ class ExampleApp extends StatelessWidget {
                 },
                 child: Container(
                   width: 150,
-                  height: 150,
+                  height: 100,
                   color: Colors.blue,
                   child: Center(
                     child: Text(
@@ -330,7 +348,7 @@ class ExampleApp extends StatelessWidget {
                 },
                 child: Container(
                   width: 150,
-                  height: 150,
+                  height: 100,
                   color: Colors.blue,
                   child: Center(
                     child: Padding(
@@ -362,7 +380,7 @@ class ExampleApp extends StatelessWidget {
                 },
                 child: Container(
                   width: 150,
-                  height: 150,
+                  height: 100,
                   color: Colors.blue,
                   child: Center(
                     child: Padding(
