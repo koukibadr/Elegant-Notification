@@ -37,6 +37,7 @@
 - Customizable barrier dismission and on dismiss action
 - Slide back animation
 - Customizable close button
+- Customizable border and border radius
 - RTL support
 
 ## Getting Started
@@ -45,7 +46,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^2.0.0
+	elegant_notification: ^2.1.0
 ```
 
 ## Parameters
@@ -82,15 +83,12 @@ dependencies:
   ///fromBottom,
   ///}
   ///```
-
   ///default value `fromLeft`
-
   ///
   final AnimationType animation;
 
   ///The duration of the animation
   ///Default value `Duration(milliseconds: 600)`
-
   ///
   final Duration animationDuration;
 
@@ -102,15 +100,15 @@ dependencies:
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color background;
 
+
   ///the border radius of the notification widget
-  ///this parameter it's only set if you are using the default constructor
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  ///
-  late double radius = 5.0;
+  final BorderRadius? borderRadius;
+
+  ///The notification widget border
+  final BoxBorder? border;
 
   ///How much the notification will take time,
   ///by default the duration is `3000 milliseconds`
-
   ///
   final Duration toastDuration;
 
@@ -170,17 +168,14 @@ dependencies:
 
   ///define whether the notification will be dismissed automatically or not
   ///by default `autoDimiss == false`
-
   final bool autoDismiss;
 
   ///The direction of the dismissible widget
   ///by default it's `DismissDirection.horizontal`
-
   final DismissDirection dismissDirection;
 
   ///The notification position in the screen
   ///by default the position is set to `Alignment.topRight`
-
   final Alignment position;
 
   ///the width of the notification widget

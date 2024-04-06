@@ -1,3 +1,9 @@
+## [2.1.0] - 06/04/2024
+
+* **Enhancements:**
+* Add border attribute of type `BoxBorder` [Issue #119](https://github.com/koukibadr/Elegant-Notification/issues/119)
+* Migrate radius to borderRadius of type `BorderRadius`
+
 ## [2.0.0] - 30/03/2024
 
 * **Enhancements:**

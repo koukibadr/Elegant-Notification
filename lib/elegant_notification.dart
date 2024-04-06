@@ -49,7 +49,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationCurve = Curves.ease,
     this.shadow,
   }) : super(key: key) {
-    notificationType = NotificationType.custom;
+    _notificationType = NotificationType.custom;
     checkAssertions();
   }
 
@@ -87,8 +87,8 @@ class ElegantNotification extends StatefulWidget {
     this.borderRadius,
     this.border,
   }) : super(key: key) {
-    notificationType = NotificationType.success;
-    progressIndicatorColor = notificationType.color();
+    _notificationType = NotificationType.success;
+    progressIndicatorColor = _notificationType.color();
     icon = null;
     checkAssertions();
   }
@@ -127,8 +127,8 @@ class ElegantNotification extends StatefulWidget {
     this.borderRadius,
     this.border,
   }) : super(key: key) {
-    notificationType = NotificationType.error;
-    progressIndicatorColor = notificationType.color();
+    _notificationType = NotificationType.error;
+    progressIndicatorColor = _notificationType.color();
     icon = null;
     checkAssertions();
   }
@@ -167,8 +167,8 @@ class ElegantNotification extends StatefulWidget {
     this.borderRadius,
     this.border,
   }) : super(key: key) {
-    notificationType = NotificationType.info;
-    progressIndicatorColor = notificationType.color();
+    _notificationType = NotificationType.info;
+    progressIndicatorColor = _notificationType.color();
     icon = null;
     checkAssertions();
   }
@@ -278,12 +278,10 @@ class ElegantNotification extends StatefulWidget {
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color background;
 
-
   ///the border radius of the notification widget
-  ///this parameter it's only set if you are using the default constructor
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  ///
   final BorderRadius? borderRadius;
+
+  ///The notification widget border
   final BoxBorder? border;
 
   ///How much the notification will take time,
@@ -373,19 +371,7 @@ class ElegantNotification extends StatefulWidget {
   /// The options for the stacked mode
   final StackedOptions? stackedOptions;
 
-  ///The type of the notification, will be set automatically on every constructor
-  ///possible values
-  ///```dart
-  ///{
-  ///success,
-  ///error,
-  ///info,
-  ///custom
-  ///}
-  ///```
-  late NotificationType notificationType;
-
-  /// Overlay that does not block the screen
+  late NotificationType _notificationType;
   OverlayEntry? overlayEntry;
 
   late Timer _closeTimer;
@@ -653,7 +639,7 @@ class ElegantNotificationState extends State<ElegantNotification>
                   child: ToastContent(
                     title: widget.title,
                     description: widget.description,
-                    notificationType: widget.notificationType,
+                    notificationType: widget._notificationType,
                     icon: widget.icon,
                     displayCloseButton: widget.onNotificationPressed == null
                         ? widget.displayCloseButton
