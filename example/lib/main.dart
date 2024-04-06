@@ -16,15 +16,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        dialogTheme: DialogTheme(
-          surfaceTintColor: Colors.blue,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(28),
-            side: const BorderSide(
-              color: Colors.white,
-            ),
-          ),
-        ),
       ),
       home: Scaffold(
         body: ExampleApp(),
