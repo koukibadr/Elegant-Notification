@@ -1,9 +1,14 @@
 name: elegant_notification
 description: 'A new flutter package to display notifications on top of the screen, full customizable with built-in themes'
-version: 2.1.0
+version: 2.1.1
 homepage: 'https://github.com/koukibadr/Elegant-Notification'
 environment:
   sdk: '>=2.19.0 <4.0.0'
+funding:
+- 'https://www.buymeacoffee.com/koukibadr'
+screenshots:
+- description: This screenshot shows the transformation of a number of bytes to a human-readable expression.
+  path: example/package_front_image.png
 dependencies:
   flutter:
     sdk: flutter

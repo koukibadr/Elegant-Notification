@@ -1,3 +1,8 @@
+## [2.1.1] - 13/04/2024
+
+* **Enhancements:**
+* Update package documentation and pubspec file
+
 ## [2.1.0] - 06/04/2024
 
 * **Enhancements:**

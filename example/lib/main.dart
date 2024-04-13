@@ -27,367 +27,360 @@ class MyApp extends StatelessWidget {
 class ExampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  ElegantNotification.success(
-                    width: 360,
-                    isDismissable: false,
-                    animationCurve: Curves.bounceOut,
-                    stackedOptions: StackedOptions(
-                      key: 'top',
-                      type: StackedType.same,
-                      itemOffset: Offset(-5, -5),
-                    ),
-                    position: Alignment.topCenter,
-                    animation: AnimationType.fromTop,
-                    title: Text('Update'),
-                    description: Text('Your data has been updated'),
-                    onDismiss: () {
-                      //Message when the notification is dismissed
-                    },
-                    onNotificationPressed: () {
-                      //Message when the notification is pressed
-                    },
-                    shadow: BoxShadow(
-                      color: Colors.green.withOpacity(0.2),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: const Offset(0, 4), // changes position of shadow
-                    ),
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(30),
-                    ),
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.green,
-                        width: 2,
+    return SafeArea(
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {
+                    ElegantNotification.success(
+                      width: 360,
+                      isDismissable: false,
+                      animationCurve: Curves.bounceOut,
+                      stackedOptions: StackedOptions(
+                        key: 'top',
+                        type: StackedType.same,
+                        itemOffset: Offset(-5, -5),
                       ),
-                    ),
-                  ).show(context);
-                },
-                child: Container(
-                  width: 150,
-                  height: 100,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Success theme notification stacked\n(top center)',
-                        style: TextStyle(color: Colors.white),
-                        textAlign: TextAlign.center,
+                      position: Alignment.bottomCenter,
+                      animation: AnimationType.fromBottom,
+                      title: Text('Update'),
+                      description: Text('Your data has been updated'),
+                      onDismiss: () {
+                        //Message when the notification is dismissed
+                      },
+                      onNotificationPressed: () {
+                        //Message when the notification is pressed
+                      },
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.green,
+                          width: 2,
+                        ),
+                      ),
+                    ).show(context);
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Success theme notification stacked\n(top center)',
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  ElegantNotification.error(
-                    width: 360,
-                    stackedOptions: StackedOptions(
-                      key: 'topRight',
-                      type: StackedType.below,
-                      itemOffset: Offset(0, 5),
-                    ),
-                    position: Alignment.topRight,
-                    animation: AnimationType.fromRight,
-                    title: Text('Error'),
-                    description: Text('Error example notification'),
-                    onDismiss: () {},
-                  ).show(context);
-                },
-                child: Container(
-                  width: 150,
-                  height: 100,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Error theme notification\n(top right)',
-                        style: TextStyle(color: Colors.white),
-                        textAlign: TextAlign.center,
+                SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    ElegantNotification.error(
+                      width: 360,
+                      stackedOptions: StackedOptions(
+                        key: 'topRight',
+                        type: StackedType.below,
+                        itemOffset: Offset(0, 5),
+                      ),
+                      position: Alignment.topRight,
+                      animation: AnimationType.fromRight,
+                      title: Text('Error'),
+                      description: Text('Error example notification'),
+                      onDismiss: () {},
+                    ).show(context);
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Error theme notification\n(top right)',
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  ElegantNotification.info(
-                    width: 360,
-                    stackedOptions: StackedOptions(
-                      key: 'left',
-                      type: StackedType.same,
-                      scaleFactor: 0.2,
-                      itemOffset: Offset(-20, 10),
-                    ),
-                    toastDuration: Duration(seconds: 5),
-                    position: Alignment.centerLeft,
-                    animation: AnimationType.fromLeft,
-                    title: Text('Info'),
-                    description: Text(
-                      'This account will be updated once you exit',
-                    ),
-                    showProgressIndicator: false,
-                    onDismiss: () {},
-                  ).show(context);
-                },
-                child: Container(
-                  width: 150,
-                  height: 100,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Info theme notification\n(center left)',
-                        style: TextStyle(color: Colors.white),
-                        textAlign: TextAlign.center,
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {
+                    ElegantNotification.info(
+                      width: 360,
+                      stackedOptions: StackedOptions(
+                        key: 'left',
+                        type: StackedType.same,
+                        scaleFactor: 0.2,
+                        itemOffset: Offset(-20, 10),
+                      ),
+                      toastDuration: Duration(seconds: 5),
+                      position: Alignment.centerLeft,
+                      animation: AnimationType.fromLeft,
+                      title: Text('Info'),
+                      description: Text(
+                        'This account will be updated once you exit',
+                      ),
+                      showProgressIndicator: false,
+                      onDismiss: () {},
+                    ).show(context);
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Info theme notification\n(center left)',
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  ElegantNotification(
-                    width: 360,
-                    position: Alignment.centerRight,
-                    animation: AnimationType.fromRight,
-                    stackedOptions: StackedOptions(
-                      key: 'top',
-                      type: StackedType.same,
-                      itemOffset: Offset(-1, -6),
-                    ),
-                    title: Text(
-                      'New version',
-                      style: TextStyle(
-                        color: Colors.red,
-                      ),
-                    ),
-                    description: Text(
-                      'A new version is available to you please update.',
-                    ),
-                    icon: Icon(
-                      Icons.access_alarm,
-                      color: Colors.orange,
-                    ),
-                    progressIndicatorColor: Colors.orange,
-                    onDismiss: () {},
-                  ).show(context);
-                },
-                child: Container(
-                  width: 150,
-                  height: 100,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Text(
-                      'Custom notification\n(center right)',
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                SizedBox(
+                  width: 20,
                 ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  ElegantNotification.info(
-                    width: 360,
-                    position: Alignment.bottomLeft,
-                    animation: AnimationType.fromLeft,
-                    title: Text('Info'),
-                    description: Text(
-                      'This account will be updated once you exit',
-                    ),
-                    action: InkWell(
-                      onTap: () {},
-                      child: Text(
-                        'Link',
+                InkWell(
+                  onTap: () {
+                    ElegantNotification(
+                      width: 360,
+                      position: Alignment.centerRight,
+                      animation: AnimationType.fromRight,
+                      stackedOptions: StackedOptions(
+                        key: 'top',
+                        type: StackedType.same,
+                        itemOffset: Offset(-1, -6),
+                      ),
+                      title: Text(
+                        'New version',
                         style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Colors.blue,
+                          color: Colors.red,
+                        ),
+                      ),
+                      description: Text(
+                        'A new version is available to you please update.',
+                      ),
+                      icon: Icon(
+                        Icons.access_alarm,
+                        color: Colors.orange,
+                      ),
+                      progressIndicatorColor: Colors.orange,
+                      onDismiss: () {},
+                    ).show(context);
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Text(
+                        'Custom notification\n(center right)',
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {
+                    ElegantNotification.info(
+                      width: 360,
+                      position: Alignment.bottomLeft,
+                      animation: AnimationType.fromLeft,
+                      title: Text('Info'),
+                      description: Text(
+                        'This account will be updated once you exit',
+                      ),
+                      action: InkWell(
+                        onTap: () {},
+                        child: Text(
+                          'Link',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ),
+                      showProgressIndicator: false,
+                      onDismiss: () {},
+                    ).show(context);
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Notification with action\n(bottom left)',
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                    showProgressIndicator: false,
-                    onDismiss: () {},
-                  ).show(context);
-                },
-                child: Container(
-                  width: 150,
-                  height: 100,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    ElegantNotification(
+                      width: 360,
+                      position: Alignment.bottomRight,
+                      animation: AnimationType.fromBottom,
+                      description: Text(
+                        'A new version is available to you please update.',
+                      ),
+                      icon: Icon(
+                        Icons.access_alarm,
+                        color: Colors.orange,
+                      ),
+                      progressIndicatorColor: Colors.orange,
+                      showProgressIndicator: false,
+                      autoDismiss: false,
+                      onDismiss: () {},
+                    ).show(context);
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(
                       child: Text(
-                        'Notification with action\n(bottom left)',
+                        'Elegant notification without title\n(bottom right)',
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  ElegantNotification(
-                    width: 360,
-                    position: Alignment.bottomRight,
-                    animation: AnimationType.fromBottom,
-                    description: Text(
-                      'A new version is available to you please update.',
-                    ),
-                    icon: Icon(
-                      Icons.access_alarm,
-                      color: Colors.orange,
-                    ),
-                    progressIndicatorColor: Colors.orange,
-                    showProgressIndicator: false,
-                    autoDismiss: false,
-                    onDismiss: () {},
-                  ).show(context);
-                },
-                child: Container(
-                  width: 150,
-                  height: 100,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Text(
-                      'Elegant notification without title\n(bottom right)',
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  ElegantNotification(
-                    width: 360,
-                    position: Alignment.topRight,
-                    animation: AnimationType.fromRight,
-                    description: Text(
-                      'You can now leave the dashboard.',
-                    ),
-                    icon: Icon(
-                      Icons.dashboard_customize_outlined,
-                      color: Colors.purple,
-                    ),
-                    progressIndicatorColor: Colors.purple,
-                    showProgressIndicator: false,
-                    autoDismiss: false,
-                    closeButton: (dismiss) => Container(
-                      margin: Directionality.of(context) == TextDirection.rtl
-                          ? EdgeInsets.only(left: 20)
-                          : EdgeInsets.only(right: 20),
-                      child: ElevatedButton(
-                        onPressed: dismiss,
-                        child: Icon(Icons.logout, color: Colors.white),
-                        style: ElevatedButton.styleFrom(
-                          shape: CircleBorder(),
-                          padding: EdgeInsets.all(20),
-                          backgroundColor: Colors.purple, // <-- Button color
-                          foregroundColor: Colors.white, // <-- Splash color
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {
+                    ElegantNotification(
+                      width: 360,
+                      position: Alignment.topRight,
+                      animation: AnimationType.fromRight,
+                      description: Text(
+                        'You can now leave the dashboard.',
+                      ),
+                      icon: Icon(
+                        Icons.dashboard_customize_outlined,
+                        color: Colors.purple,
+                      ),
+                      progressIndicatorColor: Colors.purple,
+                      showProgressIndicator: false,
+                      autoDismiss: false,
+                      closeButton: (dismiss) => Container(
+                        margin: Directionality.of(context) == TextDirection.rtl
+                            ? EdgeInsets.only(left: 20)
+                            : EdgeInsets.only(right: 20),
+                        child: ElevatedButton(
+                          onPressed: dismiss,
+                          child: Icon(Icons.logout, color: Colors.white),
+                          style: ElevatedButton.styleFrom(
+                            shape: CircleBorder(),
+                            padding: EdgeInsets.all(20),
+                            backgroundColor: Colors.purple, // <-- Button color
+                            foregroundColor: Colors.white, // <-- Splash color
+                          ),
+                        ),
+                      ),
+                      onDismiss: () {},
+                    ).show(context);
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Notification with custom close button\n(top right)',
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                    onDismiss: () {},
-                  ).show(context);
-                },
-                child: Container(
-                  width: 150,
-                  height: 100,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Notification with custom close button\n(top right)',
-                        style: TextStyle(color: Colors.white),
-                        textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    ElegantNotification.success(
+                      description: Text(
+                        'Your account has been created succesfully',
+                      ),
+                      progressBarHeight: 10,
+                      progressBarPadding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      progressIndicatorBackground: Colors.green[100]!,
+                    ).show(context);
+                  },
+                  child: Container(
+                    width: 150,
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Custom progress bar sizes',
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  ElegantNotification.success(
-                    description: Text(
-                      'Your account has been created succesfully',
-                    ),
-                    progressBarHeight: 10,
-                    progressBarPadding: EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
-                    progressIndicatorBackground: Colors.green[100]!,
-                  ).show(context);
-                },
-                child: Container(
-                  width: 150,
-                  height: 100,
-                  color: Colors.blue,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Custom progress bar sizes',
-                        style: TextStyle(color: Colors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
