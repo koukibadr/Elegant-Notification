@@ -1,3 +1,8 @@
+## [2.1.2] - 17/04/2024
+
+* **Bug Fix:**
+* Fix offsetAnimation initialization error
+
 ## [2.1.1] - 13/04/2024
 
 * **Enhancements:**
