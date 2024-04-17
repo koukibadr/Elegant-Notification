@@ -40,14 +40,11 @@ class ExampleApp extends StatelessWidget {
                     ElegantNotification.success(
                       width: 360,
                       isDismissable: false,
-                      animationCurve: Curves.bounceOut,
                       stackedOptions: StackedOptions(
                         key: 'top',
                         type: StackedType.same,
                         itemOffset: Offset(-5, -5),
                       ),
-                      position: Alignment.bottomCenter,
-                      animation: AnimationType.fromBottom,
                       title: Text('Update'),
                       description: Text('Your data has been updated'),
                       onDismiss: () {

@@ -578,6 +578,16 @@ class ElegantNotificationState extends State<ElegantNotification>
         );
         break;
       default:
+        widget._offsetAnimation = Tween<Offset>(
+          begin: const Offset(-2, 0),
+          end: const Offset(0, 0),
+        ).animate(
+          CurvedAnimation(
+            parent: widget._slideController,
+            curve: widget.animationCurve,
+          ),
+        );
+        break;
     }
 
     /// ! To support Flutter < 3.0.0
