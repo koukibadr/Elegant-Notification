@@ -1,6 +1,4 @@
-import 'package:elegant_notification/resources/arrays.dart';
-import 'package:elegant_notification/resources/colors.dart';
-import 'package:flutter/material.dart';
+import 'resources_barrel.dart';
 
 extension NotificationTypeExtension on NotificationType {
   Color color() {

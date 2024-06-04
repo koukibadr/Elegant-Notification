@@ -1,15 +1,7 @@
 import 'dart:async';
-
-import 'package:elegant_notification/resources/arrays.dart';
-import 'package:elegant_notification/resources/colors.dart';
-import 'package:elegant_notification/resources/constants.dart';
-import 'package:elegant_notification/resources/extensions.dart';
-import 'package:elegant_notification/resources/stacked_options.dart';
-import 'package:elegant_notification/widgets/animated_progress_bar.dart';
-import 'package:elegant_notification/widgets/overlay_manager.dart';
-import 'package:elegant_notification/widgets/toast_content.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'resources/resources_barrel.dart';
+import 'widgets/widgets_barrel.dart';
 
 // ignore: must_be_immutable
 class ElegantNotification extends StatefulWidget {
