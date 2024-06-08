@@ -1,4 +1,3 @@
-import 'package:elegant_notification/gen/assets.gen.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/constants.dart';
 import 'package:flutter/material.dart';
@@ -115,23 +114,28 @@ class ToastContent extends StatelessWidget {
   Widget _getNotificationIcon() {
     switch (notificationType) {
       case NotificationType.success:
-        return _renderImage(Assets.icons.success.assetName);
+        return Icon(
+          Icons.check_circle,
+          color: successColor,
+          size: iconSize,
+        );
       case NotificationType.error:
-        return _renderImage(Assets.icons.error.assetName);
+        return Transform.rotate(
+          angle: 1,
+          child: Icon(
+            Icons.add_circle_outlined,
+            color: errorColor,
+            size: iconSize,
+          ),
+        );
       case NotificationType.info:
-        return _renderImage(Assets.icons.info.assetName);
+        return Icon(
+          Icons.info,
+          color: inforColor,
+          size: iconSize,
+        );
       default:
         return icon!;
     }
-  }
-
-  Image _renderImage(String imageAsset) {
-    return Image(
-      image: AssetImage(
-        imageAsset,
-        package: packageName,
-      ),
-      width: iconSize,
-    );
   }
 }
