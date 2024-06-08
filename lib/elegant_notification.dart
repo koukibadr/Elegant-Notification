@@ -54,7 +54,7 @@ class ElegantNotification extends StatefulWidget {
   }
 
   ElegantNotification.success({
-    Key? key,
+    super.key,
     this.title,
     required this.description,
     this.background = Colors.white,
@@ -86,7 +86,7 @@ class ElegantNotification extends StatefulWidget {
     this.shadow,
     this.borderRadius,
     this.border,
-  }) : super(key: key) {
+  }) {
     _notificationType = NotificationType.success;
     progressIndicatorColor = _notificationType.color();
     icon = null;
@@ -94,7 +94,7 @@ class ElegantNotification extends StatefulWidget {
   }
 
   ElegantNotification.error({
-    Key? key,
+    super.key,
     this.title,
     required this.description,
     this.background = Colors.white,
@@ -126,7 +126,7 @@ class ElegantNotification extends StatefulWidget {
     this.shadow,
     this.borderRadius,
     this.border,
-  }) : super(key: key) {
+  }) {
     _notificationType = NotificationType.error;
     progressIndicatorColor = _notificationType.color();
     icon = null;
@@ -134,7 +134,7 @@ class ElegantNotification extends StatefulWidget {
   }
 
   ElegantNotification.info({
-    Key? key,
+    super.key,
     this.title,
     required this.description,
     this.background = Colors.white,
@@ -166,7 +166,7 @@ class ElegantNotification extends StatefulWidget {
     this.shadow,
     this.borderRadius,
     this.border,
-  }) : super(key: key) {
+  }) {
     _notificationType = NotificationType.info;
     progressIndicatorColor = _notificationType.color();
     icon = null;
