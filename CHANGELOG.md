@@ -1,3 +1,9 @@
+## [2.2.0] - 09/06/2024
+
+* **Enhancement**
+* Remove package assets svg files to reduce package size
+* Replace assets with Material icons
+
 ## [2.1.2] - 17/04/2024
 
 * **Bug Fix:**
