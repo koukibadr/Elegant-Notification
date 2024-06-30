@@ -489,12 +489,14 @@ class ElegantNotification extends StatefulWidget {
                   (stackOverlaysLength - 1 - stackedItemPosition),
           top: alignmentToTopPos(context) + getTopPos(context),
           child: AnimatedScale(
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(
+              milliseconds: 300,
+            ),
             scale: getScale(),
             alignment: Alignment.bottomCenter,
             child: Material(
               color: Colors.transparent,
-              child: this,
+              child: position.fromTop ? SafeArea(child: this) : this,
             ),
           ),
         );
