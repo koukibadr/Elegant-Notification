@@ -1,3 +1,8 @@
+## [2.2.1] - 30/06/2024
+
+* **Bug Fix**
+* Add safearea rendering support for top notifications [Issue#127](https://github.com/koukibadr/Elegant-Notification/issues/127)
+
 ## [2.2.0] - 09/06/2024
 
 * **Enhancement**
