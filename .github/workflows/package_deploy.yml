@@ -27,7 +27,7 @@ jobs:
           retention-days: 15
       
       - name: Runing widget testing
-        run: dart pub publish --dry-run
+        run: flutter test --verbose
       
       
       - name: Check Publish Warnings
