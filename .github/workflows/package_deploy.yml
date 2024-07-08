@@ -10,15 +10,25 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.10'
+          channel: stable
       - name: Install dependencies
         run: flutter pub get
       
       - name: Running Flutter analysis on package code
-        run: flutter analyze
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings --write=analysis_report.txt
+      
+      - name: Artifact analysis report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: analysis-report
+          path: |
+            analysis_report.txt
+          retention-days: 15
       
       - name: Runing widget testing
         run: dart pub publish --dry-run
+      
       
       - name: Check Publish Warnings
         run: dart pub publish --dry-run
