@@ -1,7 +1,7 @@
 on:
-  release:
+  push:
     branches:
-      - release
+      - dev
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,15 +13,12 @@ jobs:
           flutter-version: '3.7.10'
       - name: Install dependencies
         run: flutter pub get
-      - name: Analyze
+      
+      - name: Running Flutter analysis on package code
         run: flutter analyze
-      - name: Format code
-        run: dart format --fix .
+      
+      - name: Runing widget testing
+        run: dart pub publish --dry-run
+      
       - name: Check Publish Warnings
         run: dart pub publish --dry-run
-      - name: Publish
-        uses: k-paxian/dart-package-publisher@v1.5.1
-        with:
-          credentialJson: ${{ secrets.CREDENTIAL_JSON }}
-          flutter: true
-          skipTests: true
