@@ -32,3 +32,9 @@ jobs:
       
       - name: Check Publish Warnings
         run: dart pub publish --dry-run
+
+      - name: Publish new package version
+        uses: k-paxian/dart-package-publisher@master
+        with:
+          credentialJson: ${{ secrets.CREDENTIAL_JSON }}
+          flutter: true

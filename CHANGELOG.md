@@ -1,3 +1,8 @@
+## [2.2.2] - 09/07/2024
+
+* **Changes**
+* Update package deployment track
+
 ## [2.2.1] - 30/06/2024
 
 * **Bug Fix**
