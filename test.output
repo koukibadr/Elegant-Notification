@@ -1,0 +1,18 @@
+Resolving dependencies...
+Downloading packages...
+  collection 1.18.0 (1.19.0 available)
+  flutter_lints 2.0.1 (4.0.0 available)
+  leak_tracker 10.0.4 (10.0.5 available)
+  leak_tracker_flutter_testing 3.0.3 (3.0.5 available)
+  lints 2.0.0 (4.0.0 available)
+  material_color_utilities 0.8.0 (0.12.0 available)
+  meta 1.12.0 (1.15.0 available)
+  test_api 0.7.0 (0.7.3 available)
+  vm_service 14.2.1 (14.2.4 available)
+Got dependencies!
+9 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Resolving dependencies in `./example`...
+Downloading packages...
+Got dependencies in `./example`.
+00:00 +0: loading /Users/badrkouki/Documents/Perso/Elegant-Notification/test/elegant_notification_test.dart                                                                                            00:01 +0: loading /Users/badrkouki/Documents/Perso/Elegant-Notification/test/elegant_notification_test.dart                                                                                            00:02 +0: loading /Users/badrkouki/Documents/Perso/Elegant-Notification/test/elegant_notification_test.dart                                                                                            00:02 +0: loading /Users/badrkouki/Documents/Perso/Elegant-Notification/test/defined_notification_test.dart                                                                                            00:02 +0: /Users/badrkouki/Documents/Perso/Elegant-Notification/test/defined_notification_test.dart: Testing defined elegant notifications Success elegant notification                                00:02 +1: /Users/badrkouki/Documents/Perso/Elegant-Notification/test/defined_notification_test.dart: Testing defined elegant notifications Success elegant notification                                00:02 +2: /Users/badrkouki/Documents/Perso/Elegant-Notification/test/defined_notification_test.dart: Testing defined elegant notifications Success elegant notification                                00:02 +2: /Users/badrkouki/Documents/Perso/Elegant-Notification/test/defined_notification_test.dart: Testing defined elegant notifications Info elegant notification                                   00:02 +3: /Users/badrkouki/Documents/Perso/Elegant-Notification/test/defined_notification_test.dart: Testing defined elegant notifications Info elegant notification                                   00:02 +4: /Users/badrkouki/Documents/Perso/Elegant-Notification/test/defined_notification_test.dart: Testing defined elegant notifications Info elegant notification                                   00:03 +4: /Users/badrkouki/Documents/Perso/Elegant-Notification/test/defined_notification_test.dart: Testing defined elegant notifications Info elegant notification                                   00:03 +4: All tests passed!                                                                                                                                                                            
