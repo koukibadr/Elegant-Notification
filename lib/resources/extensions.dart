@@ -2,6 +2,7 @@ import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
 import 'package:flutter/material.dart';
 
+//TODO replace extension with enum classes
 extension NotificationTypeExtension on NotificationType {
   Color color() {
     switch (this) {

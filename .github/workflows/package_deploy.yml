@@ -1,7 +1,6 @@
 on:
   release:
-    branches:
-      - dev
+    types: [published]
 jobs:
   build:
     runs-on: ubuntu-latest
