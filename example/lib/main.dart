@@ -142,6 +142,10 @@ class ExampleApp extends StatelessWidget {
                     ),
                     showProgressIndicator: false,
                     onDismiss: () {},
+                    icon: Icon(
+                      Icons.ac_unit_rounded,
+                      color: Colors.amber,
+                    ),
                   ).show(context);
                 },
                 child: Container(
@@ -182,10 +186,6 @@ class ExampleApp extends StatelessWidget {
                     ),
                     description: const Text(
                       'A new version is available to you please update.',
-                    ),
-                    icon: const Icon(
-                      Icons.access_alarm,
-                      color: Colors.orange,
                     ),
                     progressIndicatorColor: Colors.orange,
                     onDismiss: () {},
@@ -258,20 +258,9 @@ class ExampleApp extends StatelessWidget {
               InkWell(
                 onTap: () {
                   ElegantNotification(
-                    width: 360,
-                    position: Alignment.bottomRight,
-                    animation: AnimationType.fromBottom,
                     description: const Text(
-                      'A new version is available to you please update.',
+                      'This is the easiest way to display an elegant notification',
                     ),
-                    icon: const Icon(
-                      Icons.access_alarm,
-                      color: Colors.orange,
-                    ),
-                    progressIndicatorColor: Colors.orange,
-                    showProgressIndicator: false,
-                    autoDismiss: false,
-                    onDismiss: () {},
                   ).show(context);
                 },
                 child: Container(
@@ -280,7 +269,7 @@ class ExampleApp extends StatelessWidget {
                   color: Colors.blue,
                   child: const Center(
                     child: Text(
-                      'Elegant notification without title\n(bottom right)',
+                      'Easiest way to display elegant notification',
                       style: TextStyle(color: Colors.white),
                       textAlign: TextAlign.center,
                     ),

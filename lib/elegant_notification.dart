@@ -15,9 +15,9 @@ import 'package:flutter/material.dart';
 class ElegantNotification extends StatefulWidget {
   ElegantNotification({
     Key? key,
-    this.title,
     required this.description,
-    required this.icon,
+    this.title,
+    this.icon,
     this.background = Colors.white,
     this.borderRadius,
     this.border,
@@ -66,6 +66,7 @@ class ElegantNotification extends StatefulWidget {
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = defaultIconSize,
+    this.icon,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
     this.animationDuration = const Duration(milliseconds: 600),
@@ -88,8 +89,7 @@ class ElegantNotification extends StatefulWidget {
     this.border,
   }) {
     _notificationType = NotificationType.success;
-    progressIndicatorColor = _notificationType.color();
-    icon = null;
+    progressIndicatorColor = _notificationType.color;
     checkAssertions();
   }
 
@@ -105,6 +105,7 @@ class ElegantNotification extends StatefulWidget {
     this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
+    this.icon,
     this.iconSize = defaultIconSize,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
@@ -128,8 +129,7 @@ class ElegantNotification extends StatefulWidget {
     this.border,
   }) {
     _notificationType = NotificationType.error;
-    progressIndicatorColor = _notificationType.color();
-    icon = null;
+    progressIndicatorColor = _notificationType.color;
     checkAssertions();
   }
 
@@ -145,6 +145,7 @@ class ElegantNotification extends StatefulWidget {
     this.displayCloseButton = true,
     this.onCloseButtonPressed,
     this.onProgressFinished,
+    this.icon,
     this.iconSize = defaultIconSize,
     this.position = Alignment.topRight,
     this.animation = AnimationType.fromRight,
@@ -168,8 +169,7 @@ class ElegantNotification extends StatefulWidget {
     this.border,
   }) {
     _notificationType = NotificationType.info;
-    progressIndicatorColor = _notificationType.color();
-    icon = null;
+    progressIndicatorColor = _notificationType.color;
     checkAssertions();
   }
 
@@ -245,7 +245,7 @@ class ElegantNotification extends StatefulWidget {
   ///The toast icon, required only if using the default constructor
   ///for other toast types (Success, Info, error) the icon is not changeable
   ///
-  late Widget? icon;
+  Widget? icon;
 
   ///The size of the icon, by default it's 20px
   ///
