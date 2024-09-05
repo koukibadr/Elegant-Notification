@@ -1,4 +1,4 @@
-## [2.3.2] - 05/09/2024
+## [2.3.0] - 05/09/2024
 
 * **Changes**
 * `icon` is optional when using the default contructor
