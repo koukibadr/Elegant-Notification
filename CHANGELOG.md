@@ -1,3 +1,13 @@
+## [2.3.2] - 05/09/2024
+
+* **Changes**
+* `icon` is optional when using the default contructor
+* `icon` parameter is exposed when using success, info and error constructors
+
+* **Enhancement**
+* Reduced package size by removing all unnecessary code and files
+
+
 ## [2.2.2] - 09/07/2024
 
 * **Changes**

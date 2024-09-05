@@ -7,9 +7,9 @@
 
 </p>
 
-|![success_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/success_elegant_notification.gif?raw=true) | ![info_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/info_elegant_notification.gif?raw=true)|
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-|![error_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/error_elegant_notification.gif?raw=true) | ![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/custom_elegant_notification.gif?raw=true)|
+| ![success_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/success_elegant_notification.gif?raw=true) | ![info_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/info_elegant_notification.gif?raw=true)     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![error_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/error_elegant_notification.gif?raw=true)     | ![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/custom_elegant_notification.gif?raw=true) |
 
 **Stacked elegant notification**
 ![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/stacked_example_1.gif?raw=true)
@@ -46,7 +46,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^2.2.2
+	elegant_notification: ^2.3.2
 ```
 
 ## Parameters
@@ -64,10 +64,10 @@ dependencies:
   ///by default `action == null`
   final Widget? action;
 
-  ///The toast icon, required only if using the default constructor
-  ///for other toast types (Success, Info, error) the icon is not changeable
-  ///
-  late Widget? icon;
+  ///The notification icon, by default it's null
+  ///when it's null and using success, info and error the default icon is displayed
+  ///when using the default constructor and icon is null nothing is rendered
+  Widget? icon;
 
   ///The size of the icon, by default it's 20px
   ///
@@ -293,22 +293,25 @@ ElegantNotification.success(
 
 <br>
 
-- **Info theme animation example**
+- **Info theme animation with custom icon**
 
 ```dart
 ElegantNotification.info(
 	title:  Text("Info"),
-	description:  Text("This account will be updated once you exit")
+	description:  Text("This account will be updated once you exit"),
+  icon: Icon(
+		Icons.access_alarm,
+		color: Colors.orange,
+	),
 ).show(context);
 
 ```
 <br>
 
-- **Error theme animation example**
+- **Easiest way to display elegant notification**
 
 ```dart
-ElegantNotification.error(
-	title:  Text("Error"),
+ElegantNotification(
 	description:  Text("Please verifiy your data")
 ).show(context);
 

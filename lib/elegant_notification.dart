@@ -242,9 +242,9 @@ class ElegantNotification extends StatefulWidget {
   ///by default `action == null`
   final Widget? action;
 
-  ///The toast icon, required only if using the default constructor
-  ///for other toast types (Success, Info, error) the icon is not changeable
-  ///
+  ///The notification icon, by default it's null
+  ///when it's null and using success, info and error the default icon is displayed
+  ///when using the default constructor and icon is null nothing is rendered
   Widget? icon;
 
   ///The size of the icon, by default it's 20px
