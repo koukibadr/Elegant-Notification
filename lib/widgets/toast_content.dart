@@ -117,30 +117,11 @@ class ToastContent extends StatelessWidget {
   }
 
   Widget _getNotificationIcon() {
-    switch (notificationType) {
-      case NotificationType.success:
-        return Icon(
-          Icons.check_circle,
-          color: successColor,
+    return icon ??
+        Icon(
+          notificationType.icon,
+          color: notificationType.color,
           size: iconSize,
         );
-      case NotificationType.error:
-        return Transform.rotate(
-          angle: 1,
-          child: Icon(
-            Icons.add_circle_outlined,
-            color: errorColor,
-            size: iconSize,
-          ),
-        );
-      case NotificationType.info:
-        return Icon(
-          Icons.info,
-          color: infoColor,
-          size: iconSize,
-        );
-      default:
-        return icon!;
-    }
   }
 }

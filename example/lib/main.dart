@@ -142,6 +142,10 @@ class ExampleApp extends StatelessWidget {
                     ),
                     showProgressIndicator: false,
                     onDismiss: () {},
+                    icon: Icon(
+                      Icons.ac_unit_rounded,
+                      color: Colors.amber,
+                    ),
                   ).show(context);
                 },
                 child: Container(
