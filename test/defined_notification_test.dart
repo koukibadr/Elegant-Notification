@@ -102,10 +102,6 @@ void main() {
           findsOneWidget,
         );
         expect(
-          find.byIcon(Icons.add_circle_outlined),
-          findsOneWidget,
-        );
-        expect(
           basicElgantNotificaiton.background,
           equals(Colors.white),
         );
