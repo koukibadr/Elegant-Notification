@@ -34,15 +34,20 @@ class ToastContent extends StatelessWidget {
 
     return Row(
       children: [
-        Padding(
-          padding: isRtl
-              ? const EdgeInsets.only(right: horizontalComponentPadding)
-              : const EdgeInsets.only(left: horizontalComponentPadding),
-          child: _getNotificationIcon(),
-        ),
-        const SizedBox(
-          width: 15,
-        ),
+        if (notificationType != NotificationType.custom || icon != null)
+          Row(
+            children: [
+              Padding(
+                padding: isRtl
+                    ? const EdgeInsets.only(right: horizontalComponentPadding)
+                    : const EdgeInsets.only(left: horizontalComponentPadding),
+                child: _getNotificationIcon(),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+            ],
+          ),
         Padding(
           padding: const EdgeInsets.only(
             top: 20,
@@ -131,7 +136,7 @@ class ToastContent extends StatelessWidget {
       case NotificationType.info:
         return Icon(
           Icons.info,
-          color: inforColor,
+          color: infoColor,
           size: iconSize,
         );
       default:
