@@ -395,6 +395,8 @@ class ElegantNotification extends StatefulWidget {
     } else {
       Navigator.of(context).overlay?.insert(overlayEntry!);
     }
+
+    overlayManager.addOverlay(internalKey, overlayEntry!);
   }
 
   void closeOverlay() {
