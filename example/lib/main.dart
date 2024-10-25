@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(
+      home: Scaffold(
         body: ExampleApp(),
       ),
     );
@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
 }
 
 class ExampleApp extends StatelessWidget {
-  const ExampleApp({super.key});
+  late ElegantNotification notification;
+  ExampleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +126,7 @@ class ExampleApp extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  ElegantNotification.info(
+                  notification = ElegantNotification.info(
                     width: 360,
                     stackedOptions: StackedOptions(
                       key: 'left',
@@ -140,13 +141,17 @@ class ExampleApp extends StatelessWidget {
                     description: const Text(
                       'This account will be updated once you exit',
                     ),
+                    onNotificationPressed: () {
+                      notification.dismiss();
+                    },
                     showProgressIndicator: false,
                     onDismiss: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.ac_unit_rounded,
                       color: Colors.amber,
                     ),
-                  ).show(context);
+                  );
+                  notification.show(context);
                 },
                 child: Container(
                   width: 150,
