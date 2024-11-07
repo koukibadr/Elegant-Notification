@@ -1,3 +1,8 @@
+## [2.3.1] - 07/11/2024
+
+* **Bug Fix**
+* Fix using show callback with GetX package context
+
 ## [2.3.0] - 05/09/2024
 
 * **Changes**
