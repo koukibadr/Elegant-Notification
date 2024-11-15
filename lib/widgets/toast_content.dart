@@ -16,6 +16,7 @@ class ToastContent extends StatelessWidget {
     this.icon,
     this.iconSize = 20,
     this.action,
+    this.verticalDividerColor,
   }) : super(key: key);
 
   final Widget? title;
@@ -27,6 +28,7 @@ class ToastContent extends StatelessWidget {
   final bool displayCloseButton;
   final Widget Function(void Function() dismissNotification)? closeButton;
   final Widget? action;
+  final Color? verticalDividerColor;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,7 @@ class ToastContent extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding: isRtl
-                    ? const EdgeInsets.only(right: horizontalComponentPadding)
-                    : const EdgeInsets.only(left: horizontalComponentPadding),
+                padding: isRtl ? const EdgeInsets.only(right: horizontalComponentPadding) : const EdgeInsets.only(left: horizontalComponentPadding),
                 child: _getNotificationIcon(),
               ),
               const SizedBox(
@@ -55,7 +55,7 @@ class ToastContent extends StatelessWidget {
           ),
           child: Container(
             width: 1,
-            color: greyColor,
+            color: verticalDividerColor ?? greyColor,
           ),
         ),
         const SizedBox(
