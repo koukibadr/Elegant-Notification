@@ -46,7 +46,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^2.3.1
+	elegant_notification: ^2.4.0
 ```
 
 ## Parameters
@@ -193,6 +193,11 @@ dependencies:
 
   /// The options for the stacked mode
   final StackedOptions? stackedOptions;
+
+  ///The color of the vertical divider between the icon and content
+  ///By default it's null, which means it will use the default divider color = Color(0xffF3F3F3)
+  ///You can customize the color by providing a specific [Color] value
+  final Color? verticalDividerColor;
 `
 
 ````

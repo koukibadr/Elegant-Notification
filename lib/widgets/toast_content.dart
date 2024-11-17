@@ -40,7 +40,9 @@ class ToastContent extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding: isRtl ? const EdgeInsets.only(right: horizontalComponentPadding) : const EdgeInsets.only(left: horizontalComponentPadding),
+                padding: isRtl
+                    ? const EdgeInsets.only(right: horizontalComponentPadding)
+                    : const EdgeInsets.only(left: horizontalComponentPadding),
                 child: _getNotificationIcon(),
               ),
               const SizedBox(

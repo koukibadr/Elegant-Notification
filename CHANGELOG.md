@@ -1,3 +1,8 @@
+## [2.4.0] - 17/11/2024
+
+* **Enhancements**
+* new attribute: `verticalDividerColor` to customize vertical divider color
+
 ## [2.3.1] - 07/11/2024
 
 * **Bug Fix**
