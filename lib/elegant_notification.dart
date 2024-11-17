@@ -35,6 +35,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.iconSize = defaultIconSize,
     this.action,
+    this.verticalDividerColor,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -72,6 +73,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
+    this.verticalDividerColor,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -112,6 +114,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
+    this.verticalDividerColor,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -152,6 +155,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
+    this.verticalDividerColor,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -187,47 +191,35 @@ class ElegantNotification extends StatefulWidget {
 
     if (position == Alignment.centerRight) {
       assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromTop,
+        animation != AnimationType.fromLeft && animation != AnimationType.fromBottom && animation != AnimationType.fromTop,
       );
     } else if (position == Alignment.centerLeft) {
       assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromTop,
+        animation != AnimationType.fromRight && animation != AnimationType.fromBottom && animation != AnimationType.fromTop,
       );
     } else if (position == Alignment.topCenter) {
       assert(
-        animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromRight,
+        animation != AnimationType.fromBottom && animation != AnimationType.fromLeft && animation != AnimationType.fromRight,
       );
     } else if (position == Alignment.topRight) {
       assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromBottom,
+        animation != AnimationType.fromLeft && animation != AnimationType.fromBottom,
       );
     } else if (position == Alignment.topLeft) {
       assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromBottom,
+        animation != AnimationType.fromRight && animation != AnimationType.fromBottom,
       );
     } else if (position == Alignment.bottomCenter) {
       assert(
-        animation != AnimationType.fromTop &&
-            animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromRight,
+        animation != AnimationType.fromTop && animation != AnimationType.fromLeft && animation != AnimationType.fromRight,
       );
     } else if (position == Alignment.bottomRight) {
       assert(
-        animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromTop,
+        animation != AnimationType.fromLeft && animation != AnimationType.fromTop,
       );
     } else if (position == Alignment.bottomLeft) {
       assert(
-        animation != AnimationType.fromRight &&
-            animation != AnimationType.fromTop,
+        animation != AnimationType.fromRight && animation != AnimationType.fromTop,
       );
     }
   }
@@ -241,6 +233,11 @@ class ElegantNotification extends StatefulWidget {
   ///a secondary widget displayed under the description widget
   ///by default `action == null`
   final Widget? action;
+
+  ///The color of the vertical divider between the icon and content
+  ///By default it's null, which means it will use the default divider color = Color(0xffF3F3F3)
+  ///You can customize the color by providing a specific [Color] value
+  final Color? verticalDividerColor;
 
   ///The notification icon, by default it's null
   ///when it's null and using success, info and error the default icon is displayed
@@ -381,9 +378,7 @@ class ElegantNotification extends StatefulWidget {
 
   final Key uniqueKey = UniqueKey();
 
-  String get internalKey => stackedOptions != null
-      ? '${stackedOptions?.key}%${uniqueKey.toString()}'
-      : uniqueKey.toString();
+  String get internalKey => stackedOptions != null ? '${stackedOptions?.key}%${uniqueKey.toString()}' : uniqueKey.toString();
 
   ///display the notification on the screen
   ///[context] the context of the application
@@ -424,56 +419,43 @@ class ElegantNotification extends StatefulWidget {
       .toList()
       .indexWhere((element) => element == internalKey);
 
-  double mainContainerHeight(BuildContext context) =>
-      height ?? MediaQuery.of(context).size.height * 0.12;
-  double mainContainerWidth(BuildContext context) =>
-      width ?? MediaQuery.of(context).size.width * 0.7;
+  double mainContainerHeight(BuildContext context) => height ?? MediaQuery.of(context).size.height * 0.12;
+  double mainContainerWidth(BuildContext context) => width ?? MediaQuery.of(context).size.width * 0.7;
 
   double getTopPos(context) {
     if (stackedOptions?.type == StackedType.above) {
-      return -(mainContainerHeight(context) * stackedItemPosition) +
-          (stackedOptions?.itemOffset.dy ?? 0) * stackedItemPosition;
+      return -(mainContainerHeight(context) * stackedItemPosition) + (stackedOptions?.itemOffset.dy ?? 0) * stackedItemPosition;
     } else if (stackedOptions?.type == StackedType.below) {
-      return (mainContainerHeight(context) * stackedItemPosition) +
-          (stackedOptions?.itemOffset.dy ?? 0) * stackedItemPosition;
+      return (mainContainerHeight(context) * stackedItemPosition) + (stackedOptions?.itemOffset.dy ?? 0) * stackedItemPosition;
     } else {
-      return (stackedOptions?.itemOffset.dy ?? 0) *
-          (stackOverlaysLength - 1 - stackedItemPosition);
+      return (stackedOptions?.itemOffset.dy ?? 0) * (stackOverlaysLength - 1 - stackedItemPosition);
     }
   }
 
   double alignmentToLeftPos(BuildContext context) {
     if (position.x == 1) {
-      return MediaQuery.of(context).size.width -
-          mainContainerWidth(context) -
-          notificationMargin;
+      return MediaQuery.of(context).size.width - mainContainerWidth(context) - notificationMargin;
     } else if (position.x == -1) {
       return notificationMargin;
     } else {
-      return ((position.x + 1) / 2) * MediaQuery.of(context).size.width -
-          (mainContainerWidth(context) / 2);
+      return ((position.x + 1) / 2) * MediaQuery.of(context).size.width - (mainContainerWidth(context) / 2);
     }
   }
 
   double alignmentToTopPos(BuildContext context) {
     if (position.y == 1) {
-      return MediaQuery.of(context).size.height -
-          mainContainerHeight(context) -
-          notificationMargin;
+      return MediaQuery.of(context).size.height - mainContainerHeight(context) - notificationMargin;
     } else if (position.y == -1) {
       return notificationMargin;
     } else {
-      return ((position.y + 1) / 2) * MediaQuery.of(context).size.height -
-          (mainContainerHeight(context) / 2);
+      return ((position.y + 1) / 2) * MediaQuery.of(context).size.height - (mainContainerHeight(context) / 2);
     }
   }
 
   double getScale() {
     if (stackedOptions?.scaleFactor != null) {
       return clampDouble(
-        (1 -
-            (stackedOptions?.scaleFactor ?? 0) *
-                (stackOverlaysLength - (stackedItemPosition + 1))),
+        (1 - (stackedOptions?.scaleFactor ?? 0) * (stackOverlaysLength - (stackedItemPosition + 1))),
         0,
         1,
       );
@@ -488,9 +470,7 @@ class ElegantNotification extends StatefulWidget {
       builder: (context) {
         return AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
-          left: alignmentToLeftPos(context) +
-              (stackedOptions?.itemOffset.dx ?? 0) *
-                  (stackOverlaysLength - 1 - stackedItemPosition),
+          left: alignmentToLeftPos(context) + (stackedOptions?.itemOffset.dx ?? 0) * (stackOverlaysLength - 1 - stackedItemPosition),
           top: alignmentToTopPos(context) + getTopPos(context),
           child: AnimatedScale(
             duration: const Duration(
@@ -512,8 +492,7 @@ class ElegantNotification extends StatefulWidget {
   ElegantNotificationState createState() => ElegantNotificationState();
 }
 
-class ElegantNotificationState extends State<ElegantNotification>
-    with SingleTickerProviderStateMixin {
+class ElegantNotificationState extends State<ElegantNotification> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
@@ -618,10 +597,8 @@ class ElegantNotificationState extends State<ElegantNotification>
     widget.closeOverlay();
   }
 
-  double get mainContainerHeight =>
-      widget.height ?? MediaQuery.of(context).size.height * 0.12;
-  double get mainContainerWidth =>
-      widget.width ?? MediaQuery.of(context).size.width * 0.7;
+  double get mainContainerHeight => widget.height ?? MediaQuery.of(context).size.height * 0.12;
+  double get mainContainerWidth => widget.width ?? MediaQuery.of(context).size.width * 0.7;
 
   @override
   Widget build(BuildContext context) {
@@ -629,9 +606,7 @@ class ElegantNotificationState extends State<ElegantNotification>
       position: widget._offsetAnimation,
       child: Dismissible(
         key: widget.uniqueKey,
-        direction: widget.isDismissable
-            ? widget.dismissDirection
-            : DismissDirection.none,
+        direction: widget.isDismissable ? widget.dismissDirection : DismissDirection.none,
         onDismissed: (direction) {
           widget.onDismiss?.call();
           widget.closeOverlay();
@@ -657,19 +632,17 @@ class ElegantNotificationState extends State<ElegantNotification>
                     description: widget.description,
                     notificationType: widget._notificationType,
                     icon: widget.icon,
-                    displayCloseButton: widget.onNotificationPressed == null
-                        ? widget.displayCloseButton
-                        : false,
+                    displayCloseButton: widget.onNotificationPressed == null ? widget.displayCloseButton : false,
                     closeButton: widget.closeButton,
                     onCloseButtonPressed: closeNotification,
                     iconSize: widget.iconSize,
                     action: widget.action,
+                    verticalDividerColor: widget.verticalDividerColor,
                   ),
                 ),
                 if (widget.showProgressIndicator)
                   Padding(
-                    padding:
-                        widget.progressBarPadding ?? const EdgeInsets.all(0),
+                    padding: widget.progressBarPadding ?? const EdgeInsets.all(0),
                     child: SizedBox(
                       width: widget.progressBarWidth,
                       height: widget.progressBarHeight,
