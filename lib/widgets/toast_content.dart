@@ -2,8 +2,6 @@ import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../resources/colors.dart';
-
 class ToastContent extends StatelessWidget {
   const ToastContent({
     Key? key,
@@ -12,11 +10,11 @@ class ToastContent extends StatelessWidget {
     required this.notificationType,
     required this.displayCloseButton,
     required this.onCloseButtonPressed,
+    required this.verticalDividerColor,
     this.closeButton,
     this.icon,
     this.iconSize = 20,
     this.action,
-    this.verticalDividerColor,
   }) : super(key: key);
 
   final Widget? title;
@@ -28,7 +26,7 @@ class ToastContent extends StatelessWidget {
   final bool displayCloseButton;
   final Widget Function(void Function() dismissNotification)? closeButton;
   final Widget? action;
-  final Color? verticalDividerColor;
+  final Color verticalDividerColor;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,7 @@ class ToastContent extends StatelessWidget {
           ),
           child: Container(
             width: 1,
-            color: verticalDividerColor ?? greyColor,
+            color: verticalDividerColor,
           ),
         ),
         const SizedBox(
@@ -84,36 +82,37 @@ class ToastContent extends StatelessWidget {
             ],
           ),
         ),
-        Visibility(
-          visible: displayCloseButton,
-          child: closeButton?.call(onCloseButtonPressed) ??
-              InkWell(
-                onTap: () {
-                  onCloseButtonPressed.call();
-                },
-                child: Padding(
-                  padding: isRtl
-                      ? const EdgeInsets.only(
-                          top: verticalComponentPadding,
-                          left: horizontalComponentPadding,
-                        )
-                      : const EdgeInsets.only(
-                          top: verticalComponentPadding,
-                          right: horizontalComponentPadding,
+        if (displayCloseButton)
+          Visibility(
+            visible: displayCloseButton,
+            child: closeButton?.call(onCloseButtonPressed) ??
+                InkWell(
+                  onTap: () {
+                    onCloseButtonPressed.call();
+                  },
+                  child: Padding(
+                    padding: isRtl
+                        ? const EdgeInsets.only(
+                            top: verticalComponentPadding,
+                            left: horizontalComponentPadding,
+                          )
+                        : const EdgeInsets.only(
+                            top: verticalComponentPadding,
+                            right: horizontalComponentPadding,
+                          ),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.close,
+                          color: Colors.grey,
+                          size: 15,
                         ),
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.close,
-                        color: Colors.grey,
-                        size: 15,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-        ),
+          ),
       ],
     );
   }
