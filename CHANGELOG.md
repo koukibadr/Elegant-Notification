@@ -1,3 +1,8 @@
+## [2.4.1] - 21/12/2024
+
+* **Enhancements**
+* `verticalDividerColor` is no longer nullable by default it holds grey color value.
+
 ## [2.4.0] - 17/11/2024
 
 * **Enhancements**

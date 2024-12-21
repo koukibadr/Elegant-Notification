@@ -46,7 +46,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^2.4.0
+	elegant_notification: ^2.4.1
 ```
 
 ## Parameters
@@ -54,138 +54,135 @@ dependencies:
 `
 
 ````dart
-  ///The toast title widget
+  /// The toast title widget
   final Widget? title;
 
-  ///The toast description widget
+  /// The toast description widget
   final Widget description;
 
-  ///a secondary widget displayed under the description widget
-  ///by default `action == null`
+  /// A secondary widget displayed under the description widget
+  /// by default `action == null`
   final Widget? action;
 
-  ///The notification icon, by default it's null
-  ///when it's null and using success, info and error the default icon is displayed
-  ///when using the default constructor and icon is null nothing is rendered
+  /// The color of the vertical divider between the icon and content
+  /// By default it's null, which means it will use the default divider color = Color(0xffF3F3F3)
+  /// You can customize the color by providing a specific [Color] value
+  final Color verticalDividerColor;
+
+  /// The notification icon, by default it's null.
+  /// When it's null and using success, info and error the default icon is displayed
+  /// When using the default constructor and icon is null nothing is rendered
   Widget? icon;
 
-  ///The size of the icon, by default it's 20px
-  ///
+  /// The size of the icon, by default it's 20px.
   final double iconSize;
 
-  ///The type of the animation set on the notification
-  ///possible values
-  ///```dart
-  ///{
-  ///fromLeft,
-  ///fromRight,
-  ///fromTop,
-  ///fromBottom,
-  ///}
-  ///```
-  ///default value `fromLeft`
-  ///
+  /// The type of the animation set on the notification
+  /// possible values
+  /// ```dart
+  /// {
+  /// fromLeft,
+  /// fromRight,
+  /// fromTop,
+  /// fromBottom,
+  /// }
+  /// ```
+  /// default value `fromLeft`
   final AnimationType animation;
 
-  ///The duration of the animation
-  ///Default value `Duration(milliseconds: 600)`
-  ///
+  /// The duration of the animation
+  /// Default value `Duration(milliseconds: 600)`
   final Duration animationDuration;
 
-  //The toast animation curve by default the curve is set to [Curves.ease]
+  /// The toast animation curve by default the curve is set to [Curves.ease]
   final Curve animationCurve;
 
-  /// the background color of the notification
-  /// by default it's set to white
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
+  /// The background color of the notification.
+  /// By default it's set to white.
+  /// For types constructors (Success, Info, Delete) this parameter is unchangeable.
   late Color background;
 
-
-  ///the border radius of the notification widget
+  /// The border radius of the notification widget
   final BorderRadius? borderRadius;
 
-  ///The notification widget border
+  /// The notification widget border
   final BoxBorder? border;
 
-  ///How much the notification will take time,
-  ///by default the duration is `3000 milliseconds`
-  ///
+  /// How much the notification will take time,
+  /// by default the duration is `3000 milliseconds`
   final Duration toastDuration;
 
-  ///The notification shadow
+  /// The notification shadow
   final BoxShadow? shadow;
 
-  ///enable or disable the progress indicator rendering
-  ///by default the indicator is displayed
-  /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  ///
+  /// Enable or disable the progress indicator rendering.
+  /// By default the indicator is displayed,
+  /// for types constructors (Success, Info, Delete) this parameter is unchangeable.
   late bool showProgressIndicator;
 
-  ///The color of the progress
-  ///by default it's blue
+  /// The color of the progress.
+  /// By default it's blue
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   late Color progressIndicatorColor;
 
-  ///progress bar indicator width, by default it's null so it takes the widget's width
+  /// Progress bar indicator width, by default it's null so it takes the widget's width
   final double? progressBarWidth;
 
-  ///progress bar indicator height, by default it's null so it takes the widget's height
+  /// Progress bar indicator height, by default it's null so it takes the widget's height
   final double? progressBarHeight;
 
-  ///progress bar indicator padding constraints
+  /// Progress bar indicator padding constraints
   final EdgeInsetsGeometry? progressBarPadding;
 
-  ///The progress indicator background color
-  ///by default it's grey
+  /// The progress indicator background color
+  /// by default it's grey
   final Color progressIndicatorBackground;
 
-  ///Display or hide the close button
-  ///by default the close button is displayed
+  /// Display or hide the close button
+  /// by default the close button is displayed
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   ///
   final bool displayCloseButton;
 
-  ///Close widget rendered as the close function
-  ///by default the close button is displayed, if you don't want it set `closeButton` to null
+  /// Close widget rendered as the close function
+  /// by default the close button is displayed, if you don't want it set `closeButton` to null
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
-  ///
   final Widget Function(void Function() dismissNotification)? closeButton;
 
-  ///Function invoked when user press on the close button
+  /// Function invoked when user press on the close button
   final void Function()? onCloseButtonPressed;
 
-  ///Function invoked when the notification is closed after the finish of the progress indicator
-  ///
+  /// Function invoked when the notification is closed after the finish of the progress indicator
   final void Function()? onProgressFinished;
 
-  ///Function invoked when the user taps on the notification
+  /// Function invoked when the user taps on the notification
   final void Function()? onNotificationPressed;
 
-  ///Function invoked when tapping outside the notification
-  ///Or when pressing the back button of the phone
-  ///or when tapping on the screen
+  /// Function invoked when tapping outside the notification
+  /// Or when pressing the back button of the phone
+  /// Or when tapping on the screen
   final Function()? onDismiss;
 
-  ///define whether the notification will be dismissed automatically or not
-  ///by default `autoDimiss == false`
+  /// Define whether the notification will be dismissed automatically or not
+  /// By default `autoDimiss == false`
   final bool autoDismiss;
 
-  ///The direction of the dismissible widget
-  ///by default it's `DismissDirection.horizontal`
+  /// The direction of the dismissible widget
+  /// By default it's `DismissDirection.horizontal`
   final DismissDirection dismissDirection;
 
-  ///The notification position in the screen
-  ///by default the position is set to `Alignment.topRight`
+  /// The notification position in the screen
+  /// By default the position is set to `Alignment.topRight`
   final Alignment position;
 
-  ///the width of the notification widget
+  /// The width of the notification widget
   final double? width;
 
-  ///the height of the notification widget
+  /// The height of the notification widget
   final double? height;
 
-  ///If the notification is dismissible or not
-  ///by default it's true
+  /// If the notification is dismissible or not
+  /// by default it's true
   final bool isDismissable;
 
   /// The margin between the notification and the edge of the screen
@@ -193,19 +190,9 @@ dependencies:
 
   /// The options for the stacked mode
   final StackedOptions? stackedOptions;
-
-  ///The color of the vertical divider between the icon and content
-  ///By default it's null, which means it will use the default divider color = Color(0xffF3F3F3)
-  ///You can customize the color by providing a specific [Color] value
-  final Color? verticalDividerColor;
 `
 
 ````
-
-## Migration to 2.0.0
-
-- `enableShadow` and `shadowColor` are removed replaced with `shadow`
-- `onActionPressed` is removed directly you can wrap the action widget with `InkWell` or `GestureDetector`
 
 ## Examples
 
