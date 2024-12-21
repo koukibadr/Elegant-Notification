@@ -35,7 +35,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.iconSize = defaultIconSize,
     this.action,
-    this.verticalDividerColor,
+    this.verticalDividerColor = greyColor,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -73,7 +73,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
-    this.verticalDividerColor,
+    this.verticalDividerColor = greyColor,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -114,7 +114,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
-    this.verticalDividerColor,
+    this.verticalDividerColor = greyColor,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -155,7 +155,7 @@ class ElegantNotification extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
-    this.verticalDividerColor,
+    this.verticalDividerColor = greyColor,
     this.autoDismiss = true,
     this.height,
     this.width,
@@ -249,7 +249,7 @@ class ElegantNotification extends StatefulWidget {
   ///The color of the vertical divider between the icon and content
   ///By default it's null, which means it will use the default divider color = Color(0xffF3F3F3)
   ///You can customize the color by providing a specific [Color] value
-  final Color? verticalDividerColor;
+  final Color verticalDividerColor;
 
   ///The notification icon, by default it's null
   ///when it's null and using success, info and error the default icon is displayed
