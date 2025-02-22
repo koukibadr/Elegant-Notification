@@ -1,3 +1,11 @@
+## [2.4.2] - 22/02/2025
+
+* **Enhancements**
+* Overlay manager add the current overlay when a new notification is displayed.
+* Enhanced overlay manager rendering method by adding a safe area widget to the overlay.
+* Refacor overlay manager to use a stack widget to display the notification.
+
+
 ## [2.4.1] - 21/12/2024
 
 * **Enhancements**
