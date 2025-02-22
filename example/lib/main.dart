@@ -26,9 +26,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ExampleApp extends StatelessWidget {
-  late ElegantNotification notification;
   ExampleApp({super.key});
+
+  ElegantNotification? notification;
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +144,7 @@ class ExampleApp extends StatelessWidget {
                       'This account will be updated once you exit',
                     ),
                     onNotificationPressed: () {
-                      notification.dismiss();
+                      notification?.dismiss();
                     },
                     showProgressIndicator: false,
                     onDismiss: () {},
@@ -151,7 +153,7 @@ class ExampleApp extends StatelessWidget {
                       color: Colors.amber,
                     ),
                   );
-                  notification.show(context);
+                  notification?.show(context);
                 },
                 child: Container(
                   width: 150,
