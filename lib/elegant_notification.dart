@@ -4,6 +4,7 @@ import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/colors.dart';
 import 'package:elegant_notification/resources/constants.dart';
 import 'package:elegant_notification/resources/extensions.dart';
+import 'package:elegant_notification/resources/overlay_helper.dart';
 import 'package:elegant_notification/resources/stacked_options.dart';
 import 'package:elegant_notification/widgets/animated_progress_bar.dart';
 import 'package:elegant_notification/widgets/overlay_manager.dart';
@@ -373,15 +374,23 @@ class ElegantNotification extends StatefulWidget {
   /// The options for the stacked mode
   final StackedOptions? stackedOptions;
 
+  /// The type of the notification
   late NotificationType _notificationType;
+
+  /// The timer for the notification
+  late Timer _closeTimer;
+
+  /// The offset animation for the notification
+  late Animation<Offset> _offsetAnimation;
+
+  /// The slide controller for the notification
+  late AnimationController _slideController;
+
+  final OverlayManager overlayManager = OverlayManager();
   OverlayEntry? overlayEntry;
 
-  late Timer _closeTimer;
-  late Animation<Offset> _offsetAnimation;
-  late AnimationController _slideController;
-  final OverlayManager overlayManager = OverlayManager();
-
   final Key uniqueKey = UniqueKey();
+  late OverlayHelper overlayHelper;
 
   String get internalKey => stackedOptions != null
       ? '${stackedOptions?.key}%${uniqueKey.toString()}'
@@ -390,6 +399,14 @@ class ElegantNotification extends StatefulWidget {
   /// Display the notification on the screen
   /// [context] the context of the application
   void show(BuildContext context) {
+    overlayHelper = OverlayHelper(
+      height: height,
+      width: width,
+      notificationMargin: notificationMargin,
+      position: position,
+      context: context,
+      stackedOptions: stackedOptions,
+    );
     overlayEntry = _overlayEntryBuilder();
     final overlay = Overlay.maybeOf(context);
     if (overlay != null) {
@@ -400,12 +417,15 @@ class ElegantNotification extends StatefulWidget {
     overlayManager.addOverlay(internalKey, overlayEntry!);
   }
 
+  /// Close the notification overlay
+  /// called when the user taps on the notification or when the notification is dismissed
   void closeOverlay() {
     overlayEntry?.remove();
     overlayEntry = null;
     overlayManager.removeOverlay(internalKey);
   }
 
+  /// Dismiss the notification
   Future<void> dismiss() {
     _closeTimer.cancel();
     return _slideController.reverse().then((value) {
@@ -427,79 +447,28 @@ class ElegantNotification extends StatefulWidget {
       .toList()
       .indexWhere((element) => element == internalKey);
 
-  double mainContainerHeight(BuildContext context) =>
-      height ?? MediaQuery.of(context).size.height * 0.12;
-  double mainContainerWidth(BuildContext context) =>
-      width ?? MediaQuery.of(context).size.width * 0.7;
-
-  double getTopPos(context) {
-    if (stackedOptions?.type == StackedType.above) {
-      return -(mainContainerHeight(context) * stackedItemPosition) +
-          (stackedOptions?.itemOffset.dy ?? 0) * stackedItemPosition;
-    } else if (stackedOptions?.type == StackedType.below) {
-      return (mainContainerHeight(context) * stackedItemPosition) +
-          (stackedOptions?.itemOffset.dy ?? 0) * stackedItemPosition;
-    } else {
-      return (stackedOptions?.itemOffset.dy ?? 0) *
-          (stackOverlaysLength - 1 - stackedItemPosition);
-    }
-  }
-
-  double alignmentToLeftPos(BuildContext context) {
-    if (position.x == 1) {
-      return MediaQuery.of(context).size.width -
-          mainContainerWidth(context) -
-          notificationMargin;
-    } else if (position.x == -1) {
-      return notificationMargin;
-    } else {
-      return ((position.x + 1) / 2) * MediaQuery.of(context).size.width -
-          (mainContainerWidth(context) / 2);
-    }
-  }
-
-  double alignmentToTopPos(BuildContext context) {
-    if (position.y == 1) {
-      return MediaQuery.of(context).size.height -
-          mainContainerHeight(context) -
-          notificationMargin;
-    } else if (position.y == -1) {
-      return notificationMargin;
-    } else {
-      return ((position.y + 1) / 2) * MediaQuery.of(context).size.height -
-          (mainContainerHeight(context) / 2);
-    }
-  }
-
-  double getScale() {
-    if (stackedOptions?.scaleFactor != null) {
-      return clampDouble(
-        (1 -
-            (stackedOptions?.scaleFactor ?? 0) *
-                (stackOverlaysLength - (stackedItemPosition + 1))),
-        0,
-        1,
-      );
-    } else {
-      return 1.0;
-    }
-  }
-
   OverlayEntry _overlayEntryBuilder() {
     return OverlayEntry(
       opaque: false,
       builder: (context) {
         return AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
-          left: alignmentToLeftPos(context) +
+          left: overlayHelper.alignmentToLeftPos() +
               (stackedOptions?.itemOffset.dx ?? 0) *
                   (stackOverlaysLength - 1 - stackedItemPosition),
-          top: alignmentToTopPos(context) + getTopPos(context),
+          top: overlayHelper.alignmentToTopPos() +
+              overlayHelper.getTopPos(
+                stackedItemPosition,
+                stackOverlaysLength,
+              ),
           child: AnimatedScale(
             duration: const Duration(
               milliseconds: 300,
             ),
-            scale: getScale(),
+            scale: overlayHelper.getScale(
+              stackedItemPosition,
+              stackOverlaysLength,
+            ),
             alignment: Alignment.bottomCenter,
             child: Material(
               color: Colors.transparent,
