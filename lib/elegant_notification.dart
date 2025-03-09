@@ -201,11 +201,7 @@ class ElegantNotification extends StatefulWidget {
             animation != AnimationType.fromTop,
       );
     } else if (position == Alignment.topCenter) {
-      assert(
-        animation != AnimationType.fromBottom &&
-            animation != AnimationType.fromLeft &&
-            animation != AnimationType.fromRight,
-      );
+      assert(animation == AnimationType.fromTop);
     } else if (position == Alignment.topRight) {
       assert(
         animation != AnimationType.fromLeft &&
@@ -231,6 +227,21 @@ class ElegantNotification extends StatefulWidget {
       assert(
         animation != AnimationType.fromRight &&
             animation != AnimationType.fromTop,
+      );
+    }
+
+    // if notification will be shown in the bottom of the screen
+    // stacked options should be null or stacked option type should not be [StackedType.below]
+    if (position.y == 1) {
+      assert(
+        stackedOptions == null || stackedOptions?.type != StackedType.below,
+      );
+    }
+    // if the notification will be shown on top
+    // stacked options should be null or the stacked options type should not be [StackedType.above]
+    else if (position.y == -1) {
+      assert(
+        stackedOptions == null || stackedOptions?.type != StackedType.above,
       );
     }
   }
