@@ -62,7 +62,8 @@ class _OverlayHelper implements OverlayHelper {
     if (position.y == 1) {
       return MediaQuery.of(context).size.height -
           mainContainerHeight() -
-          notificationMargin;
+          notificationMargin -
+          20;
     } else if (position.y == -1) {
       return notificationMargin;
     } else {

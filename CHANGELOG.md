@@ -1,3 +1,10 @@
+## [2.4.3] - 09/03/2025
+
+* **Enhancements**
+* Update notification overlay display geometry calculation by handling bottom padding [Issue#143](https://github.com/koukibadr/Elegant-Notification/issues/143)
+* Add assertions on `StackedOptions` attribute
+
+
 ## [2.4.2] - 22/02/2025
 
 * **Enhancements**
