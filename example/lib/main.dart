@@ -59,12 +59,6 @@ class ExampleApp extends StatelessWidget {
                     onNotificationPressed: () {
                       //Message when the notification is pressed
                     },
-                    border: const Border(
-                      bottom: BorderSide(
-                        color: Colors.green,
-                        width: 2,
-                      ),
-                    ),
                   ).show(context);
                 },
                 child: Container(
