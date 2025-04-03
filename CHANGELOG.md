@@ -1,3 +1,8 @@
+## [2.4.4] - 30/03/2025
+
+* **Bug Fix**
+* Update progress indicator padding display to prevent overflow when using `borderRadius` [Issue#150](https://github.com/koukibadr/Elegant-Notification/issues/150)
+
 ## [2.4.3] - 09/03/2025
 
 * **Enhancements**

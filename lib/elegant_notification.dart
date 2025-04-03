@@ -649,8 +649,11 @@ class ElegantNotificationState extends State<ElegantNotification>
                 ),
                 if (widget.showProgressIndicator)
                   Padding(
-                    padding:
-                        widget.progressBarPadding ?? const EdgeInsets.all(0),
+                    padding: widget.progressBarPadding ??
+                        EdgeInsets.only(
+                          left: widget.borderRadius?.bottomLeft.x ?? 0,
+                          right: widget.borderRadius?.bottomRight.x ?? 0,
+                        ),
                     child: SizedBox(
                       width: widget.progressBarWidth,
                       height: widget.progressBarHeight,
