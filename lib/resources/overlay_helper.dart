@@ -96,6 +96,8 @@ class _OverlayHelper implements OverlayHelper {
 
   @override
   double alignmentToLeftPos() {
+    // Checking the vertical axis position of the overlay
+    // -1 = left, 0 = center, 1 = right
     if (position.x == 1) {
       return MediaQuery.of(context).size.width -
           mainContainerWidth() -
