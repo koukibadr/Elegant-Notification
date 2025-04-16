@@ -1,3 +1,11 @@
+## [2.4.5] - 16/04/2025
+
+* **Changes**
+* Mark `onCloseButtonPressed` as deprecated and replace it with `onDismiss` callback [PR#153](https://github.com/koukibadr/Elegant-Notification/pull/153)
+
+* **Bug Fix**
+* Fix null check operator when initializing overlay helper constraints [Issue#152](https://github.com/koukibadr/Elegant-Notification/issues/152)
+
 ## [2.4.4] - 30/03/2025
 
 * **Bug Fix**
