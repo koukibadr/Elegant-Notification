@@ -27,6 +27,9 @@ class ElegantNotification extends StatefulWidget {
     this.progressIndicatorColor = Colors.blue,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
+    @Deprecated(
+      'onCloseButtonPressed is deprecated, use onDismiss instead',
+    )
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.position = Alignment.topRight,
@@ -63,6 +66,9 @@ class ElegantNotification extends StatefulWidget {
     this.notificationMargin = 20,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
+    @Deprecated(
+      'onCloseButtonPressed is deprecated, use onDismiss instead',
+    )
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = defaultIconSize,
@@ -104,6 +110,9 @@ class ElegantNotification extends StatefulWidget {
     this.notificationMargin = 20,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
+    @Deprecated(
+      'onCloseButtonPressed is deprecated, use onDismiss instead',
+    )
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.icon,
@@ -145,6 +154,9 @@ class ElegantNotification extends StatefulWidget {
     this.notificationMargin = 20,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
+    @Deprecated(
+      'onCloseButtonPressed is deprecated, use onDismiss instead',
+    )
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.icon,
@@ -512,6 +524,9 @@ class ElegantNotificationState extends State<ElegantNotification>
     _initializeAnimation();
   }
 
+  /// Initialize the animation controller and the offset animation
+  /// based on the animation type and the animation curve.
+  /// This method is called in the initState method.
   void _initializeAnimation() {
     widget._slideController = AnimationController(
       duration: widget.animationDuration,
@@ -590,7 +605,9 @@ class ElegantNotificationState extends State<ElegantNotification>
     );
   }
 
-  void closeNotification() {
+  /// Close the notification when the user taps on the close button
+  /// or when the notification is dismissed
+  void _closeNotification() {
     widget.onCloseButtonPressed?.call();
     widget._closeTimer.cancel();
     widget._slideController.reverse();
@@ -641,7 +658,7 @@ class ElegantNotificationState extends State<ElegantNotification>
                         ? widget.displayCloseButton
                         : false,
                     closeButton: widget.closeButton,
-                    onCloseButtonPressed: closeNotification,
+                    onCloseButtonPressed: _closeNotification,
                     iconSize: widget.iconSize,
                     action: widget.action,
                     verticalDividerColor: widget.verticalDividerColor,
@@ -676,6 +693,7 @@ class ElegantNotificationState extends State<ElegantNotification>
   void dispose() {
     widget._slideController.dispose();
     widget._closeTimer.cancel();
+    widget.closeOverlay();
     super.dispose();
   }
 }
