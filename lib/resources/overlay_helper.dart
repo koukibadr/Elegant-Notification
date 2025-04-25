@@ -98,15 +98,20 @@ class _OverlayHelper implements OverlayHelper {
   double alignmentToLeftPos() {
     // Checking the vertical axis position of the overlay
     // -1 = left, 0 = center, 1 = right
-    if (position.x == 1) {
-      return MediaQuery.of(context).size.width -
-          mainContainerWidth() -
-          notificationMargin;
-    } else if (position.x == -1) {
-      return notificationMargin;
-    } else {
-      return ((position.x + 1) / 2) * MediaQuery.of(context).size.width -
-          (mainContainerWidth() / 2);
+    try {
+      if (position.x == 1) {
+        return MediaQuery.of(context).size.width -
+            mainContainerWidth() -
+            notificationMargin;
+      } else if (position.x == -1) {
+        return notificationMargin;
+      } else {
+        return ((position.x + 1) / 2) * MediaQuery.of(context).size.width -
+            (mainContainerWidth() / 2);
+      }
+    } catch (e) {
+      // Handle any exceptions that may occur
+      return notificationMargin; // Default value in case of an error
     }
   }
 
