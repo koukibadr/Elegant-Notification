@@ -1,0 +1,95 @@
+name: Report a bug
+description: |
+  You're encountred a bug with the Elegant Notification widget, 
+  causing the app to crash or faulty picker values or rendering issue or something else.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for using Elegant Notification!
+        
+        You're bug report is important to us. Please provide as much information as possible 
+        to help us understand the issue you're facing. This will help us to fix it faster.
+  - type: markdown
+    attributes:
+      value: |
+        Before filling the form fields, please consider the following:
+        - Ensure that you have searched the [existing issues](https://github.com/koukibadr/Bottom-Picker/issues)
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Please tell us exactly how to reproduce the problem you are running into.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Actual results
+      description: Please tell us what is actually happening.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected results
+      description: Please tell us what is expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Code sample
+      description: |
+        Please create a minimal reproducible sample that shows the problem
+        and attach it below between the lines with the backticks.
+      value: |
+        <details open><summary>Bottom picker implementation</summary>
+
+        ```dart
+        [Paste your code here]
+        ```
+
+        </details>
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Screenshots or Video
+      description: |
+        Upload any screenshots or video of the bug if applicable.
+      value: |
+        <details open><summary>Upload media</summary>
+
+        [Upload media here]
+
+        </details>
+  - type: textarea
+    attributes:
+      label: Logs
+      description: |
+        Include the full logs of the commands you are running between the lines
+        with the backticks below.
+      value: |
+        <details open><summary>Logs</summary>
+
+        ```console
+        [Paste your logs here]
+        ```
+
+        </details>
+  - type: textarea
+    attributes:
+      label: Flutter Doctor output
+      description: |
+        Please provide the full output of running `flutter doctor -v`
+      value: |
+        <details open><summary>Doctor output</summary>
+
+        ```console
+        [Paste your output here]
+        ```
+
+        </details>
+    validations:
+      required: true
