@@ -6,6 +6,7 @@ body:
       value: |
         Thank you for using Elegant Notification!
         
+        We are always looking for ways to improve the package and make it more useful for you.
         You're feature request is important to us. Please provide as much information as possible 
         to help us understand the feature you're requesting. This will help us to implement it faster.
   - type: markdown
