@@ -12,7 +12,7 @@ body:
     attributes:
       value: |
         Before filling the form fields, please consider the following:
-        - Ensure that you have searched the [existing issues](https://github.com/koukibadr/Bottom-Picker/issues)
+        - Ensure that you have searched the [existing issues](https://github.com/koukibadr/Elegant-Notification/issues)
   - type: textarea
     attributes:
       label: Use case
@@ -35,4 +35,4 @@ body:
          * videos
          * code samples
     validations:
-      required: true
+      required: false
