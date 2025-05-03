@@ -397,7 +397,7 @@ class ElegantNotification extends StatefulWidget {
   final Function()? onDismiss;
 
   /// Define whether the notification will be dismissed automatically or not
-  /// By default `autoDimiss = true`
+  /// By default `autoDismiss = true`
   final bool autoDismiss;
 
   /// The direction of the dismissible widget
