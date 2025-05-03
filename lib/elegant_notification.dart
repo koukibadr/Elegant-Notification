@@ -53,6 +53,7 @@ class ElegantNotification extends StatefulWidget {
     this.shadow,
     this.onLongPress,
     this.longPressDuration = const Duration(seconds: 2),
+    this.verticalDividerWidth = 1,
   }) : super(key: key) {
     _notificationType = NotificationType.custom;
     checkAssertions();
@@ -98,6 +99,7 @@ class ElegantNotification extends StatefulWidget {
     this.border,
     this.onLongPress,
     this.longPressDuration = const Duration(seconds: 2),
+    this.verticalDividerWidth = 1,
   }) {
     _notificationType = NotificationType.success;
     progressIndicatorColor = _notificationType.color;
@@ -144,6 +146,7 @@ class ElegantNotification extends StatefulWidget {
     this.border,
     this.onLongPress,
     this.longPressDuration = const Duration(seconds: 2),
+    this.verticalDividerWidth = 1,
   }) {
     _notificationType = NotificationType.error;
     progressIndicatorColor = _notificationType.color;
@@ -190,6 +193,7 @@ class ElegantNotification extends StatefulWidget {
     this.border,
     this.onLongPress,
     this.longPressDuration = const Duration(seconds: 2),
+    this.verticalDividerWidth = 1,
   }) {
     _notificationType = NotificationType.info;
     progressIndicatorColor = _notificationType.color;
@@ -286,6 +290,10 @@ class ElegantNotification extends StatefulWidget {
   /// By default it's null, which means it will use the default divider color = Color(0xffF3F3F3)
   /// You can customize the color by providing a specific [Color] value
   final Color verticalDividerColor;
+
+  /// The vertical divider width
+  /// By default it's set to 1
+  final double verticalDividerWidth;
 
   /// The notification icon, by default it's null.
   /// When it's null and using success, info and error the default icon is displayed
@@ -389,7 +397,7 @@ class ElegantNotification extends StatefulWidget {
   final Function()? onDismiss;
 
   /// Define whether the notification will be dismissed automatically or not
-  /// By default `autoDimiss = true`
+  /// By default `autoDismiss = true`
   final bool autoDismiss;
 
   /// The direction of the dismissible widget
@@ -698,6 +706,7 @@ class ElegantNotificationState extends State<ElegantNotification>
                     iconSize: widget.iconSize,
                     action: widget.action,
                     verticalDividerColor: widget.verticalDividerColor,
+                    verticalDividerWidth: widget.verticalDividerWidth,
                   ),
                 ),
                 if (widget.showProgressIndicator)

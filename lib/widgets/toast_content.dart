@@ -11,6 +11,7 @@ class ToastContent extends StatelessWidget {
     required this.displayCloseButton,
     required this.onCloseButtonPressed,
     required this.verticalDividerColor,
+    required this.verticalDividerWidth,
     this.closeButton,
     this.icon,
     this.iconSize = 20,
@@ -27,6 +28,7 @@ class ToastContent extends StatelessWidget {
   final Widget Function(void Function() dismissNotification)? closeButton;
   final Widget? action;
   final Color verticalDividerColor;
+  final double verticalDividerWidth;
 
   bool get displayIcon =>
       notificationType != NotificationType.custom || icon != null;
@@ -50,7 +52,7 @@ class ToastContent extends StatelessWidget {
             bottom: 20,
           ),
           child: Container(
-            width: 1,
+            width: verticalDividerWidth,
             color: verticalDividerColor,
           ),
         ),

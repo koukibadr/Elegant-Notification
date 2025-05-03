@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/stacked_options.dart';
@@ -236,7 +238,7 @@ class ExampleApp extends StatelessWidget {
                     showProgressIndicator: false,
                     autoDismiss: false,
                     onLongPress: () {
-                      print("Hello world");
+                      print('Hello world');
                     },
                     onDismiss: () {},
                   ).show(context);
@@ -357,7 +359,7 @@ class ExampleApp extends StatelessWidget {
                     progressIndicatorBackground: Colors.green[100]!,
                     longPressDuration: const Duration(seconds: 4),
                     onLongPress: () {
-                      print("Hello world");
+                      print('Hello world');
                     },
                   ).show(context);
                 },

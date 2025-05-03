@@ -46,7 +46,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^2.4.5
+	elegant_notification: ^2.5.0
 ```
 
 ## Parameters
@@ -158,13 +158,20 @@ dependencies:
   /// Function invoked when the user taps on the notification
   final void Function()? onNotificationPressed;
 
+  /// Function invoked when the user taps on the notification
+  final void Function()? onLongPress;
+
+  /// The long press duration of the notification
+  /// By default it's set to `Duration(seconds: 2)`
+  final Duration longPressDuration;
+
   /// Function invoked when tapping outside the notification
   /// Or when pressing the back button of the phone
   /// Or when tapping on the screen
   final Function()? onDismiss;
 
   /// Define whether the notification will be dismissed automatically or not
-  /// By default `autoDimiss == false`
+  /// By default `autoDismiss = true`
   final bool autoDismiss;
 
   /// The direction of the dismissible widget
