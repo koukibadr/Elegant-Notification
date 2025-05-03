@@ -1,3 +1,18 @@
+## [2.5.0] - 03/05/2025
+
+* **Changes**
+* Add `onLongPress` callback to the notification widget [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
+* Add `longPressDuration` to customize the long press duration [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
+* Implement long press detection and animation handling while long pres interaction [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
+* Add `verticalDividerWidth` attribute to customize the vertical divider width [PR#161](https://github.com/koukibadr/Elegant-Notification/pull/161)
+
+* **Enhancement**
+* Update the package example to demonstrate the new long press feature [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
+* Update padding rendering on notification icon widget [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
+* Update close icon rendering on notification widget [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
+* Refactor closing timer initialization and closing to avoid null check operator error [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
+* Add `autoDismiss` check on `timer.cancel()` method to avoid null check operator error [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
+
 ## [2.4.5] - 16/04/2025
 
 * **Changes**
