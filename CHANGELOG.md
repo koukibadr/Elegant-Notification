@@ -3,7 +3,7 @@
 * **Changes**
 * Add `onLongPress` callback to the notification widget [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
 * Add `longPressDuration` to customize the long press duration [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
-* Implement long press detection and animation handling while long pres interaction [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
+* Implement long press detection and animation handling while long press interaction [PR#160](https://github.com/koukibadr/Elegant-Notification/pull/160)
 * Add `verticalDividerWidth` attribute to customize the vertical divider width [PR#161](https://github.com/koukibadr/Elegant-Notification/pull/161)
 
 * **Enhancement**
