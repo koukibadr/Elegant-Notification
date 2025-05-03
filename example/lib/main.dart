@@ -234,6 +234,10 @@ class ExampleApp extends StatelessWidget {
                       ),
                     ),
                     showProgressIndicator: false,
+                    autoDismiss: false,
+                    onLongPress: () {
+                      print("Hello world");
+                    },
                     onDismiss: () {},
                   ).show(context);
                 },
@@ -349,7 +353,12 @@ class ExampleApp extends StatelessWidget {
                     progressBarPadding: const EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
+                    toastDuration: const Duration(seconds: 5),
                     progressIndicatorBackground: Colors.green[100]!,
+                    longPressDuration: const Duration(seconds: 4),
+                    onLongPress: () {
+                      print("Hello world");
+                    },
                   ).show(context);
                 },
                 child: Container(

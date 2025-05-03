@@ -51,6 +51,8 @@ class ElegantNotification extends StatefulWidget {
     this.onNotificationPressed,
     this.animationCurve = Curves.ease,
     this.shadow,
+    this.onLongPress,
+    this.longPressDuration = const Duration(seconds: 2),
   }) : super(key: key) {
     _notificationType = NotificationType.custom;
     checkAssertions();
@@ -94,6 +96,8 @@ class ElegantNotification extends StatefulWidget {
     this.shadow,
     this.borderRadius,
     this.border,
+    this.onLongPress,
+    this.longPressDuration = const Duration(seconds: 2),
   }) {
     _notificationType = NotificationType.success;
     progressIndicatorColor = _notificationType.color;
@@ -138,6 +142,8 @@ class ElegantNotification extends StatefulWidget {
     this.shadow,
     this.borderRadius,
     this.border,
+    this.onLongPress,
+    this.longPressDuration = const Duration(seconds: 2),
   }) {
     _notificationType = NotificationType.error;
     progressIndicatorColor = _notificationType.color;
@@ -182,6 +188,8 @@ class ElegantNotification extends StatefulWidget {
     this.shadow,
     this.borderRadius,
     this.border,
+    this.onLongPress,
+    this.longPressDuration = const Duration(seconds: 2),
   }) {
     _notificationType = NotificationType.info;
     progressIndicatorColor = _notificationType.color;
@@ -256,6 +264,12 @@ class ElegantNotification extends StatefulWidget {
         stackedOptions == null || stackedOptions?.type != StackedType.above,
       );
     }
+
+    assert(
+      onLongPress == null ||
+          longPressDuration.inMilliseconds < toastDuration.inMilliseconds,
+      'The long press duration should be less than the notification duration',
+    );
   }
 
   /// The toast title widget
@@ -362,13 +376,20 @@ class ElegantNotification extends StatefulWidget {
   /// Function invoked when the user taps on the notification
   final void Function()? onNotificationPressed;
 
+  /// Function invoked when the user taps on the notification
+  final void Function()? onLongPress;
+
+  /// The long press duration of the notification
+  /// By default it's set to `Duration(seconds: 2)`
+  final Duration longPressDuration;
+
   /// Function invoked when tapping outside the notification
   /// Or when pressing the back button of the phone
   /// Or when tapping on the screen
   final Function()? onDismiss;
 
   /// Define whether the notification will be dismissed automatically or not
-  /// By default `autoDimiss == false`
+  /// By default `autoDimiss = true`
   final bool autoDismiss;
 
   /// The direction of the dismissible widget
@@ -506,10 +527,26 @@ class ElegantNotification extends StatefulWidget {
 
 class ElegantNotificationState extends State<ElegantNotification>
     with SingleTickerProviderStateMixin {
+  late AnimatedProgressBar animatedProgressBar;
+  Stopwatch stopwatch = Stopwatch();
+
   @override
   void initState() {
     super.initState();
-    widget._closeTimer = Timer(widget.toastDuration, () {
+    if (widget.autoDismiss) {
+      widget._closeTimer = createClosingTimer();
+    }
+    _initializeAnimation();
+    animatedProgressBar = AnimatedProgressBar(
+      foregroundColor: widget.progressIndicatorColor,
+      duration: widget.toastDuration,
+      backgroundColor: widget.progressIndicatorBackground,
+    );
+  }
+
+  Timer createClosingTimer({Duration? duration}) {
+    stopwatch.start();
+    return Timer(duration ?? widget.toastDuration, () {
       widget._slideController.reverse();
       widget._slideController.addListener(() {
         if (widget._slideController.isDismissed) {
@@ -518,10 +555,6 @@ class ElegantNotificationState extends State<ElegantNotification>
         }
       });
     });
-    if (!widget.autoDismiss) {
-      widget._closeTimer.cancel();
-    }
-    _initializeAnimation();
   }
 
   /// Initialize the animation controller and the offset animation
@@ -609,7 +642,9 @@ class ElegantNotificationState extends State<ElegantNotification>
   /// or when the notification is dismissed
   void _closeNotification() {
     widget.onCloseButtonPressed?.call();
-    widget._closeTimer.cancel();
+    if (widget.autoDismiss) {
+      widget._closeTimer.cancel();
+    }
     widget._slideController.reverse();
     widget.onDismiss?.call();
     widget.closeOverlay();
@@ -635,6 +670,7 @@ class ElegantNotificationState extends State<ElegantNotification>
         },
         child: InkWell(
           onTap: widget.onNotificationPressed,
+          onLongPress: onLongPressTriggered,
           child: Container(
             width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
             height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
@@ -674,11 +710,7 @@ class ElegantNotificationState extends State<ElegantNotification>
                     child: SizedBox(
                       width: widget.progressBarWidth,
                       height: widget.progressBarHeight,
-                      child: AnimatedProgressBar(
-                        foregroundColor: widget.progressIndicatorColor,
-                        duration: widget.toastDuration,
-                        backgroundColor: widget.progressIndicatorBackground,
-                      ),
+                      child: animatedProgressBar,
                     ),
                   ),
               ],
@@ -692,8 +724,49 @@ class ElegantNotificationState extends State<ElegantNotification>
   @override
   void dispose() {
     widget._slideController.dispose();
-    widget._closeTimer.cancel();
+    if (widget.autoDismiss) {
+      widget._closeTimer.cancel();
+    }
     widget.closeOverlay();
     super.dispose();
+  }
+
+  /// Called when the user long presses on the notification
+  /// This method pauses the progress bar animation
+  /// and starts a timer for the long press duration
+  /// When the timer is finished, it calls the onLongPress method
+  /// and resumes the progress bar animation
+  void onLongPressTriggered() {
+    if (widget.onLongPress == null) return;
+    // Cancel the close timer if it's running
+    if (widget.autoDismiss) {
+      widget._closeTimer.cancel();
+    }
+    // Pause the progress bar animation
+    if (widget.showProgressIndicator) {
+      animatedProgressBar.pauseAnimation();
+    }
+    // Get the elapsed time since the notification was shown
+    // and calculate the remaining time
+    int elapsedMilliseconds = stopwatch.elapsedMilliseconds;
+    int remainingMilliseconds =
+        widget.toastDuration.inMilliseconds - elapsedMilliseconds;
+    stopwatch.reset();
+    // Start a timer for the long press duration
+    Timer(widget.longPressDuration, () {
+      widget.onLongPress?.call();
+      // Resume the progress bar animation
+      // and set the close timer for the remaining time
+      if (widget.autoDismiss) {
+        widget._closeTimer = createClosingTimer(
+          duration: Duration(
+            milliseconds: remainingMilliseconds,
+          ),
+        );
+      }
+      if (widget.showProgressIndicator) {
+        animatedProgressBar.resumeAnimation();
+      }
+    });
   }
 }

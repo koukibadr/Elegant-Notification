@@ -28,25 +28,21 @@ class ToastContent extends StatelessWidget {
   final Widget? action;
   final Color verticalDividerColor;
 
+  bool get displayIcon =>
+      notificationType != NotificationType.custom || icon != null;
+
   @override
   Widget build(BuildContext context) {
     bool isRtl = Directionality.of(context) == TextDirection.rtl;
 
     return Row(
       children: [
-        if (notificationType != NotificationType.custom || icon != null)
-          Row(
-            children: [
-              Padding(
-                padding: isRtl
-                    ? const EdgeInsets.only(right: horizontalComponentPadding)
-                    : const EdgeInsets.only(left: horizontalComponentPadding),
-                child: _getNotificationIcon(),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-            ],
+        if (displayIcon)
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: horizontalComponentPadding,
+            ),
+            child: _getNotificationIcon(),
           ),
         Padding(
           padding: const EdgeInsets.only(
@@ -83,36 +79,31 @@ class ToastContent extends StatelessWidget {
           ),
         ),
         if (displayCloseButton)
-          Visibility(
-            visible: displayCloseButton,
-            child: closeButton?.call(onCloseButtonPressed) ??
-                InkWell(
-                  onTap: () {
-                    onCloseButtonPressed.call();
-                  },
-                  child: Padding(
-                    padding: isRtl
-                        ? const EdgeInsets.only(
-                            top: verticalComponentPadding,
-                            left: horizontalComponentPadding,
-                          )
-                        : const EdgeInsets.only(
-                            top: verticalComponentPadding,
-                            right: horizontalComponentPadding,
-                          ),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.close,
-                          color: Colors.grey,
-                          size: 15,
+          closeButton?.call(onCloseButtonPressed) ??
+              InkWell(
+                onTap: onCloseButtonPressed,
+                child: Padding(
+                  padding: isRtl
+                      ? const EdgeInsets.only(
+                          top: verticalComponentPadding,
+                          left: horizontalComponentPadding,
+                        )
+                      : const EdgeInsets.only(
+                          top: verticalComponentPadding,
+                          right: horizontalComponentPadding,
                         ),
-                      ],
-                    ),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.close,
+                        color: Colors.grey,
+                        size: 15,
+                      ),
+                    ],
                   ),
                 ),
-          ),
+              ),
       ],
     );
   }
