@@ -14,15 +14,24 @@ class AnimatedProgressBar extends StatefulWidget {
     required this.duration,
   }) : super(key: key);
 
+  AnimationController? _controller;
+
   @override
   AnimatedProgressBarState createState() {
     return AnimatedProgressBarState();
+  }
+
+  void pauseAnimation() {
+    _controller?.stop();
+  }
+
+  void resumeAnimation() {
+    _controller?.forward();
   }
 }
 
 class AnimatedProgressBarState extends State<AnimatedProgressBar>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
   late Animation<double> curve;
   late Tween<double> valueTween;
 
@@ -30,19 +39,19 @@ class AnimatedProgressBarState extends State<AnimatedProgressBar>
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
+    widget._controller = AnimationController(
       duration: widget.duration,
       vsync: this,
     );
     curve = CurvedAnimation(
-      parent: _controller,
+      parent: widget._controller!,
       curve: Curves.easeInOut,
     );
     valueTween = Tween<double>(
       begin: 1,
       end: 0,
     );
-    _controller.forward();
+    widget._controller!.forward();
   }
 
   @override
@@ -56,7 +65,7 @@ class AnimatedProgressBarState extends State<AnimatedProgressBar>
         end: widget.value,
       );
 
-      _controller
+      widget._controller!
         ..value = 0
         ..forward();
     }
@@ -64,7 +73,7 @@ class AnimatedProgressBarState extends State<AnimatedProgressBar>
 
   @override
   void dispose() {
-    _controller.dispose();
+    widget._controller!.dispose();
     super.dispose();
   }
 
