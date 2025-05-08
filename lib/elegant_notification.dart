@@ -698,9 +698,7 @@ class ElegantNotificationState extends State<ElegantNotification>
                     description: widget.description,
                     notificationType: widget._notificationType,
                     icon: widget.icon,
-                    displayCloseButton: widget.onNotificationPressed == null
-                        ? widget.displayCloseButton
-                        : false,
+                    displayCloseButton: widget.displayCloseButton,
                     closeButton: widget.closeButton,
                     onCloseButtonPressed: _closeNotification,
                     iconSize: widget.iconSize,
