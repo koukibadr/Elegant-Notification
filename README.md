@@ -14,8 +14,6 @@
 **Stacked elegant notification**
 ![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/stacked_example_1.gif?raw=true)
 
-
-
 ## Features
 
 - **Display a top notification with animation**
@@ -46,7 +44,7 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^2.5.0
+	elegant_notification: ^2.5.1
 ```
 
 ## Parameters
@@ -245,7 +243,6 @@ ElegantNotification.success(
 
 <br>
 
-
 - **Stacked notifications Example 2**
 
 ```dart
@@ -265,7 +262,6 @@ ElegantNotification.error(
 ```
 
 <br>
-
 
 - **With box shadow example**
 
@@ -305,6 +301,7 @@ ElegantNotification.info(
 ).show(context);
 
 ```
+
 <br>
 
 - **Easiest way to display elegant notification**
