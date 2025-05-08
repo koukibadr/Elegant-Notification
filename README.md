@@ -1,18 +1,18 @@
 # Elegant Notification
 
 <p  align="center">
-<img  src="https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/elegant_notification_logo.gif?raw=true"/>
+<img  src="https://raw.githubusercontent.com/koukibadr/Elegant-Notification/main/example/elegant_notification_logo.gif?raw=true"/>
 <br>
 <b>An elegant notification to display important messages to users</b>
 
 </p>
 
-| ![success_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/success_elegant_notification.gif?raw=true) | ![info_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/info_elegant_notification.gif?raw=true)     |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![error_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/error_elegant_notification.gif?raw=true)     | ![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/custom_elegant_notification.gif?raw=true) |
+| ![success_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/main/example/success_elegant_notification.gif?raw=true) | ![info_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/main/example/info_elegant_notification.gif?raw=true)     |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![error_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/main/example/error_elegant_notification.gif?raw=true)     | ![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/main/example/custom_elegant_notification.gif?raw=true) |
 
 **Stacked elegant notification**
-![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/dev/example/stacked_example_1.gif?raw=true)
+![custom_notification.gif](https://raw.githubusercontent.com/koukibadr/Elegant-Notification/main/example/stacked_example_1.gif?raw=true)
 
 ## Features
 
