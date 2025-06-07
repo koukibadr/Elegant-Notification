@@ -33,7 +33,7 @@ class ElegantNotification extends StatefulWidget {
     this.onCloseButtonPressed,
     this.onProgressFinished,
     this.position = Alignment.topRight,
-    this.animation = AnimationType.fromRight,
+    this.animation,
     this.animationDuration = const Duration(milliseconds: 600),
     this.iconSize = defaultIconSize,
     this.action,
@@ -77,7 +77,7 @@ class ElegantNotification extends StatefulWidget {
     this.iconSize = defaultIconSize,
     this.icon,
     this.position = Alignment.topRight,
-    this.animation = AnimationType.fromRight,
+    this.animation,
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
@@ -124,7 +124,7 @@ class ElegantNotification extends StatefulWidget {
     this.icon,
     this.iconSize = defaultIconSize,
     this.position = Alignment.topRight,
-    this.animation = AnimationType.fromRight,
+    this.animation,
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
@@ -171,7 +171,7 @@ class ElegantNotification extends StatefulWidget {
     this.icon,
     this.iconSize = defaultIconSize,
     this.position = Alignment.topRight,
-    this.animation = AnimationType.fromRight,
+    this.animation,
     this.animationDuration = const Duration(milliseconds: 600),
     this.showProgressIndicator = true,
     this.action,
@@ -314,7 +314,7 @@ class ElegantNotification extends StatefulWidget {
   /// }
   /// ```
   /// default value `fromLeft`
-  final AnimationType animation;
+  final AnimationType? animation;
 
   /// The duration of the animation
   /// Default value `Duration(milliseconds: 600)`
@@ -476,12 +476,13 @@ class ElegantNotification extends StatefulWidget {
   }
 
   /// Dismiss the notification
-  Future<void> dismiss() {
+  void dismiss() {
     _closeTimer.cancel();
-    return _slideController.reverse().then((value) {
-      onDismiss?.call();
-      closeOverlay();
-    });
+    if (animation != null) {
+      _slideController.reverse();
+    }
+    onDismiss?.call();
+    closeOverlay();
   }
 
   int get stackOverlaysLength => overlayManager.overlays.keys
@@ -500,6 +501,23 @@ class ElegantNotification extends StatefulWidget {
   OverlayEntry _overlayEntryBuilder() {
     return OverlayEntry(
       builder: (context) {
+        // if (animation == null) {
+        //   return AnimatedScale(
+        //     duration: const Duration(
+        //       milliseconds: 300,
+        //     ),
+        //     scale: overlayHelper.getScale(
+        //       stackedItemPosition,
+        //       stackOverlaysLength,
+        //     ),
+        //     alignment: Alignment.bottomCenter,
+        //     child: Material(
+        //       color: Colors.transparent,
+        //       child: SafeArea(child: this),
+        //     ),
+        //   );
+        // }
+
         return AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
           left: overlayHelper.alignmentToLeftPos() +
@@ -544,7 +562,9 @@ class ElegantNotificationState extends State<ElegantNotification>
     if (widget.autoDismiss) {
       widget._closeTimer = createClosingTimer();
     }
-    _initializeAnimation();
+    if (widget.animation != null) {
+      _initializeAnimation();
+    }
     animatedProgressBar = AnimatedProgressBar(
       foregroundColor: widget.progressIndicatorColor,
       duration: widget.toastDuration,
@@ -555,13 +575,18 @@ class ElegantNotificationState extends State<ElegantNotification>
   Timer createClosingTimer({Duration? duration}) {
     stopwatch.start();
     return Timer(duration ?? widget.toastDuration, () {
-      widget._slideController.reverse();
-      widget._slideController.addListener(() {
-        if (widget._slideController.isDismissed) {
-          widget.onProgressFinished?.call();
-          widget.closeOverlay();
-        }
-      });
+      if (widget.animation != null) {
+        widget._slideController.reverse();
+        widget._slideController.addListener(() {
+          if (widget._slideController.isDismissed) {
+            widget.onProgressFinished?.call();
+            widget.closeOverlay();
+          }
+        });
+      } else {
+        widget.onProgressFinished?.call();
+        widget.closeOverlay();
+      }
     });
   }
 
@@ -653,7 +678,9 @@ class ElegantNotificationState extends State<ElegantNotification>
     if (widget.autoDismiss) {
       widget._closeTimer.cancel();
     }
-    widget._slideController.reverse();
+    if (widget.animation != null) {
+      widget._slideController.reverse();
+    }
     widget.onDismiss?.call();
     widget.closeOverlay();
   }
@@ -665,63 +692,70 @@ class ElegantNotificationState extends State<ElegantNotification>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.animation == null) {
+      return renderElegantNotification();
+    }
     return SlideTransition(
       position: widget._offsetAnimation,
-      child: Dismissible(
-        key: widget.uniqueKey,
-        direction: widget.isDismissable
-            ? widget.dismissDirection
-            : DismissDirection.none,
-        onDismissed: (direction) {
-          widget.onDismiss?.call();
-          widget.closeOverlay();
-        },
-        child: InkWell(
-          onTap: widget.onNotificationPressed,
-          onLongPress: onLongPressTriggered,
-          child: Container(
-            width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
-            height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
-            decoration: BoxDecoration(
-              borderRadius: widget.borderRadius ?? BorderRadius.circular(5.0),
-              border: widget.border,
-              color: widget.background,
-              boxShadow: [
-                widget.shadow ?? const BoxShadow(),
-              ],
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ToastContent(
-                    title: widget.title,
-                    description: widget.description,
-                    notificationType: widget._notificationType,
-                    icon: widget.icon,
-                    displayCloseButton: widget.displayCloseButton,
-                    closeButton: widget.closeButton,
-                    onCloseButtonPressed: _closeNotification,
-                    iconSize: widget.iconSize,
-                    action: widget.action,
-                    verticalDividerColor: widget.verticalDividerColor,
-                    verticalDividerWidth: widget.verticalDividerWidth,
+      child: renderElegantNotification(),
+    );
+  }
+
+  Widget renderElegantNotification() {
+    return Dismissible(
+      key: widget.uniqueKey,
+      direction: widget.isDismissable
+          ? widget.dismissDirection
+          : DismissDirection.none,
+      onDismissed: (direction) {
+        widget.onDismiss?.call();
+        widget.closeOverlay();
+      },
+      child: InkWell(
+        onTap: widget.onNotificationPressed,
+        onLongPress: onLongPressTriggered,
+        child: Container(
+          width: widget.width ?? MediaQuery.of(context).size.width * 0.7,
+          height: widget.height ?? MediaQuery.of(context).size.height * 0.12,
+          decoration: BoxDecoration(
+            borderRadius: widget.borderRadius ?? BorderRadius.circular(5.0),
+            border: widget.border,
+            color: widget.background,
+            boxShadow: [
+              widget.shadow ?? const BoxShadow(),
+            ],
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                child: ToastContent(
+                  title: widget.title,
+                  description: widget.description,
+                  notificationType: widget._notificationType,
+                  icon: widget.icon,
+                  displayCloseButton: widget.displayCloseButton,
+                  closeButton: widget.closeButton,
+                  onCloseButtonPressed: _closeNotification,
+                  iconSize: widget.iconSize,
+                  action: widget.action,
+                  verticalDividerColor: widget.verticalDividerColor,
+                  verticalDividerWidth: widget.verticalDividerWidth,
+                ),
+              ),
+              if (widget.showProgressIndicator)
+                Padding(
+                  padding: widget.progressBarPadding ??
+                      EdgeInsets.only(
+                        left: widget.borderRadius?.bottomLeft.x ?? 0,
+                        right: widget.borderRadius?.bottomRight.x ?? 0,
+                      ),
+                  child: SizedBox(
+                    width: widget.progressBarWidth,
+                    height: widget.progressBarHeight,
+                    child: animatedProgressBar,
                   ),
                 ),
-                if (widget.showProgressIndicator)
-                  Padding(
-                    padding: widget.progressBarPadding ??
-                        EdgeInsets.only(
-                          left: widget.borderRadius?.bottomLeft.x ?? 0,
-                          right: widget.borderRadius?.bottomRight.x ?? 0,
-                        ),
-                    child: SizedBox(
-                      width: widget.progressBarWidth,
-                      height: widget.progressBarHeight,
-                      child: animatedProgressBar,
-                    ),
-                  ),
-              ],
-            ),
+            ],
           ),
         ),
       ),
@@ -730,7 +764,9 @@ class ElegantNotificationState extends State<ElegantNotification>
 
   @override
   void dispose() {
-    widget._slideController.dispose();
+    if (widget.animation != null) {
+      widget._slideController.dispose();
+    }
     if (widget.autoDismiss) {
       widget._closeTimer.cancel();
     }
