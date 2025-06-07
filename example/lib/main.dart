@@ -175,7 +175,6 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification(
                     width: 360,
                     position: Alignment.centerRight,
-                    animation: AnimationType.fromRight,
                     stackedOptions: StackedOptions(
                       key: 'top',
                       type: StackedType.same,
@@ -220,7 +219,6 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification.info(
                     width: 360,
                     position: Alignment.bottomLeft,
-                    animation: AnimationType.fromLeft,
                     title: const Text('Info'),
                     description: const Text(
                       'This account will be updated once you exit',
