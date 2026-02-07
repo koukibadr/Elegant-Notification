@@ -27,10 +27,6 @@ class ElegantNotification extends StatefulWidget {
     this.progressIndicatorColor = Colors.blue,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
-    @Deprecated(
-      'onCloseButtonPressed is deprecated, use onDismiss instead',
-    )
-    this.onCloseButtonPressed,
     this.onProgressFinished,
     this.position = Alignment.topRight,
     this.animation,
@@ -69,10 +65,6 @@ class ElegantNotification extends StatefulWidget {
     this.notificationMargin = 20,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
-    @Deprecated(
-      'onCloseButtonPressed is deprecated, use onDismiss instead',
-    )
-    this.onCloseButtonPressed,
     this.onProgressFinished,
     this.iconSize = defaultIconSize,
     this.icon,
@@ -116,10 +108,6 @@ class ElegantNotification extends StatefulWidget {
     this.notificationMargin = 20,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
-    @Deprecated(
-      'onCloseButtonPressed is deprecated, use onDismiss instead',
-    )
-    this.onCloseButtonPressed,
     this.onProgressFinished,
     this.icon,
     this.iconSize = defaultIconSize,
@@ -163,10 +151,6 @@ class ElegantNotification extends StatefulWidget {
     this.notificationMargin = 20,
     this.toastDuration = const Duration(milliseconds: 3000),
     this.displayCloseButton = true,
-    @Deprecated(
-      'onCloseButtonPressed is deprecated, use onDismiss instead',
-    )
-    this.onCloseButtonPressed,
     this.onProgressFinished,
     this.icon,
     this.iconSize = defaultIconSize,
@@ -374,9 +358,6 @@ class ElegantNotification extends StatefulWidget {
   /// by default the close button is displayed, if you don't want it set `closeButton` to null
   /// for types constructors (Success, Info, Delete) this parameter is unchangeable
   final Widget Function(void Function() dismissNotification)? closeButton;
-
-  /// Function invoked when user press on the close button
-  final void Function()? onCloseButtonPressed;
 
   /// Function invoked when the notification is closed after the finish of the progress indicator
   final void Function()? onProgressFinished;
@@ -674,7 +655,6 @@ class ElegantNotificationState extends State<ElegantNotification>
   /// Close the notification when the user taps on the close button
   /// or when the notification is dismissed
   void _closeNotification() {
-    widget.onCloseButtonPressed?.call();
     if (widget.autoDismiss) {
       widget._closeTimer.cancel();
     }
