@@ -8,7 +8,7 @@ import 'package:elegant_notification/resources/stacked_options.dart';
 import 'package:elegant_notification/widgets/animated_progress_bar.dart';
 import 'package:elegant_notification/widgets/overlay_manager.dart';
 import 'package:elegant_notification/widgets/toast_content.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 // ignore: must_be_immutable
 class ElegantNotification extends StatefulWidget {

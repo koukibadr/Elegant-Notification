@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class StackedOptions {
   /// The key of the stacked notification, if you want to stack the notifications

@@ -1,6 +1,6 @@
 import 'package:elegant_notification/resources/arrays.dart';
 import 'package:elegant_notification/resources/constants.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ToastContent extends StatelessWidget {
   const ToastContent({
