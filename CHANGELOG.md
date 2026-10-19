@@ -1,3 +1,9 @@
+## [2.5.2] - 19/10/2026
+
+- **Changes**
+- Upgrade to the decoupled `material_ui` widgets
+- Update package dependencies and minimum SDK requirements
+
 ## [2.5.1] - 08/05/2025
 
 - **Changes**
