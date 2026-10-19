@@ -10,6 +10,7 @@ dependencies:
   elegant_notification:
     path: ../
   cupertino_icons: ^1.0.5
+  material_ui: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
