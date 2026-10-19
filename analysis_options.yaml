@@ -2,6 +2,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
     exclude: 
       - '**/*.gen.dart'
+      - build/**
 linter:
   rules:
      avoid_print: true
