@@ -48,6 +48,7 @@ class ExampleApp extends StatelessWidget {
                   ElegantNotification.success(
                     width: 360,
                     isDismissable: false,
+                    toastDuration: const Duration(seconds: 5),
                     stackedOptions: StackedOptions(
                       key: 'top',
                       type: StackedType.same,
@@ -55,11 +56,11 @@ class ExampleApp extends StatelessWidget {
                     ),
                     title: const Text('Update'),
                     description: const Text('Your data has been updated'),
-                    onDismiss: () {
+                    onDismiss: (instance) {
                       //Message when the notification is dismissed
                     },
-                    onNotificationPressed: () {
-                      //Message when the notification is pressed
+                    onNotificationPressed: (instance) {
+                      instance.dismiss();
                     },
                   ).show(context);
                 },
@@ -90,7 +91,7 @@ class ExampleApp extends StatelessWidget {
                     animation: AnimationType.fromRight,
                     title: const Text('Error'),
                     description: const Text('Error example notification'),
-                    onDismiss: () {
+                    onDismiss: (instance) {
                       // Message when the notification is dismissed
                     },
                     autoDismiss: false,
@@ -142,11 +143,11 @@ class ExampleApp extends StatelessWidget {
                     description: const Text(
                       'This account will be updated once you exit',
                     ),
-                    onNotificationPressed: () {
-                      notification?.dismiss();
+                    onNotificationPressed: (instance) {
+                      instance.dismiss();
                     },
                     showProgressIndicator: false,
-                    onDismiss: () {},
+                    onDismiss: (instance) {},
                     icon: const Icon(
                       Icons.ac_unit_rounded,
                       color: Colors.amber,
@@ -193,7 +194,7 @@ class ExampleApp extends StatelessWidget {
                       'A new version is available to you please update.',
                     ),
                     progressIndicatorColor: Colors.orange,
-                    onDismiss: () {},
+                    onDismiss: (instance) {},
                   ).show(context);
                 },
                 child: Container(
@@ -238,10 +239,10 @@ class ExampleApp extends StatelessWidget {
                     ),
                     showProgressIndicator: false,
                     autoDismiss: false,
-                    onLongPress: () {
+                    onLongPress: (instance) {
                       print('Hello world');
                     },
-                    onDismiss: () {},
+                    onDismiss: (instance) {},
                   ).show(context);
                 },
                 child: Container(
@@ -323,7 +324,7 @@ class ExampleApp extends StatelessWidget {
                         child: const Icon(Icons.logout, color: Colors.white),
                       ),
                     ),
-                    onDismiss: () {},
+                    onDismiss: (instance) {},
                   ).show(context);
                 },
                 child: Container(
@@ -359,7 +360,7 @@ class ExampleApp extends StatelessWidget {
                     toastDuration: const Duration(seconds: 5),
                     progressIndicatorBackground: Colors.green[100]!,
                     longPressDuration: const Duration(seconds: 4),
-                    onLongPress: () {
+                    onLongPress: (instance) {
                       print('Hello world');
                     },
                   ).show(context);
