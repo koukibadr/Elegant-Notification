@@ -1,3 +1,11 @@
+## [2.5.4] - 01/11/2026
+
+- **Features**
+- implement instance providers in callback attributes [PR#174](https://github.com/koukibadr/Elegant-Notification/pull/174)
+
+- **Bug Fix**
+- Uresolve overlay dismiss issue [PR#172](https://github.com/koukibadr/Elegant-Notification/pull/172)
+
 ## [2.5.3] - 19/10/2026
 
 - **Changes**
