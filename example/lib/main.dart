@@ -84,19 +84,22 @@ class ExampleApp extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  ElegantNotification.error(
+                  final notif = ElegantNotification.error(
                     width: 360,
-                    stackedOptions: StackedOptions(
-                      key: 'topRight',
-                      type: StackedType.below,
-                      itemOffset: const Offset(0, 5),
-                    ),
                     position: Alignment.topRight,
                     animation: AnimationType.fromRight,
                     title: const Text('Error'),
                     description: const Text('Error example notification'),
-                    onDismiss: () {},
-                  ).show(context);
+                    onDismiss: () {
+                      // Message when the notification is dismissed
+                    },
+                    autoDismiss: false,
+                    showProgressIndicator: false,
+                  );
+                  notif.show(context);
+                  Future.delayed(const Duration(seconds: 3), () {
+                    notif.dismiss();
+                  });
                 },
                 child: Container(
                   width: 150,

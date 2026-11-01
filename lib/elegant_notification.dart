@@ -187,7 +187,7 @@ class ElegantNotification extends StatefulWidget {
   /// Checks assertions for various constructors of this package
   void checkAssertions() {
     if (showProgressIndicator) {
-      assert(autoDismiss != false);
+      assert(autoDismiss != false, 'You can not set autoDismiss to false when showProgressIndicator is true');
     }
     if (onNotificationPressed != null) {
       assert(
@@ -409,7 +409,7 @@ class ElegantNotification extends StatefulWidget {
   late NotificationType _notificationType;
 
   /// The timer for the notification
-  late Timer _closeTimer;
+  Timer? _closeTimer;
 
   /// The offset animation for the notification
   late Animation<Offset> _offsetAnimation;
@@ -458,12 +458,14 @@ class ElegantNotification extends StatefulWidget {
 
   /// Dismiss the notification
   void dismiss() {
-    _closeTimer.cancel();
-    if (animation != null) {
-      _slideController.reverse();
-    }
-    onDismiss?.call();
-    closeOverlay();
+    _closeTimer?.cancel();
+    _slideController.reverse();
+    _slideController.addListener(() {
+      if (_slideController.isDismissed) {
+        onDismiss?.call();
+        closeOverlay();
+      }
+    });
   }
 
   int get stackOverlaysLength => overlayManager.overlays.keys
@@ -482,22 +484,6 @@ class ElegantNotification extends StatefulWidget {
   OverlayEntry _overlayEntryBuilder() {
     return OverlayEntry(
       builder: (context) {
-        // if (animation == null) {
-        //   return AnimatedScale(
-        //     duration: const Duration(
-        //       milliseconds: 300,
-        //     ),
-        //     scale: overlayHelper.getScale(
-        //       stackedItemPosition,
-        //       stackOverlaysLength,
-        //     ),
-        //     alignment: Alignment.bottomCenter,
-        //     child: Material(
-        //       color: Colors.transparent,
-        //       child: SafeArea(child: this),
-        //     ),
-        //   );
-        // }
 
         return AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
@@ -656,7 +642,7 @@ class ElegantNotificationState extends State<ElegantNotification>
   /// or when the notification is dismissed
   void _closeNotification() {
     if (widget.autoDismiss) {
-      widget._closeTimer.cancel();
+      widget._closeTimer?.cancel();
     }
     if (widget.animation != null) {
       widget._slideController.reverse();
@@ -748,7 +734,7 @@ class ElegantNotificationState extends State<ElegantNotification>
       widget._slideController.dispose();
     }
     if (widget.autoDismiss) {
-      widget._closeTimer.cancel();
+      widget._closeTimer?.cancel();
     }
     widget.closeOverlay();
     super.dispose();
@@ -763,7 +749,7 @@ class ElegantNotificationState extends State<ElegantNotification>
     if (widget.onLongPress == null) return;
     // Cancel the close timer if it's running
     if (widget.autoDismiss) {
-      widget._closeTimer.cancel();
+      widget._closeTimer?.cancel();
     }
     // Pause the progress bar animation
     if (widget.showProgressIndicator) {
