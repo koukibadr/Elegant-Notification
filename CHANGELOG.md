@@ -1,8 +1,3 @@
-## [2.5.5] - 16/11/2026
-
-- **Changes**
-- Minimum supported versions are now Dart 3.10.0 and Flutter 3.38.0, projects on older SDKs keep using 2.5.4 
-
 ## [2.5.4] - 01/11/2026
 
 - **Features**

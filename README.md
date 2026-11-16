@@ -44,10 +44,8 @@ To use this elegant notification package you need to add the dependency in `pubs
 
 ```yaml
 dependencies:
-	elegant_notification: ^2.5.5
+	elegant_notification: ^2.5.4
 ```
-> **Requirements:** Dart `>=3.10.0` and Flutter `>=3.38.0`.
-> If your project is on an older SDK, pub will keep resolving the latest version that supports it (`2.5.4`).
 
 ## Parameters
 
